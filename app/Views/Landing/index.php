@@ -592,6 +592,43 @@
                 </div>
             </div>
 
+            <!-- modal informasi ketentuan verifikasi-->
+            <div class="modal fade" id="modal_ketentuan" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="importLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ketentuan Verifikasi Data</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                1. Siapan dokumen pendukung seperti KK, Akte Kelahiran, Kartu Keluarga, Ijasah SMP, dan
+                                lain-lain.
+                            </p>
+                            <p>
+                                2. Periksa data yang ada pada aplikasi dengan data yang ada pada dokumen pendukung.
+                            </p>
+                            <p>
+                                3. Jika ada data yang tidak sesuai, silahkan perbaiki data pada aplikasi.
+                            </p>
+                            <p>
+                                4. Pastikan data yang ada pada aplikasi sudah sesuai dengan data yang ada pada dokumen
+                                pendukung dan jumlah data invalid & valid sudah sesuai(Pada alert perhatian diatas).
+                            </p>
+                            <p>
+                                5. Jika data sudah sesuai, silahkan klik tombol simpan.
+                            </p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+            </style>
             <!-- Footer Section Start -->
             <footer class="footer">
                 <div class="footer-body">
@@ -653,6 +690,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
     $(document).ready(function() {
+
+
         // check if dark mode is enabled
         if (localStorage.getItem('color-mode') == 'dark') {
             $('#dark').addClass('active');
@@ -860,8 +899,8 @@
                 if (response.status == '200') {
                     $('#form_cari').hide();
                     $('#data_siswa').show();
-
                     render_data_siswa(response.data);
+                    $('#modal_ketentuan').modal('show');
                 } else {
                     sweetalert('error', 'Data tidak ditemukan',
                         'Data siswa tidak ditemukan, periksa kembali data yang anda masukkan',

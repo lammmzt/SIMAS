@@ -28,6 +28,7 @@ class Data_siswa extends BaseController
         }else{
             $builder = $data_siswaModel->get_data_siswa();
         }   
+        
         // dd($builder);
         return DataTable::of($builder)
             
@@ -178,6 +179,7 @@ class Data_siswa extends BaseController
                 // check if data siswa not exists
                 if (!array_key_exists($nis, $data_siswa)) {
                     // insert data siswa
+                    dd($nis);
                     $id_data_siswa = Uuid::uuid4()->toString();
                     $data_siswaModel->insert([
                         'id_data_siswa' => $id_data_siswa,
@@ -220,82 +222,83 @@ class Data_siswa extends BaseController
                 ];
                 $success++;
                 continue;
+            }else{
+                // dd($nis);
+                // insert data dapodik
+                $id_data_dapodik = $nisn;
+                $data_dapodikModel->insert([
+                    'id_data_dapodik' => $id_data_dapodik,
+                    'nis_data_dapodik' => $nis,
+                    'nama_lengkap_data_dapodik' => $nama_lengkap,
+                    'kelas_data_dapodik' => $kelas,
+                    'jenis_kelamin_data_dapodik' => $jenis_kelamin,
+                    'tempat_lahir_data_dapodik' => $tempat_lahir,
+                    'tanggal_lahir_data_dapodik' =>$tanggal_lahir,
+                    'agama_data_dapodik' => $agama,
+                    'shdk_data_dapodik' => $shdk,
+                    'anak_ke_data_dapodik' => $anak_ke,
+                    'alamat_data_dapodik' => $alamat,
+                    'no_tlp_data_dapodik' => $no_tlp,
+                    'sekolah_asal_data_dapodik' => $sekolah_asal,
+                    'di_kelas_10_data_dapodik' => $di_kelas_10,
+                    'tanggal_diterima_data_dapodik' => $tanggal_diterima,
+                    'nama_ayah_data_dapodik' => $nama_ayah,
+                    'pekerjaan_ayah_data_dapodik' => $pekerjaan_ayah,
+                    'nama_ibu_data_dapodik' => $nama_ibu,
+                    'pekerjaan_ibu_data_dapodik' => $pekerjaan_ibu,
+                    'alamat_orang_tua_data_dapodik' => $alamat_orang_tua,
+                    'nama_wali_data_dapodik' => $nama_wali,
+                    'pekerjaan_wali_data_dapodik' => $pekerjaan_wali,
+                    'alamat_wali_data_dapodik' => $alamat_wali,
+                    'created_at' => date('Y-m-d H:i:s')
+                ]);
+                // update to array data dapodik
+                $data_dapodik[$nis] = $id_data_dapodik;
+                // insert data siswa
+                $id_data_siswa = Uuid::uuid4()->toString();
+                $data_siswaModel->insert([
+                    'id_data_siswa' => $id_data_siswa,
+                    'id_data_dapodik' => $id_data_dapodik,
+                    'nisn_data_siswa' => $nisn,
+                    'nama_lengkap_data_siswa' => $nama_lengkap,
+                    'nis_data_siswa' => $nis,
+                    'kelas_data_siswa' => $kelas,
+                    'jenis_kelamin_data_siswa' => $jenis_kelamin,
+                    'tempat_lahir_data_siswa' => $tempat_lahir,
+                    'tanggal_lahir_data_siswa' => $tanggal_lahir,
+                    'agama_data_siswa' => $agama,
+                    'shdk_data_siswa' => $shdk,
+                    'anak_ke_data_siswa' => $anak_ke,
+                    'alamat_data_siswa' => $alamat,
+                    'no_tlp_data_siswa' => $no_tlp,
+                    'sekolah_asal_data_siswa' => $sekolah_asal,
+                    'di_kelas_10_data_siswa' => $di_kelas_10,
+                    'tanggal_diterima_data_siswa' => $tanggal_diterima,
+                    'nama_ayah_data_siswa' => $nama_ayah,
+                    'pekerjaan_ayah_data_siswa' => $pekerjaan_ayah,
+                    'nama_ibu_data_siswa' => $nama_ibu,
+                    'pekerjaan_ibu_data_siswa' => $pekerjaan_ibu,
+                    'alamat_orang_tua_data_siswa' => $alamat_orang_tua,
+                    'nama_wali_data_siswa' => $nama_wali,
+                    'pekerjaan_wali_data_siswa' => $pekerjaan_wali,
+                    'alamat_wali_data_siswa' => $alamat_wali,
+                    'created_at' => date('Y-m-d H:i:s')
+                ]);
+            
+                // add to array data siswa
+                $data_siswa[$nis] = $id_data_siswa;
+                
+                // add to result
+                $result[] = [
+                    'no' => $no,
+                    'data' => 'Baris ke-' . $no . ' ' . $nama_lengkap,
+                    'status' => 'Success',
+                    'message' => 'Data berhasil ditambahkan'
+                ];
+            
+                $success++;
+                
             }
-
-            // insert data dapodik
-            $id_data_dapodik = $nisn;
-            $data_dapodikModel->insert([
-                'id_data_dapodik' => $id_data_dapodik,
-                'nis_data_dapodik' => $nis,
-                'nama_lengkap_data_dapodik' => $nama_lengkap,
-                'kelas_data_dapodik' => $kelas,
-                'jenis_kelamin_data_dapodik' => $jenis_kelamin,
-                'tempat_lahir_data_dapodik' => $tempat_lahir,
-                'tanggal_lahir_data_dapodik' =>$tanggal_lahir,
-                'agama_data_dapodik' => $agama,
-                'shdk_data_dapodik' => $shdk,
-                'anak_ke_data_dapodik' => $anak_ke,
-                'alamat_data_dapodik' => $alamat,
-                'no_tlp_data_dapodik' => $no_tlp,
-                'sekolah_asal_data_dapodik' => $sekolah_asal,
-                'di_kelas_10_data_dapodik' => $di_kelas_10,
-                'tanggal_diterima_data_dapodik' => $tanggal_diterima,
-                'nama_ayah_data_dapodik' => $nama_ayah,
-                'pekerjaan_ayah_data_dapodik' => $pekerjaan_ayah,
-                'nama_ibu_data_dapodik' => $nama_ibu,
-                'pekerjaan_ibu_data_dapodik' => $pekerjaan_ibu,
-                'alamat_orang_tua_data_dapodik' => $alamat_orang_tua,
-                'nama_wali_data_dapodik' => $nama_wali,
-                'pekerjaan_wali_data_dapodik' => $pekerjaan_wali,
-                'alamat_wali_data_dapodik' => $alamat_wali,
-                'created_at' => date('Y-m-d H:i:s')
-            ]);
-            // update to array data dapodik
-            $data_dapodik[$nis] = $id_data_dapodik;
-            // insert data siswa
-            $id_data_siswa = Uuid::uuid4()->toString();
-            $data_siswaModel->insert([
-                'id_data_siswa' => $id_data_siswa,
-                'id_data_dapodik' => $id_data_dapodik,
-                'nisn_data_siswa' => $nisn,
-                'nama_lengkap_data_siswa' => $nama_lengkap,
-                'nis_data_siswa' => $nis,
-                'kelas_data_siswa' => $kelas,
-                'jenis_kelamin_data_siswa' => $jenis_kelamin,
-                'tempat_lahir_data_siswa' => $tempat_lahir,
-                'tanggal_lahir_data_siswa' => $tanggal_lahir,
-                'agama_data_siswa' => $agama,
-                'shdk_data_siswa' => $shdk,
-                'anak_ke_data_siswa' => $anak_ke,
-                'alamat_data_siswa' => $alamat,
-                'no_tlp_data_siswa' => $no_tlp,
-                'sekolah_asal_data_siswa' => $sekolah_asal,
-                'di_kelas_10_data_siswa' => $di_kelas_10,
-                'tanggal_diterima_data_siswa' => $tanggal_diterima,
-                'nama_ayah_data_siswa' => $nama_ayah,
-                'pekerjaan_ayah_data_siswa' => $pekerjaan_ayah,
-                'nama_ibu_data_siswa' => $nama_ibu,
-                'pekerjaan_ibu_data_siswa' => $pekerjaan_ibu,
-                'alamat_orang_tua_data_siswa' => $alamat_orang_tua,
-                'nama_wali_data_siswa' => $nama_wali,
-                'pekerjaan_wali_data_siswa' => $pekerjaan_wali,
-                'alamat_wali_data_siswa' => $alamat_wali,
-                'created_at' => date('Y-m-d H:i:s')
-            ]);
-
-            // add to array data siswa
-            $data_siswa[$nis] = $id_data_siswa;
-            
-            // add to result
-            $result[] = [
-                'no' => $no,
-                'data' => 'Baris ke-' . $no . ' ' . $nama_lengkap,
-                'status' => 'Success',
-                'message' => 'Data berhasil ditambahkan'
-            ];
-
-            $success++;
-            
         }
 
         return $this->response->setJSON([

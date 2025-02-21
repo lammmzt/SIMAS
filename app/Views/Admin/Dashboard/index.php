@@ -93,22 +93,22 @@
         </div>
         <div class="card-body">
             <div class="tabs-container">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs mb-2" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="data-siswa-tab" data-toggle="tab" href="#data-siswa" role="tab"
                             aria-controls="data-siswa" aria-selected="true">Data Siswa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="belum-verifikasi-tab" data-toggle="tab" href="#belum-verifikasi"
-                            role="tab" aria-controls="belum-verifikasi" aria-selected="false">Belum Verifikasi</a>
+                        <a class="nav-link" data-toggle="tab" id="belum-verifikasi-tab" href="#data-siswa" role="tab"
+                            aria-controls="data-siswa" aria-selected="false">Belum Verifikasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="valid-tab" data-toggle="tab" href="#valid" role="tab"
-                            aria-controls="valid" aria-selected="false">Valid</a>
+                        <a class="nav-link" id="valid-tab" data-toggle="tab" href="#data-siswa" role="tab"
+                            aria-controls="data-siswa" aria-selected="false">Valid</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="tidak-valid-tab" data-toggle="tab" href="#tidak-valid" role="tab"
-                            aria-controls="tidak-valid" aria-selected="false">Tidak Valid</a>
+                        <a class="nav-link" id="tidak-valid-tab" data-toggle="tab" href="#data-siswa" role="tab"
+                            aria-controls="data-siswa" aria-selected="false">Tidak Valid</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -125,6 +125,18 @@
                                         <th>Status Pengecekan</th>
                                         <th>Aksi</th>
                                     </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th><input type="text" class="form-control form-control-sm column-search"
+                                                placeholder="Cari Nama"></th>
+                                        <th><input type="text" class="form-control form-control-sm column-search"
+                                                placeholder="Cari NIS"></th>
+                                        <th><input type="text" class="form-control form-control-sm column-search"
+                                                placeholder="Cari NISN"></th>
+                                        <th><input type="text" class="form-control form-control-sm column-search"
+                                                placeholder="Cari Kelas"></th>
+                                        <th></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 </tbody>
@@ -137,3 +149,109 @@
     </div>
 </div>
 <?= $this->endSection('konten'); ?>
+<?= $this->section('script'); ?>
+<script>
+// when change tab
+$('#myTab a').on('click', function(e) {
+    e.preventDefault()
+    $(this).tab('show')
+})
+
+function dataTablesDataSiswa(id) {
+    $('#table-data-siswa').DataTable({
+        processing: true,
+        serverSide: true,
+        scrollCollapse: true,
+        autoWidth: false,
+        responsive: true,
+        ajax: {
+            url: '<?= base_url('Data_siswa/ajaxDataTables') ?>',
+            type: 'POST',
+            data: function(data) {
+                data.status_pengecekan = id;
+            }
+        },
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, ]
+        ],
+        columns: [{
+                data: null,
+                sortable: false,
+                searchable: false,
+                render: function(data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'nama_lengkap_data_siswa'
+            },
+            {
+                data: 'nis_data_siswa'
+            },
+            {
+                data: 'nisn_data_siswa'
+            },
+            {
+                data: 'kelas_data_dapodik'
+            },
+
+            {
+                data: 'action',
+                className: 'text-center',
+                sortable: false,
+                searchable: false,
+            }
+        ],
+        "order": [
+            [1, 'asc']
+        ],
+        "columnDefs": [{
+            "orderable": false,
+            "targets": [0, 5]
+        }],
+
+        initComplete: function() {
+            this.api()
+                .columns()
+                .every(function() {
+                    var that = this;
+
+                    $('input', this.header()).on('keyup change clear', function() {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+
+                });
+        }
+    });
+}
+
+$(document).ready(function() {
+    dataTablesDataSiswa('0');
+});
+
+$('#data-siswa-tab').on('click', function() {
+    $('#table-data-siswa').DataTable().destroy();
+    dataTablesDataSiswa('0');
+});
+
+$('#valid-tab').on('click', function() {
+    $('#table-data-siswa').DataTable().destroy();
+    dataTablesDataSiswa('1');
+});
+
+$('#tidak-valid-tab').on('click', function() {
+    $('#table-data-siswa').DataTable().destroy();
+    dataTablesDataSiswa('2');
+});
+
+$('#belum-verifikasi-tab').on('click', function() {
+    $('#table-data-siswa').DataTable().destroy();
+    dataTablesDataSiswa('0');
+});
+</script>
+<?= $this->endSection('script'); ?>
