@@ -84,6 +84,7 @@ class Users extends BaseController
             'nama_user' => ucwords($this->request->getPost('nama_user')),
             'status_user' => $this->request->getPost('status_user'),
             'role' => $this->request->getPost('role'),
+            'password' => $new_pass,
             'updated_at' => date('Y-m-d H:i:s')
         ];
         $model->update($id, $data); // update data users
