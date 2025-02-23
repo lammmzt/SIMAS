@@ -338,201 +338,202 @@
             </div>
         </div>
     </div>
-    <?= $this->endSection('konten'); ?>
-    <?= $this->section('script'); ?>
-    <script type="text/javascript">
-    function dataTablesDataSiswa() {
-        $('#table_data_siswa').DataTable({
-            processing: true,
-            serverSide: true,
-            scrollCollapse: true,
-            autoWidth: false,
-            responsive: true,
-            ajax: {
-                url: '<?= base_url('Data_siswa/ajaxDataTables') ?>',
-                type: 'POST',
-                data: function(data) {
-                    data.status_pengecekan = $('#status_pengecekan').val();
+</div>
+<?= $this->endSection('konten'); ?>
+<?= $this->section('script'); ?>
+<script type="text/javascript">
+function dataTablesDataSiswa() {
+    $('#table_data_siswa').DataTable({
+        processing: true,
+        serverSide: true,
+        scrollCollapse: true,
+        autoWidth: false,
+        responsive: true,
+        ajax: {
+            url: '<?= base_url('Data_siswa/ajaxDataTables') ?>',
+            type: 'POST',
+            data: function(data) {
+                data.status_pengecekan = $('#status_pengecekan').val();
+            }
+        },
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, ]
+        ],
+        columns: [{
+                data: null,
+                sortable: false,
+                searchable: false,
+                render: function(data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
                 }
             },
-            "lengthMenu": [
-                [5, 10, 25, 50, -1],
-                [5, 10, 25, 50, ]
-            ],
-            columns: [{
-                    data: null,
-                    sortable: false,
-                    searchable: false,
-                    render: function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                },
-                {
-                    data: 'nama_lengkap_data_siswa'
-                },
-                {
-                    data: 'nis_data_siswa'
-                },
-                {
-                    data: 'nisn_data_siswa'
-                },
-                {
-                    data: 'kelas_data_dapodik'
-                },
-                {
-                    data: 'status_pengecekan',
-                    render: function(data, type, row) {
-                        if (data == '1') {
-                            return '<span class="badge bg-success">Terverifikasi</span>';
-                        } else if (data == '2') {
-                            return '<span class="badge bg-danger">Tidak Valid</span>';
-                        } else {
-                            return '<span class="badge bg-warning">Belum Verifikasi</span>';
-                        }
-                    }
-                },
-                {
-                    data: 'action',
-                    className: 'text-center',
-                    sortable: false,
-                    searchable: false,
-                }
-            ],
-            "order": [
-                [1, 'asc']
-            ],
-            "columnDefs": [{
-                "orderable": false,
-                "targets": [0, 5]
-            }],
-
-            initComplete: function() {
-                this.api()
-                    .columns()
-                    .every(function() {
-                        var that = this;
-
-                        $('input', this.header()).on('keyup change clear', function() {
-                            if (that.search() !== this.value) {
-                                that
-                                    .search(this.value)
-                                    .draw();
-                            }
-                        });
-
-                    });
-            }
-        });
-    }
-    dataTablesDataSiswa();
-
-    // when change status_pengecekan
-    $('#status_pengecekan').change(function() {
-        // alert('ok');
-        $('#table_data_siswa').DataTable().ajax.reload();
-    });
-
-    $(document).ready(function() {
-        $('#form-import').submit(function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            $.ajax({
-                url: '<?= base_url('Data_siswa/import'); ?>',
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-                beforeSend: function() {
-                    $('#btn-import').attr('disabled', 'disabled');
-                    $('#btn-import').html(
-                        '<i class="fas fa-spinner fa-spin"></i> Loading...');
-                },
-                success: function(response) {
-                    // hide modal import
-                    $('#import').modal('hide');
-
-                    if (response.error) {
-                        alert(response.data);
+            {
+                data: 'nama_lengkap_data_siswa'
+            },
+            {
+                data: 'nis_data_siswa'
+            },
+            {
+                data: 'nisn_data_siswa'
+            },
+            {
+                data: 'kelas_data_dapodik'
+            },
+            {
+                data: 'status_pengecekan',
+                render: function(data, type, row) {
+                    if (data == '1') {
+                        return '<span class="badge bg-success">Terverifikasi</span>';
+                    } else if (data == '2') {
+                        return '<span class="badge bg-danger">Tidak Valid</span>';
                     } else {
-                        $('#hasil-import').modal('show');
-                        // hapus data form
-                        $('#form-import')[0].reset();
-                        var html = '';
-                        if (response.data.result.length > 0) {
-
-                            $.each(response.data.result, function(key, value) {
-                                html += '<tr' + (value.status == 'Failed' ?
-                                    ' class="table-danger"' : '') + '>';
-                                html += '<td class="text-center">' + value.no +
-                                    '</td>';
-                                html += '<td>' + value.data + '</td>';
-                                html += '<td>' + value.message + '</td>';
-                                html += '<td>' + value.status + '</td>';
-                                html += '</tr>';
-                            });
-
-                        } else {
-                            html += '<tr>';
-                            html +=
-                                '<td colspan="4" class="text-center">Tidak ada data yang gagal diimport</td>';
-                            html += '</tr>';
-                        }
-
-                        $('#hasil_import_data').html(html);
-
-                        // total data
-                        $('#totalData').html(response.data.total_data);
-                        $('#totalSukses').html(response.data.success);
-                        $('#totalError').html(response.data.failed);
-
+                        return '<span class="badge bg-warning">Belum Verifikasi</span>';
                     }
-                    $('#btn-import').removeAttr('disabled');
-                    $('#btn-import').html('Import');
-                },
-                error: function() {
-                    alert('Error');
-                    $('#btn-import').removeAttr('disabled');
-                    $('#btn-import').html('Import');
                 }
-            });
-        });
+            },
+            {
+                data: 'action',
+                className: 'text-center',
+                sortable: false,
+                searchable: false,
+            }
+        ],
+        "order": [
+            [1, 'asc']
+        ],
+        "columnDefs": [{
+            "orderable": false,
+            "targets": [0, 5]
+        }],
 
-        // close modal hasil import
-        $('#hasil-import').on('hidden.bs.modal', function() {
-            // reload data
-            $('#table_data_siswa').DataTable().ajax.reload();
-        });
+        initComplete: function() {
+            this.api()
+                .columns()
+                .every(function() {
+                    var that = this;
+
+                    $('input', this.header()).on('keyup change clear', function() {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+
+                });
+        }
     });
+}
+dataTablesDataSiswa();
 
-    // when click delete button btn-delete
-    $('#btn-delete').click(function() {
+// when change status_pengecekan
+$('#status_pengecekan').change(function() {
+    // alert('ok');
+    $('#table_data_siswa').DataTable().ajax.reload();
+});
+
+$(document).ready(function() {
+    $('#form-import').submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
         $.ajax({
-            url: '<?= base_url('Data_siswa/deleteAllData') ?>',
+            url: '<?= base_url('Data_siswa/import'); ?>',
             type: 'POST',
+            data: formData,
             dataType: 'json',
+            contentType: false,
+            processData: false,
             beforeSend: function() {
-                $('#btn-delete').attr('disabled', 'disabled');
-                $('#btn-delete').html(
+                $('#btn-import').attr('disabled', 'disabled');
+                $('#btn-import').html(
                     '<i class="fas fa-spinner fa-spin"></i> Loading...');
             },
             success: function(response) {
-                if (response.status == '200') {
-                    $('#delete').modal('hide');
-                    $('#table_data_siswa').DataTable().ajax.reload();
-                    sweetalert('success', 'Berhasil', 'Data berhasil dihapus');
+                // hide modal import
+                $('#import').modal('hide');
+
+                if (response.error) {
+                    alert(response.data);
                 } else {
-                    sweetalert('error', 'Gagal', 'Data gagal dihapus');
+                    $('#hasil-import').modal('show');
+                    // hapus data form
+                    $('#form-import')[0].reset();
+                    var html = '';
+                    if (response.data.result.length > 0) {
+
+                        $.each(response.data.result, function(key, value) {
+                            html += '<tr' + (value.status == 'Failed' ?
+                                ' class="table-danger"' : '') + '>';
+                            html += '<td class="text-center">' + value.no +
+                                '</td>';
+                            html += '<td>' + value.data + '</td>';
+                            html += '<td>' + value.message + '</td>';
+                            html += '<td>' + value.status + '</td>';
+                            html += '</tr>';
+                        });
+
+                    } else {
+                        html += '<tr>';
+                        html +=
+                            '<td colspan="4" class="text-center">Tidak ada data yang gagal diimport</td>';
+                        html += '</tr>';
+                    }
+
+                    $('#hasil_import_data').html(html);
+
+                    // total data
+                    $('#totalData').html(response.data.total_data);
+                    $('#totalSukses').html(response.data.success);
+                    $('#totalError').html(response.data.failed);
+
                 }
-                $('#btn-delete').removeAttr('disabled');
-                $('#btn-delete').html('Hapus');
+                $('#btn-import').removeAttr('disabled');
+                $('#btn-import').html('Import');
             },
             error: function() {
                 alert('Error');
-                $('#btn-delete').removeAttr('disabled');
-                $('#btn-delete').html('Hapus');
+                $('#btn-import').removeAttr('disabled');
+                $('#btn-import').html('Import');
             }
         });
     });
-    </script>
-    <?= $this->endSection('script'); ?>
+
+    // close modal hasil import
+    $('#hasil-import').on('hidden.bs.modal', function() {
+        // reload data
+        $('#table_data_siswa').DataTable().ajax.reload();
+    });
+});
+
+// when click delete button btn-delete
+$('#btn-delete').click(function() {
+    $.ajax({
+        url: '<?= base_url('Data_siswa/deleteAllData') ?>',
+        type: 'POST',
+        dataType: 'json',
+        beforeSend: function() {
+            $('#btn-delete').attr('disabled', 'disabled');
+            $('#btn-delete').html(
+                '<i class="fas fa-spinner fa-spin"></i> Loading...');
+        },
+        success: function(response) {
+            if (response.status == '200') {
+                $('#delete').modal('hide');
+                $('#table_data_siswa').DataTable().ajax.reload();
+                sweetalert('success', 'Berhasil', 'Data berhasil dihapus');
+            } else {
+                sweetalert('error', 'Gagal', 'Data gagal dihapus');
+            }
+            $('#btn-delete').removeAttr('disabled');
+            $('#btn-delete').html('Hapus');
+        },
+        error: function() {
+            alert('Error');
+            $('#btn-delete').removeAttr('disabled');
+            $('#btn-delete').html('Hapus');
+        }
+    });
+});
+</script>
+<?= $this->endSection('script'); ?>

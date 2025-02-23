@@ -462,8 +462,10 @@ $('.check_data').focusout(function() {
     var value = $(this).val();
     var id_data = id.replace('_siswa', '_dapodik');
     var id_siswa = id.replace('_dapodik', '_siswa');
+    // alert(id_siswa);
     if ($('#' + id_data).val() != null && $('#' + id_data).val() != '') {
-        if ($('#' + id_siswa).val() == value) {
+        // alert('ada');
+        if ($('#' + id_data).val() == value && $('#' + id_siswa).val() != '') {
             $('#' + id_siswa).addClass('is-valid');
             $('#' + id_siswa).removeClass('is-invalid');
         } else {
@@ -472,7 +474,7 @@ $('.check_data').focusout(function() {
         }
         check_data();
     } else {
-        if (value != '') {
+        if (value != '' || $('#' + id_siswa).val() != '') {
             $('#' + id_siswa).addClass('is-invalid');
 
         } else {
