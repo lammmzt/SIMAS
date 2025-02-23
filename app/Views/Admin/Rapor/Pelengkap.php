@@ -10,8 +10,8 @@
             </div>
         </div>
         <div class="card-body px-0">
-            <div class="row my-2">
-                <div class="row mb-2 mx-2">
+            <div class="row my-2 mx-1">
+                <div class="row mb-2">
                     <div class="col-md-3 py-2">
                         <div class="form-group">
                             <label for="kelas_data_dapodik">Kelas</label>

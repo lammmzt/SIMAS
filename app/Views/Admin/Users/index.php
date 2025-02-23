@@ -56,7 +56,7 @@
                 <?php endif; ?>
             </div>
 
-            <div class="table-responsive">
+            <div class="table-responsive mx-1">
                 <table id="user-list-table" class="table table-striped data_tables" role="grid"
                     data-bs-toggle="data-table">
                     <thead>

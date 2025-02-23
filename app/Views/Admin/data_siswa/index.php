@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="card-body px-0">
-            <div class="row mx-3 my-2">
+            <div class="row my-2 mx-1">
                 <div class="col-md-3 py-2">
                     <div class="form-group">
                         <label for="status_pengecekan">Status Pengecekan</label>
