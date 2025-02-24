@@ -206,6 +206,7 @@ $('#btn-generate').click(function() {
                 if (response.error == false) {
                     $('#loading-page').hide();
                     sweetalert('success', 'Berhasil', response.data);
+                    $('#table_data_siswa').DataTable().ajax.reload();
                 } else {
                     $('#loading-page').hide();
                     sweetalert('error', 'Gagal', response.data);
@@ -214,6 +215,7 @@ $('#btn-generate').click(function() {
         });
     }
 });
+
 // when click cetak all
 $('#btn-cetak-all').click(function() {
     var kelas_data_dapodik = $('#kelas_data_dapodik').val();

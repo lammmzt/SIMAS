@@ -16,52 +16,60 @@ class Rapor extends BaseController
         return view('Admin/Rapor/Pelengkap', $data); // tampilkan view dashboard
     }
 
-public function generatePelengkap   ()
-{
-    $nama_kelas = $this->request->getPost('kelas_data_dapodik');
-    $siswaModel = new data_siswaModel();
-    $data_siswa = $siswaModel->getSiswaByKelas($nama_kelas);
-
-    if (!$data_siswa) {
+    public function generatePelengkap()
+    {
+        $nama_kelas = $this->request->getPost('kelas_data_dapodik');
+        $siswaModel = new data_siswaModel();
+        $data_siswa = $siswaModel->getSiswaByKelas($nama_kelas);
+    
+        if (!$data_siswa) {
+            return $this->response->setJSON([
+                'error' => true,
+                'status' => '404',
+                'data' => 'Data siswa kelas ' . $nama_kelas . ' tidak ditemukan'
+            ]);
+        }
+    
+        foreach ($data_siswa as $siswa) {
+            // Buat nama file yang aman
+            $nama_file = sprintf("plk_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $siswa['nama_lengkap_data_siswa']), $nama_kelas);
+            $file_path = FCPATH . 'Assets/pdf/rapor_pelengkap/' . $nama_file;
+        
+            // Jika file sudah ada, hapus
+            if (file_exists($file_path)) {
+                unlink($file_path);
+            }
+        
+            // Inisialisasi mPDF untuk setiap siswa (harus di dalam loop)
+            $mpdf = new \Mpdf\Mpdf([
+                'mode'          => 'utf-8',
+                'format'        => 'A4',
+                'margin_left'   => 15,
+                'margin_right'  => 15,
+                'margin_top'    => 15,
+                'margin_bottom' => 15,
+                'margin_header' => 10,
+                'margin_footer' => 10,
+            ]);
+        
+            // Ambil tampilan HTML
+            $data['data_siswa'] = $siswa;
+            $html = view('Admin/Rapor/cetak/cetak_pelengkap', $data);
+        
+            // Tulis HTML ke PDF
+            $mpdf->WriteHTML($html);
+            $mpdf->Output($file_path, 'F'); // Simpan ke file
+        
+            unset($mpdf); // Bebaskan memori setelah selesai
+        }
+    
         return $this->response->setJSON([
-            'error' => true,
-            'status' => '404',
-            'data' => 'Data siswa kelas ' . $nama_kelas . ' tidak ditemukan'
+            'error' => false,
+            'status' => '200',
+            'data' => 'Berhasil generate data pelengkap siswa kelas ' . $nama_kelas
         ]);
     }
 
-    foreach ($data_siswa as $siswa) {
-        $nama_file = sprintf("plk_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $siswa['nama_lengkap_data_siswa']), $nama_kelas);
-
-        // Hapus file lama jika ada
-        if (file_exists($file_path)) {
-            unlink($file_path);
-        }
-        // Render HTML dari view
-        $html_content = view('Admin/Rapor/cetak/cetak_pelengkap', ['data_siswa' => $data_siswa]);
-        
-        // Simpan HTML ke file sementara
-        $html_file = FCPATH . 'Assets/pdf/temp_' . uniqid() . '.html';
-        file_put_contents($html_file, $html_content);
-        
-        // Nama file output PDF
-        $file_path = FCPATH . 'Assets/pdf/rapor_pelengkap/' . $nama_file;
-        
-        // Perintah untuk convert HTML ke PDF
-        $command = "wkhtmltopdf $html_file $file_path";
-        exec($command);
-        
-        // Hapus file HTML sementara
-        unlink($html_file);
-        
-    }
-
-    return $this->response->setJSON([
-        'error' => false,
-        'status' => '200',
-        'data' => 'Berhasil generate PDF dengan wkhtmltopdf'
-    ]);
-}
     public function cetakSemuaPelengkap()
     {
         $nama_kelas = $this->request->getPost('kelas_data_dapodik');
@@ -135,7 +143,7 @@ public function generatePelengkap   ()
                                     <path d="M14.2882 15.3584H8.88818" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                         stroke-linejoin="round"></path>
                                     <path d="M12.2432 11.606H8.88721" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg> Lihat Rapor
+                                </svg> Lihat Rapor Pelengkap
                             </a>
                         </div>
                     ';
