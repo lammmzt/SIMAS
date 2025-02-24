@@ -309,7 +309,7 @@
                                                     <td>Jenis Kelamin</td>
                                                     <td>
                                                         <select class="form-select" id="jenis_kelamin_data_dapodik"
-                                                            name="jenis_kelamin_data_dapodik" readonly>
+                                                            name="jenis_kelamin_data_dapodik" readonly disabled>
                                                             <option value="L">Laki-laki</option>
                                                             <option value="P">Perempuan</option>
                                                         </select>
@@ -857,10 +857,16 @@
             for (let i = 0; i < data_siswa.length; i++) {
                 $('#' + data_siswa[i] + '_siswa').attr('readonly', 'readonly');
             }
+            // add disabled on jenis kelamin
+            $('#jenis_kelamin_data_siswa').attr('disabled', 'disabled');
+            $('#ket_pengecekan').attr('readonly', 'readonly');
         } else {
             for (let i = 0; i < data_siswa.length; i++) {
                 $('#' + data_siswa[i] + '_siswa').removeAttr('readonly');
             }
+            // remove disabled on jenis kelamin
+            $('#jenis_kelamin_data_siswa').removeAttr('disabled');
+            $('#ket_pengecekan').removeAttr('readonly');
         }
 
         $('#nis_data_siswa').attr('readonly', 'readonly');
