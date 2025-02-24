@@ -142,7 +142,7 @@ function dataTablesDataSiswa() {
         },
         "lengthMenu": [
             [5, 10, 25, 50, -1],
-            [5, 10, 25, 50, ]
+            [5, 10, 25, 50, "All"]
         ],
         columns: [{
                 data: null,

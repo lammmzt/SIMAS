@@ -33,9 +33,6 @@ class Rapor extends BaseController
         foreach ($data_siswa as $siswa) {
             // Buat nama file yang aman
             $nama_file = sprintf("plk_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $siswa['nama_lengkap_data_siswa']), $nama_kelas);
-            // hapus ' dan " dari nama file
-            $nama_file = str_replace("'", "", $nama_file);
-            $nama_file = str_replace('"', "", $nama_file);
             $file_path = FCPATH . 'Assets/pdf/rapor_pelengkap/' . $nama_file;
         
             // Jika file sudah ada, hapus
@@ -132,8 +129,6 @@ class Rapor extends BaseController
             
             ->add('action', function ($row) {
                 $nama_file = sprintf("plk_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $row->nama_lengkap_data_siswa), $row->kelas_data_dapodik);
-                $nama_file = str_replace("'", "", $nama_file);
-                $nama_file = str_replace('"', "", $nama_file);
                 $file_path = FCPATH . 'Assets/pdf/rapor_pelengkap/' . $nama_file;
                 if (file_exists($file_path)) {
                     return '
