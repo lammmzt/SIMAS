@@ -192,7 +192,7 @@ $('#kelas_data_dapodik').change(function() {
 $('#btn-generate').click(function() {
     var kelas_data_dapodik = $('#kelas_data_dapodik').val();
     if (kelas_data_dapodik == '') {
-        alert('Pilih kelas terlebih dahulu');
+        sweetalert('error', 'Gagal', 'Pilih kelas terlebih dahulu');
     } else {
         // add loading
         $('#loading-page').show();
@@ -220,7 +220,7 @@ $('#btn-generate').click(function() {
 $('#btn-cetak-all').click(function() {
     var kelas_data_dapodik = $('#kelas_data_dapodik').val();
     if (kelas_data_dapodik == '') {
-        alert('Pilih kelas terlebih dahulu');
+        sweetalert('error', 'Gagal', 'Pilih kelas terlebih dahulu');
     } else {
         // add loading
         $('#loading-page').show();

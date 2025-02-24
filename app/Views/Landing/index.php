@@ -308,14 +308,19 @@
                                                 <tr>
                                                     <td>Jenis Kelamin</td>
                                                     <td>
-                                                        <input type="text" class="form-control" value=""
-                                                            id="jenis_kelamin_data_dapodik"
+                                                        <select class="form-select" id="jenis_kelamin_data_dapodik"
                                                             name="jenis_kelamin_data_dapodik" readonly>
+                                                            <option value="L">Laki-laki</option>
+                                                            <option value="P">Perempuan</option>
+                                                        </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control check_data" value=""
+                                                        <select class="form-select check_data"
                                                             id="jenis_kelamin_data_siswa"
                                                             name="jenis_kelamin_data_siswa">
+                                                            <option value="L">Laki-laki</option>
+                                                            <option value="P">Perempuan</option>
+                                                        </select>
                                                     </td>
                                                 </tr>
 
