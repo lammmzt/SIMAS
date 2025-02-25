@@ -197,8 +197,8 @@ p {
 <table style="margin-top: 50px;">
     <tr>
         <td style="width: 30%"></td>
-        <td style="width: 15%; margin-right: 1opx;"><img src="<?= base_url('Assets/img/foto_siswa.png') ?>"
-                alt="Foto Peserta Didik" style="width: 100px; height: 120px;"></td>
+        <td style="width: 15%; margin-right: 1opx;"><img src="<?= $imageSrc ?>" alt="Foto Peserta Didik"
+                style="width: 100px; height: 120px;"></td>
         <td style="width: 40%; text-align: left;" id="ttd">
             <p>Pekalongan,
                 <?=formatDateIndo($data_siswa['tanggal_diterima_data_siswa']) ?></p>

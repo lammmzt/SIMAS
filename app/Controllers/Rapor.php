@@ -30,8 +30,12 @@ class Rapor extends BaseController
             ]);
         }
     
+        $imagePath = FCPATH . 'Assets/img/foto_siswa.png';
+        $imageData = base64_encode(file_get_contents($imagePath));
+        $imageSrc = 'data:image/png;base64,' . $imageData;
         foreach ($data_siswa as $siswa) {
             // Buat nama file yang aman
+            
             $nama_file = sprintf("plk_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $siswa['nama_lengkap_data_siswa']), $nama_kelas);
             $file_path = FCPATH . 'Assets/pdf/rapor_pelengkap/' . $nama_file;
         
@@ -52,8 +56,11 @@ class Rapor extends BaseController
                 'margin_footer' => 10,
             ]);
         
+            $mpdf->showImageErrors = true;
+            
             // Ambil tampilan HTML
             $data['data_siswa'] = $siswa;
+            $data['imageSrc'] = $imageSrc;
             $html = view('Admin/Rapor/cetak/cetak_pelengkap', $data);
         
             // Tulis HTML ke PDF
@@ -88,8 +95,11 @@ class Rapor extends BaseController
             'margin_header' => 10,
             'margin_footer' => 10,
             ]);
-            
+            $imagePath = FCPATH . 'Assets/img/foto_siswa.png';
+            $imageData = base64_encode(file_get_contents($imagePath));
+            $imageSrc = 'data:image/png;base64,' . $imageData;
             $data['data_siswa'] = $data_siswa;
+            $data['imageSrc'] = $imageSrc;
             $html = view('Admin/Rapor/cetak/cetak_all_pelengkap', $data);
             $mpdf->WriteHTML($html);
             $nama_file = 'plk_' . $nama_kelas . '.pdf';
