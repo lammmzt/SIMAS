@@ -115,7 +115,7 @@ class Data_siswa extends BaseController
             $kelas = $col[5];
             $jenis_kelamin = $col[6];
             $tempat_lahir = $col[7];
-            $tanggal_lahir = $col[8];
+            $tanggal_lahir = date('Y-m-d', strtotime($col[8]));
             $agama = $col[9];
             $shdk = $col[10];
             $anak_ke = $col[11];
@@ -123,7 +123,7 @@ class Data_siswa extends BaseController
             $no_tlp = $col[13];
             $sekolah_asal = $col[14];
             $di_kelas_10 = $col[15];
-            $tanggal_diterima = $col[16];
+            $tanggal_diterima = date('Y-m-d', strtotime($col[16]));
             $nama_ayah = $col[17];
             $pekerjaan_ayah = $col[18];
             $nama_ibu = $col[19];
