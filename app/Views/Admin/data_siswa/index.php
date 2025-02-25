@@ -360,6 +360,8 @@ function dataTablesDataSiswa() {
         scrollCollapse: true,
         autoWidth: false,
         responsive: true,
+        paging: true,
+        searching: true,
         ajax: {
             url: '<?= base_url('Data_siswa/ajaxDataTables') ?>',
             type: 'POST',
@@ -369,22 +371,34 @@ function dataTablesDataSiswa() {
         },
         "lengthMenu": [
             [5, 10, 25, 50, -1],
-            [5, 10, 25, 50, ]
+            [5, 10, 25, 50, "All"]
         ],
-        layout: {
-            topStart: {
-                buttons: ['excel', 'pdf', ]
-            }
-        },
+        dom: '<"d-flex justify-content-between align-items-center mb-2 lg-12 button_cetak"lfB>rtip', // add button export
+        buttons: [{
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            // 'colvis'
+        ],
         columns: [{
                 data: null,
                 sortable: false,
                 searchable: false,
+                // title: 'No',
                 render: function(data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }
             },
             {
+                // title: 'Nama Siswa',
                 data: 'nama_lengkap_data_siswa'
             },
             {
@@ -397,6 +411,7 @@ function dataTablesDataSiswa() {
                 data: 'kelas_data_dapodik'
             },
             {
+                // title: 'Status',
                 data: 'status_pengecekan',
                 render: function(data, type, row) {
                     if (data == '1') {
@@ -409,6 +424,7 @@ function dataTablesDataSiswa() {
                 }
             },
             {
+                // title: 'Action',
                 data: 'action',
                 className: 'text-center',
                 sortable: false,
@@ -422,7 +438,6 @@ function dataTablesDataSiswa() {
             "orderable": false,
             "targets": [0, 5]
         }],
-
         initComplete: function() {
             this.api()
                 .columns()
@@ -431,16 +446,14 @@ function dataTablesDataSiswa() {
 
                     $('input', this.header()).on('keyup change clear', function() {
                         if (that.search() !== this.value) {
-                            that
-                                .search(this.value)
-                                .draw();
+                            that.search(this.value).draw();
                         }
                     });
-
                 });
         }
     });
 }
+
 dataTablesDataSiswa();
 
 // when change status_pengecekan

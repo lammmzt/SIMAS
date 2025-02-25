@@ -36,6 +36,7 @@
 
     <!-- select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <style type="text/css">
     .loading-page {
         display: none;
@@ -508,6 +509,7 @@
 
     <!-- Settings Script -->
     <script src="<?= base_url('Assets/hope-ui-html-2.0/html/'); ?>assets/js/plugins/setting.js"></script>
+
 
     <!-- Slider-tab Script -->
     <script src="<?= base_url('Assets/hope-ui-html-2.0/html/'); ?>assets/js/plugins/slider-tabs.js"></script>
