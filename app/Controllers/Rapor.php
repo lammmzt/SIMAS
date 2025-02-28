@@ -35,8 +35,9 @@ class Rapor extends BaseController
         $imageSrc = 'data:image/png;base64,' . $imageData;
         foreach ($data_siswa as $siswa) {
             // Buat nama file yang aman
-            
             $nama_file = sprintf("plk_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $siswa['nama_lengkap_data_siswa']), $nama_kelas);
+            // hapus petik yang ada pada nama file
+            $nama_file = str_replace("'", "", $nama_file);
             $file_path = FCPATH . 'Assets/pdf/rapor_pelengkap/' . $nama_file;
         
             // Jika file sudah ada, hapus
@@ -47,13 +48,14 @@ class Rapor extends BaseController
             // Inisialisasi mPDF untuk setiap siswa (harus di dalam loop)
             $mpdf = new \Mpdf\Mpdf([
                 'mode'          => 'utf-8',
-                'format'        => 'A4',
+                // 'format'        => 'A4',
+                'format' => [210, 297],
                 'margin_left'   => 15,
                 'margin_right'  => 15,
                 'margin_top'    => 15,
                 'margin_bottom' => 15,
-                'margin_header' => 10,
-                'margin_footer' => 10,
+                'margin_header' => 0,
+                'margin_footer' => 0,
             ]);
         
             $mpdf->showImageErrors = true;
@@ -87,14 +89,17 @@ class Rapor extends BaseController
            
             $mpdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8',
-            'format' => 'A4',
+            // 'format' => 'A4',
+            'format' => [210, 297],
             'margin_left' => 15,
             'margin_right' => 15,
             'margin_top' => 15,
             'margin_bottom' => 15,
-            'margin_header' => 10,
-            'margin_footer' => 10,
+            'margin_header' => 0,
+            'margin_footer' => 0,
             ]);
+
+            
             $imagePath = FCPATH . 'Assets/img/foto_siswa.png';
             $imageData = base64_encode(file_get_contents($imagePath));
             $imageSrc = 'data:image/png;base64,' . $imageData;
@@ -139,6 +144,9 @@ class Rapor extends BaseController
             
             ->add('action', function ($row) {
                 $nama_file = sprintf("plk_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $row->nama_lengkap_data_siswa), $row->kelas_data_dapodik);
+                // hapus petik yang ada pada nama file
+                $nama_file = str_replace("'", "", $nama_file);
+                $nama_file = str_replace("__039", "", $nama_file);
                 $file_path = FCPATH . 'Assets/pdf/rapor_pelengkap/' . $nama_file;
                 if (file_exists($file_path)) {
                     return '
@@ -158,9 +166,7 @@ class Rapor extends BaseController
                         </div>
                     ';
                 } else {
-                    return '
-                        <p class="text-danger">Rapor pelengkap belum tersedia</p>
-                    ';
+                    return $nama_file;
                 }
             }, 'last')
             ->toJson(true);

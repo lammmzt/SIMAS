@@ -10,12 +10,17 @@ table {
 }
 
 td {
-    padding: 5px;
+    padding: 3px;
     font-size: 15px;
 }
 
 p {
     font-size: 15px;
+}
+
+#ttd p {
+    margin: 0;
+    padding: 0;
 }
 </style>
 <?php if ( !function_exists('formatDateIndo')) {
@@ -38,9 +43,11 @@ p {
     }
 }
 
+$jumlah = count($data_siswa);
+$no = 1;
 foreach ($data_siswa as $data_siswa) :
-    ?>
-
+    $no++;
+?>
 <h3 style="text-align: center; margin-bottom: 30px; font-weight: bold;">IDENTITAS PESERTA DIDIK </h3>
 <table>
     <tr>
@@ -53,7 +60,7 @@ foreach ($data_siswa as $data_siswa) :
         <td style="width: 20px">2.</td>
         <td style="width: 210px">Nomor Induk/NISN</td>
         <td style="width: 15px">:</td>
-        <td><?=$data_siswa['nis_data_siswa'] ?>/ <?=$data_siswa['nisn_data_siswa'] ?></td>
+        <td><?=$data_siswa['nis_data_siswa'] ?> / <?=$data_siswa['nisn_data_siswa'] ?></td>
     </tr>
     <tr>
         <td style="width: 20px">3.</td>
@@ -156,7 +163,7 @@ foreach ($data_siswa as $data_siswa) :
     <tr>
         <td style="width: 20px">14.</td>
         <td style="width: 210px">Pekerjaan Orang Tua</td>
-        <td style="width: 15px">:</td>
+        <td style="width: 15px"></td>
         <td></td>
     </tr>
     <tr>
@@ -196,40 +203,32 @@ foreach ($data_siswa as $data_siswa) :
         <td><?=$data_siswa['pekerjaan_wali_data_siswa'] ?>
     </tr>
 </table>
-<table style="margin-top: 50px;">
+<table style="margin-top: 30px; <?php if ($no < $jumlah) echo 'page-break-after: always;'; ?>">
     <tr>
-        <td style="width: 30%"></td>
-        <td style="width: 15%; margin-right: 1opx;"><img src="<?= $imageSrc ?>" alt="Foto Peserta Didik"
+        <td style="width: 25%"></td>
+        <td style="width: 20%; margin-right: 20px; "><img src="<?= $imageSrc ?>" alt="Foto Peserta Didik"
                 style="width: 100px; height: 120px;"></td>
         <td style="width: 40%; text-align: left;" id="ttd">
-            <p>Pekalongan,
+            <p style="font-size: 15px;">Pekalongan,
                 <?=formatDateIndo($data_siswa['tanggal_diterima_data_siswa']) ?></p>
-            <p>Kepala Sekolah</p><br><br><br><br><br>
+            <p style="font-size: 15px;">Kepala Sekolah</p><br><br><br><br><br>
             <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. ABDUR ROZAK</p>
-            <p style="font-weight: bold; font-size: 13px;">NIP. 196303251989031010</p>
+            <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
         </td>
         </td>
     </tr>
-    < !-- footer -->
-        <style type="text/css">
-        #ttd p {
-            margin: 0;
-            padding: 0;
-        }
-        </style>
-
-        <script type="text/javascript">
-        function formatDateIndo(date) {
-            var monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
-                "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-            ];
-            var date = new Date(date);
-            var day = date.getDate();
-            var monthIndex = date.getMonth();
-            var year = date.getFullYear();
-
-            return day + ' ' + monthNames[monthIndex] + ' ' + year;
-        }
-        </script>
 </table>
 <?php endforeach; ?>
+<script type="text/javascript">
+function formatDateIndo(date) {
+    var monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+    var date = new Date(date);
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}
+</script>
