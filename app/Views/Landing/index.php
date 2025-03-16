@@ -32,7 +32,7 @@
 
 </head>
 
-<body class="boxed-fancy">
+<body class="">
     <div class="boxed-inner">
         <!-- loader Start -->
         <div id="loading">
@@ -46,55 +46,21 @@
             <!--Nav Start-->
             <nav class="nav navbar navbar-expand-lg navbar-light iq-navbar">
                 <div class="container-fluid navbar-inner">
-                    <!-- <button data-trigger="navbar_main" class="d-lg-none btn btn-primary rounded-pill p-1 pt-0"
+                    <button data-trigger="navbar_main" class="d-xl-none btn btn-primary rounded-pill p-1 pt-0"
                         type="button">
-                        <svg class="icon-20" width="20px" viewBox="0 0 24 24">
+                        <svg width="20px" class="icon-20" viewBox="0 0 24 24">
                             <path fill="currentColor"
-                                d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
+                                d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z">
+                            </path>
                         </svg>
-                    </button> -->
+                    </button>
                     <a href="<?= base_url('LandingPage'); ?>" class="navbar-brand">
                         <img src="<?= base_url('Assets/img/LOGO SMANSA.png'); ?>" class="img-fluid" alt="logo"
                             width="50">
                         <h4 class="logo-title">SIMAS</h4>
                     </a>
-                    <!-- Horizontal Menu Start -->
-                    <nav id="navbar_main"
-                        class="mobile-offcanvas nav navbar navbar-expand-xl hover-nav horizontal-nav mx-md-auto">
-                        <div class="container-fluid">
-                            <div class="offcanvas-header px-0">
-                                <div class="navbar-brand ms-3">
-                                    <!--Logo start-->
-                                    <!--logo End-->
 
-                                    <!--Logo start-->
-                                    <div class="logo-main">
-                                        <div class="logo-normal">
-                                            <img src="<?= base_url('Assets/img/LOGO SMANSA.png'); ?>" class="img-fluid"
-                                                alt="logo" width="50">
-                                        </div>
-                                        <div class="logo-mini">
-                                            <img src="<?= base_url('Assets/img/LOGO SMANSA.png'); ?>" class="img-fluid"
-                                                alt="logo" width="50">
-                                        </div>
-                                    </div>
-                                    <!--logo End-->
-
-                                    <h4 class="logo-title">SIMAS</h4>
-                                </div>
-                                <button class="btn-close float-end"></button>
-                            </div>
-                            <ul class="navbar-nav">
-                                <li class="nav-item"><a class="nav-link <?= $active == 'Home' ? 'active':''?>"
-                                        href="<?= base_url('LandingPage'); ?>">
-                                        Data Siswa </a></li>
-                                <li class="nav-item"><a class="nav-link <?= $active == 'Rapor' ? 'active':''?>"
-                                        href="<?= base_url('LandingPage/Rapor'); ?>">
-                                        Rapor </a></li>
-                            </ul>
-                        </div> <!-- container-fluid.// -->
-                    </nav>
-                    <!-- Sidebar Menu End --> <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon">
@@ -104,7 +70,8 @@
                         </span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <ul class="navbar-nav ms-auto  navbar-list mb-2 mb-lg-0">
+
                             <!-- add button to change dark light mode -->
                             <div class="color_themes light_mode mx-2" data-setting="color-mode" data-name="color"
                                 data-value="dark" id="dark" style="display: none;">
@@ -146,10 +113,54 @@
                         }
                         </style>
 
-
+                        </ul>
                     </div>
                 </div>
             </nav>
+            <div class="navbar dual-horizontal">
+                <!-- Horizontal Menu Start -->
+                <nav id="navbar_main"
+                    class="mobile-offcanvas nav navbar navbar-expand-xl hover-nav horizontal-nav mx-md-auto">
+                    <div class="container-fluid">
+                        <div class="offcanvas-header px-0">
+                            <div class="navbar-brand ms-3">
+                                <!--Logo start-->
+                                <!--logo End-->
+
+                                <!--Logo start-->
+                                <div class="logo-main">
+                                    <div class="logo-normal">
+                                        <img src="<?= base_url('Assets/img/LOGO SMANSA.png'); ?>" class="img-fluid"
+                                            alt="logo" width="50">
+                                    </div>
+                                    <div class="logo-mini">
+                                        <img src="<?= base_url('Assets/img/LOGO SMANSA.png'); ?>" class="img-fluid"
+                                            alt="logo" width="50">
+                                    </div>
+                                </div>
+                                <!--logo End-->
+
+
+
+
+                                <h4 class="logo-title">SIMAS</h4>
+                            </div>
+                            <button class="btn-close float-end"></button>
+                        </div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item  "><a class="nav-link <?= $active == 'Home' ? 'active':''; ?>"
+                                    href="<?= base_url('LandingPage'); ?>">
+                                    Verval Data Siswa </a>
+                            </li>
+                            <li class="nav-item  "><a class="nav-link <?= $active == 'Rapor' ? 'active':''; ?>"
+                                    href="<?= base_url('LandingPage/Rapor'); ?>">
+                                    Verval Data Rapor </a>
+                            </li>
+                        </ul>
+                    </div> <!-- container-fluid.// -->
+                </nav>
+                <!-- Sidebar Menu End -->
+            </div>
             <!--Nav End-->
             <div class="conatiner-fluid content-inner pb-0">
                 <?= $this->renderSection('content') ?>
