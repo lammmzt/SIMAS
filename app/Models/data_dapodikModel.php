@@ -19,7 +19,7 @@ class data_dapodikModel extends Model
             ->orderBy('data_dapodik.nama_lengkap_data_dapodik', 'ASC')
             ->findAll();
         } else {
-            return $this->getWhere(['id_data_dapodik' => $id]);
+            return $this->where(['id_data_dapodik' => $id])->first();
         }   
     }
 }
