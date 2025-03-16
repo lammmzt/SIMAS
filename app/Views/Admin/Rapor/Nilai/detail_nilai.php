@@ -5,7 +5,7 @@
         <div class="flex-wrap card-header d-flex justify-content-between">
             <h4 class="card-title">Data Rapor</h4>
             <div class="d-flex align-items-center mb-2">
-                <button type="button" class="btn btn-primary" id="btn_back">
+                <button type="button" class="btn btn-primary btn-sm" id="btn_back">
                     <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M11.3 12.2512L20.25 12.2512" stroke="currentColor" stroke-width="1.5"
                             stroke-linecap="round" stroke-linejoin="round"></path>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalTambahNilaiRapor">
                                 <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -133,39 +133,46 @@
         </div>
     </div>
 </div>
-
+<style>
+.select2-container {
+    z-index: 99999 !important;
+}
+</style>
 <!-- Modal Tambah Nilai Rapor -->
-<div class="modal fade" id="modalTambahNilaiRapor" aria-labelledby="modalTambahNilaiRaporLabel" aria-hidden="true">
+<div class="modal fade" id="modalTambahNilaiRapor" aria-labelledby="modalTambahNilaiRaporLabel" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTambahNilaiRaporLabel">Tambah Nilai Rapor</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('Nilai/create'); ?>" method="POST">
+            <form method="POST" class="form_nilai_rapor">
                 <div class="modal-body p-4">
-                    <div class="row">
+                    <div class="row pb-2">
                         <div class="col-md-12">
                             <div class="form-group mb-2">
                                 <label for="id_semester" class="mb-0">Semester</label>
-                                <select class="form-select select2 z-100" id="id_semester" name="id_semester" required
-                                    style="width: 100%;">
+                                <select class="form-select select2" id="id_semester" name="id_semester" required
+                                    style="width: 100%; z-index: 9999;">
                                     <option value="">Pilih Semester</option>
                                     <?php foreach ($smt as $value) : ?>
                                     <option value="<?= $value['id_semester']; ?>">
-                                        <?= $value['nama_semester'] . ' - ' . $value['tahun_ajaran']; ?></option>
+                                        <?= $value['tahun_ajaran'] . ' - ' .   $value['nama_semester']; ?></option>
                                     <?php endforeach; ?>
+
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group mb-2">
                                 <label for="id_mapel" class="mb-0 ">Mata Pelajaran</label>
-                                <select class="form-select select2 z-100" id="id_mapel" name="id_mapel" required
-                                    style="width: 100%;">
+                                <select class="form-select select2" id="id_mapel" name="id_mapel" required
+                                    style="width: 100%; z-index: 9999;">
                                     <option value="">Pilih Mata Pelajaran</option>
                                     <?php foreach ($mapel as $value) : ?>
                                     <option value="<?= $value['id_mapel']; ?>"><?= $value['nama_mapel']; ?></option>
+
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -174,14 +181,15 @@
                             <div class="form-group mb-2">
                                 <label for="nilai_rapor" class="mb-0">Nilai Rapor</label>
                                 <input type="number" class="form-control" id="nilai_rapor" name="nilai_rapor" required>
+
                             </div>
                         </div>
                         <input type="hidden" name="id_data_dapodik" value="<?= $data_siswa['id_data_dapodik']; ?>">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btn_simpan">Simpan</button>
                 </div>
             </form>
         </div>
@@ -192,6 +200,42 @@
 <script type="text/javascript">
 $('#btn_back').click(function() {
     window.close();
+});
+
+$(document).ready(function() {
+    $(".select2").select2({
+        dropdownParent: $("#modalTambahNilaiRapor")
+    });
+});
+
+
+
+$('.form_nilai_rapor').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+    $('#btn_simpan').html(
+        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...'
+    );
+    $('#btn_simpan').attr('disabled', true);
+    $.ajax({
+        url: '<?= base_url('Nilai/save'); ?>',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            if (response.error) {
+                sweetalert('error', 'Gagal', response.data);
+                $('#btn_simpan').html('Simpan');
+                $('#btn_simpan').attr('disabled', false);
+            } else {
+                sweetalert('success', 'Berhasil', 'Data nilai rapor berhasil ditambahkan');
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+            }
+        }
+    });
 });
 
 $('.input_nilai_rapor').on('change', function() {

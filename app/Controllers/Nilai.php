@@ -224,6 +224,34 @@ class Nilai extends BaseController
         ]);
     }
 
+    public function save(){
+        $nilai_raporModel = new nilai_raporModel();
+        $id_data_dapodik = $this->request->getPost('id_data_dapodik');
+        $id_mapel = $this->request->getPost('id_mapel');
+        $id_semester = $this->request->getPost('id_semester');
+        $nilai = $this->request->getPost('nilai_rapor');
+        $check = $nilai_raporModel->where('id_data_dapodik', $id_data_dapodik)->where('id_mapel', $id_mapel)->where('id_semester', $id_semester)->first();
+        if ($check) {
+            return $this->response->setJSON([
+                'error' => true,
+                'data' => 'Data sudah ada',
+                'status' => '422'
+            ]);
+        }
+        $data = [
+            'id_mapel' => $id_mapel,
+            'id_data_dapodik' => $id_data_dapodik,
+            'nilai_rapor' => $nilai,
+            'id_semester' => $id_semester
+        ];
+        $nilai_raporModel->save($data);
+        return $this->response->setJSON([
+            'error' => false,
+            'data' => $data,
+            'status' => '200'
+        ]);
+    }
+    
     public function update(){
         $id_nilai_rapor = $this->request->getPost('id_nilai_rapor');
         $nilai = $this->request->getPost('nilai_rapor');

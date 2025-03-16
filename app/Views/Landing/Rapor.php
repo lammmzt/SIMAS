@@ -194,7 +194,7 @@ $('#form_cari_data_rapor').submit(function(e) {
                     .nama_lengkap_data_dapodik);
                 $('#id_data_dapodik').val(response.data_siswa.id_data_dapodik);
                 $('#nis_data_dapodik').val(response.data_siswa.nis_data_dapodik);
-                console.log(response.data.data_siswa);
+                // console.log(response.data.data_siswa);
 
                 let html = '';
                 let index = 0;
@@ -204,22 +204,26 @@ $('#form_cari_data_rapor').submit(function(e) {
                     html += '<h4 class="accordion-header" id="heading' + index + '">';
                     html +=
                         '<button class="accordion-button collapsed bg-white text-black fw-400" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' +
-                        index + '" aria-expanded="false" aria-controls="collapse' + index + '">';
+                        index + '" aria-expanded="false" aria-controls="collapse' + index +
+                        '">';
                     html += 'TA ' + value[0].tahun_ajaran + ' - SMT ' + value[0].nama_semester;
                     html += '</button>';
                     html += '</h4>';
                     html += '<div id="collapse' + index +
-                        '" class="accordion-collapse collapse" aria-labelledby="heading' + index +
+                        '" class="accordion-collapse collapse" aria-labelledby="heading' +
+                        index +
                         '" data-bs-parent="#show_data' + index + '">';
                     html += '<div class="accordion-body">';
                     value.sort((a, b) => a.nama_mapel.localeCompare(b.nama_mapel));
                     let no = 1;
                     html += '<div class="mt-2 table-responsive">';
-                    html += '<table id="basic-table" class="table mb-0 table-striped" role="grid">';
+                    html +=
+                        '<table id="basic-table" class="table mb-0 table-striped" role="grid">';
                     html += '<tbody>';
                     value.forEach(element => {
                         html += '<tr>';
-                        html += '<td class="text-center text-black a" width="5%">' + no++ +
+                        html += '<td class="text-center text-black a" width="5%">' +
+                            no++ +
                             '</td>';
                         html += '<td width="80%" class="text-black text-capitalize">' +
                             element.nama_mapel + '</td>';
@@ -241,7 +245,10 @@ $('#form_cari_data_rapor').submit(function(e) {
                     html += '</div>';
                     index++;
                 }
+
                 $('#view_rapor').html(html);
+                $('#btn_cari_data_siswa').removeAttr('disabled');
+                $('#btn_cari_data_siswa').html('Cari');
             } else {
                 sweetalert('error', 'Data tidak ditemukan',
                     'Data siswa tidak ditemukan, periksa kembali data yang anda masukkan',
