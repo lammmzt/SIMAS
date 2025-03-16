@@ -13,6 +13,7 @@ class Nilai extends BaseController
 {  
     public function index(): string // menampilkan halaman dashboard
     { 
+      
         $data['title'] = 'SIMAS | Pelengkap Nilai'; // set judul halaman
         $data['active'] = 'Nilai'; // set active menu
         return view('Admin/Rapor/Nilai/index', $data); // tampilkan view dashboard
@@ -223,10 +224,26 @@ class Nilai extends BaseController
         ]);
     }
 
+    public function update(){
+        $id_nilai_rapor = $this->request->getPost('id_nilai_rapor');
+        $nilai = $this->request->getPost('nilai_rapor');
+        $nilai_raporModel = new nilai_raporModel();
+        $data = [
+            'nilai_rapor' => $nilai
+        ];
+        $nilai_raporModel->update($id_nilai_rapor, $data);
+        return $this->response->setJSON([
+            'error' => false,
+            'data' => $data,
+            'status' => '200'
+        ]);
+    }
+    
     public function detail($id){
         $data_dapodikModel = new data_dapodikModel();
         $nilai_raporModel = new nilai_raporModel();
         $semesterModel = new semesterModel();
+        $mapelModel = new mapelModel();
         // $semester_aktif = $semesterModel->where('status_semester', '1')->first();
 
         $data_siswa = $data_dapodikModel->get_data_dapodik($id);
@@ -238,10 +255,14 @@ class Nilai extends BaseController
         
         // dd($nilai_rapor_grouped);
         // dd($data_siswa);
+
         $data['title'] = 'SIMAS | Detail Data Siswa'; // set judul halaman
         $data['active'] = 'Data_siswa'; // set active menu
         $data['data_siswa'] = $data_siswa;
         $data['nilai_rapor'] = $nilai_rapor_grouped;    
+        $data['mapel'] = $mapelModel->findAll();
+        $data['smt'] = $semesterModel->findAll();
+        // dd($data);
         return view('Admin/Rapor/Nilai/detail_nilai', $data); // tampilkan view dashboard
     }
 }

@@ -3,14 +3,15 @@
 namespace App\Controllers;
 use App\Models\data_siswaModel;
 use App\Models\data_dapodikModel;
-
+use App\Models\nilai_raporModel;
+use App\Models\semesterModel;
 class LandingPage extends BaseController
 {
     public function index(): string // menampilkan halaman dashboard
     {
-        $data['title'] = 'SIMAS | HOME'; // set judul halaman
+        $data['title'] = 'SIMAS | Verval Siswa'; // set judul halaman
         $data['active'] = 'Home'; // set active menu
-        return view('Landing/index', $data); // tampilkan view dashboard
+        return view('Landing/vervalData', $data); // tampilkan view dashboard
     }
 
     public function fetchDataSiswa(){
@@ -93,6 +94,47 @@ class LandingPage extends BaseController
         ]);
     }
 
+    public function Rapor(){
+        $data['title'] = 'SIMAS | Rapor Siswa'; // set judul halaman
+        $data['active'] = 'Rapor'; // set active menu
+        return view('Landing/Rapor', $data); // tampilkan view dashboard
+    }
+
+    public function fetchRapor(){
+        
+        $nis = $this->request->getPost('nis');
+        $tgl_lahir = $this->request->getPost('tgl_lahir');
+        $data_siswaModel = new data_siswaModel();
+        $check = $data_siswaModel->where('nis_data_siswa', $nis)->where('tanggal_lahir_data_siswa', $tgl_lahir)->first();
+        if($check){
+            $id = $check['id_data_dapodik'];    
+            $data_dapodikModel = new data_dapodikModel();
+            $nilai_raporModel = new nilai_raporModel();
+            $semesterModel = new semesterModel();
+            // $semester_aktif = $semesterModel->where('status_semester', '1')->first();
+            
+            $data_siswa = $data_dapodikModel->get_data_dapodik($id);
+            $nilai_rapor = $nilai_raporModel->getNilaiBySiswa($id);
+            $nilai_rapor_grouped = [];
+            
+            for ($i=0; $i < count($nilai_rapor); $i++) {
+                $nilai_rapor_grouped[$nilai_rapor[$i]['id_semester']][] = $nilai_rapor[$i];
+            }
+            
+            // dd($nilai_rapor_grouped);
+            // dd($data_siswa);
+            $data['data_siswa'] = $data_siswa;
+            $data['nilai_rapor'] = $nilai_rapor_grouped;    
+            $data['error'] = false;
+            $data['status'] = '200';
+            $data['data'] = $data;
+        } else {
+            $data['error'] = true;
+            $data['status'] = '400';
+            $data['data'] = 'Data tidak ditemukan';
+        }
+        return $this->response->setJSON($data);
+    }
 }
 
 ?>

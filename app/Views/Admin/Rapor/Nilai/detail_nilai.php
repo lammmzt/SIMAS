@@ -51,8 +51,27 @@
             </div>
             <hr style="border-top: 1px solid;">
             <div class="row mx-2 mb-4">
-                <div class="col-md-12 mb-2">
-                    <h5 class="card-title mb-2">Nilai Rapor</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <h5 class="card-title mb-2 justify-content-start">
+                            Nilai Rapor</h5>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary btn btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#modalTambahNilaiRapor">
+                                <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2ZM12 20C7.364 20 4 16.636 4 12C4 7.364 7.364 4 12 4C16.636 4 20 7.364 20 12C20 16.636 16.636 20 12 20Z"
+                                        fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 6C11.4477 6 11 6.44772 11 7V11H7C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13H11V17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17V13H17C17.5523 13 18 12.5523 18 12C18 11.4477 17.5523 11 17 11H13V7C13 6.44772 12.5523 6 12 6Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <?php 
                     if(empty($nilai_rapor)) {
@@ -82,17 +101,20 @@
                                     $no = 1;
                                  ?>
                                 <div class="mt-2 table-responsive">
-                                    <table id="basic-table" class="table mb-0" role="grid">
+                                    <table id="basic-table" class="table mb-0 table-striped " role="grid">
                                         <tbody>
                                             <?php foreach ($data_semester as $value) : ?>
                                             <tr>
                                                 <td class="text-center text-black" width="5%"><?= $no++; ?></td>
                                                 <td width="80%" class="text-black"><?= $value['nama_mapel']; ?></td>
                                                 <td width="20%">
-                                                    <input type="text" class="form-control text-center text-black"
+                                                    <input type="text"
+                                                        class="form-control text-center text-black input_nilai_rapor"
+                                                        data-id="<?= $value['id_nilai_rapor']; ?>"
                                                         style="min-width: 80px;" value="<?= $value['nilai_rapor']; ?>"
                                                         id="nilai_rapor_<?= $value['id_nilai_rapor']; ?>"
-                                                        name="nilai_rapor_<?= $value['id_nilai_rapor']; ?>" readonly>
+                                                        name="nilai_rapor_<?= $value['id_nilai_rapor']; ?>"
+                                                        maxlength="3">
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
@@ -111,11 +133,89 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Tambah Nilai Rapor -->
+<div class="modal fade" id="modalTambahNilaiRapor" aria-labelledby="modalTambahNilaiRaporLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTambahNilaiRaporLabel">Tambah Nilai Rapor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="<?= base_url('Nilai/create'); ?>" method="POST">
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group mb-2">
+                                <label for="id_semester" class="mb-0">Semester</label>
+                                <select class="form-select select2 z-100" id="id_semester" name="id_semester" required
+                                    style="width: 100%;">
+                                    <option value="">Pilih Semester</option>
+                                    <?php foreach ($smt as $value) : ?>
+                                    <option value="<?= $value['id_semester']; ?>">
+                                        <?= $value['nama_semester'] . ' - ' . $value['tahun_ajaran']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group mb-2">
+                                <label for="id_mapel" class="mb-0 ">Mata Pelajaran</label>
+                                <select class="form-select select2 z-100" id="id_mapel" name="id_mapel" required
+                                    style="width: 100%;">
+                                    <option value="">Pilih Mata Pelajaran</option>
+                                    <?php foreach ($mapel as $value) : ?>
+                                    <option value="<?= $value['id_mapel']; ?>"><?= $value['nama_mapel']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group mb-2">
+                                <label for="nilai_rapor" class="mb-0">Nilai Rapor</label>
+                                <input type="number" class="form-control" id="nilai_rapor" name="nilai_rapor" required>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id_data_dapodik" value="<?= $data_siswa['id_data_dapodik']; ?>">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <?= $this->endSection('konten'); ?>
 <?= $this->section('script'); ?>
 <script type="text/javascript">
 $('#btn_back').click(function() {
     window.close();
+});
+
+$('.input_nilai_rapor').on('change', function() {
+    var id = $(this).data('id');
+    var nilai = $(this).val();
+    // max 100
+    if (nilai > 100) {
+        alert('Nilai maksimal 100');
+        $(this).val(100);
+        var nilai = 100;
+    }
+    $.ajax({
+        url: '<?= base_url('Nilai/update'); ?>',
+        type: 'POST',
+        data: {
+            id_nilai_rapor: id,
+            nilai_rapor: nilai
+        },
+        success: function(response) {
+            if (response.error) {
+                alert(response.data);
+            }
+        }
+    });
 });
 </script>
 <?= $this->endSection('script'); ?>
