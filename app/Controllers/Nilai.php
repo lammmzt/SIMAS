@@ -257,7 +257,7 @@ class Nilai extends BaseController
         // dd($data_siswa);
 
         $data['title'] = 'SIMAS | Detail Data Siswa'; // set judul halaman
-        $data['active'] = 'Data_siswa'; // set active menu
+        $data['active'] = 'Nilai'; // set active menu
         $data['data_siswa'] = $data_siswa;
         $data['nilai_rapor'] = $nilai_rapor_grouped;    
         $data['mapel'] = $mapelModel->findAll();
