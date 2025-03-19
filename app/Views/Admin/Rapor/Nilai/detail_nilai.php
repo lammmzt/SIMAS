@@ -88,7 +88,7 @@
                                 aria-controls="collapse<?= $index; ?>">
                                 TA <?= $data_semester[0]['tahun_ajaran']; ?> -
                                 <?= ($data_semester[0]['nama_semester'] == '1') ? 'Ganjil' : 'Genap'; ?>
-                                <span class="badge bg-primary mx-2 py-2 rounded-circle
+                                <span class="badge bg-primary mx-2 p-2 rounded-circle 
                                 "> <?= count($data_semester); ?></span>
                             </button>
                         </h4>
@@ -108,7 +108,7 @@
                                             <?php foreach ($data_semester as $value) : ?>
                                             <tr>
                                                 <td class="text-center text-black" width="5%"><?= $no++; ?></td>
-                                                <td width="85%" class="text-black"><?= $value['nama_mapel']; ?></td>
+                                                <td width="80%" class="text-black"><?= $value['nama_mapel']; ?></td>
                                                 <td width="10%">
                                                     <input type="number"
                                                         class="form-control text-center text-black input_nilai_rapor"
@@ -117,6 +117,27 @@
                                                         id="nilai_rapor_<?= $value['id_nilai_rapor']; ?>"
                                                         name="nilai_rapor_<?= $value['id_nilai_rapor']; ?>"
                                                         maxlength="3" style="min-width: 80px; max-width: 80px;">
+                                                </td>
+                                                <td width="5%">
+                                                    <button class="btn btn-sm btn-danger btn-delete"
+                                                        data-id="<?= $value['id_nilai_rapor']; ?>">
+                                                        <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M19.3248 9.46826C19.3248 9.46826 18.7818 16.2033 18.4668 19.0403C18.3168 20.3953 17.4798 21.1893 16.1088 21.2143C13.4998 21.2613 10.8878 21.2643 8.27979 21.2093C6.96079 21.1823 6.13779 20.3783 5.99079 19.0473C5.67379 16.1853 5.13379 9.46826 5.13379 9.46826"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round">
+                                                            </path>
+                                                            <path d="M20.708 6.23975H3.75" stroke="currentColor"
+                                                                stroke-width="1.5" stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                            <path
+                                                                d="M17.4406 6.23973C16.6556 6.23973 15.9796 5.68473 15.8256 4.91573L15.5826 3.69973C15.4326 3.13873 14.9246 2.75073 14.3456 2.75073H10.1126C9.53358 2.75073 9.02558 3.13873 8.87558 3.69973L8.63258 4.91573C8.47858 5.68473 7.80258 6.23973 7.01758 6.23973"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
@@ -160,8 +181,8 @@
                                     <option value="">Pilih Semester</option>
                                     <?php foreach ($smt as $value) : ?>
                                     <option value="<?= $value['id_semester']; ?>">
-                                        <?= $value['tahun_ajaran'] . ' - ' .   $value['nama_semester']; ?></option>
-                                    <?php endforeach; ?>
+                                        <?= $value['tahun_ajaran'] . ' - ' .   (($value['nama_semester'] == '1') ? 'Ganjil' : 'Genap'); ?>
+                                        <?php endforeach; ?>
 
                                 </select>
                             </div>
@@ -270,6 +291,42 @@ $('.input_nilai_rapor').on('change', function() {
             if (response.error) {
                 alert(response.data);
             }
+        }
+    });
+});
+
+// delete
+$('.btn-delete').on('click', function() {
+    var id = $(this).data('id');
+    // swal confirm
+    Swal.fire({
+        title: 'Apakah Anda yakin?',
+        text: "Data nilai rapor akan dihapus",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Hapus!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '<?= base_url('Nilai/delete'); ?>',
+                type: 'POST',
+                data: {
+                    id_nilai_rapor: id
+                },
+                success: function(response) {
+                    if (response.error) {
+                        sweetalert('error', 'Gagal', response.data);
+                    } else {
+                        sweetalert('success', 'Berhasil',
+                            'Data nilai rapor berhasil dihapus');
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
+                    }
+                }
+            });
         }
     });
 });

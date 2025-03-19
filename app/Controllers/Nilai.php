@@ -304,4 +304,15 @@ class Nilai extends BaseController
         // dd($data);
         return view('Admin/Rapor/Nilai/detail_nilai', $data); // tampilkan view dashboard
     }
+
+    public function delete(){
+        $id_nilai_rapor = $this->request->getPost('id_nilai_rapor');
+        $nilai_raporModel = new nilai_raporModel();
+        $nilai_raporModel->delete($id_nilai_rapor);
+        return $this->response->setJSON([
+            'error' => false,
+            'data' => 'Data berhasil dihapus',
+            'status' => '200'
+        ]);
+    }
 }

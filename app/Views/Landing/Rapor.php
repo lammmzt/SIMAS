@@ -208,7 +208,7 @@ $('#form_cari_data_rapor').submit(function(e) {
                         '">';
                     html += 'TA ' + value[0].tahun_ajaran + ' - ' + (value[0].nama_semester ==
                         '1' ? 'Ganjil' : 'Genap');
-                    html += '<span class="badge bg-primary rounded-pill py-2 mx-2">' + value
+                    html += '<span class="badge bg-primary rounded-pill p-2 mx-2">' + value
                         .length +
                         '</span>';
                     html += '</button>';
@@ -233,7 +233,7 @@ $('#form_cari_data_rapor').submit(function(e) {
                             element.nama_mapel + '</td>';
                         html += '<td width="10%">';
                         html +=
-                            '<input type="text" class="form-control text-center text-black" style="min-width: 80px; max-width: 80px" value="' +
+                            '<input type="text" class="form-control text-center text-black" style="min-width: 100px; max-width: 100px" value="' +
                             element.nilai_rapor + '" id="nilai_rapor_' + element
                             .id_nilai_rapor + '" name="nilai_rapor_' + element
                             .id_nilai_rapor + '" readonly>';

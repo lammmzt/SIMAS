@@ -136,7 +136,7 @@
             <div class="modal-body">
                 <!-- <form class="needs-validation" novalidate enctype="multipart/form-data" method="post"
                     action="<?= base_url('Nilai/import') ?>"> -->
-                <form class="needs-validation" id="form-import" enctype="multipart/form-data" method="post">
+                <form class="" id="form-import" enctype="multipart/form-data" method="post">
                     <div class="mb-3">
                         <label for="id_semester" class="form-label">Semester</label>
                         <select class="form-select select1" id="id_semester" name="id_semester" required
@@ -421,7 +421,6 @@ $(document).ready(function() {
                     $('#import').modal('hide');
                     $('#hasil-import').modal('show');
                     // hapus data form
-                    $('#form-import')[0].reset();
                     var html = '';
                     if (response.data.result.length > 0) {
 
@@ -449,86 +448,14 @@ $(document).ready(function() {
                     $('#totalData').html(response.data.total_data);
                     $('#totalSukses').html(response.data.success);
                     $('#totalError').html(response.data.failed);
-
-                }
-                $('#btn-import').removeAttr('disabled');
-                $('#btn-import').html('Import');
-                $('#form-import')[0].reset();
-            },
-            error: function() {
-                $('#btn-import').removeAttr('disabled');
-                $('#btn-import').html('Import');
-            }
-        });
-    });
-
-    // close modal hasil import
-    $('#hasil-import').on('hidden.bs.modal', function() {
-        // reload data
-        $('#table_data_siswa').DataTable().ajax.reload();
-    });
-});
-
-$(document).ready(function() {
-    $('#form-import').submit(function(e) {
-        e.preventDefault();
-        var formData = new FormData(this);
-        $.ajax({
-            url: '<?= base_url('Nilai/import'); ?>',
-            type: 'POST',
-            data: formData,
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-            beforeSend: function() {
-                $('#btn-import').attr('disabled', 'disabled');
-                $('#btn-import').html(
-                    '<i class="fas fa-spinner fa-spin"></i> Loading...');
-            },
-            success: function(response) {
-                // hide modal import
-                $('#import').modal('hide');
-
-                if (response.error) {
-                    alert(response.data);
-                } else {
-                    $('#hasil-import').modal('show');
-                    // hapus data form
                     $('#form-import')[0].reset();
-                    var html = '';
-                    if (response.data.result.length > 0) {
 
-                        $.each(response.data.result, function(key, value) {
-                            html += '<tr' + (value.status == 'Failed' ?
-                                ' class="table-danger"' : '') + '>';
-                            html += '<td class="text-center">' + value.no +
-                                '</td>';
-                            html += '<td>' + value.data + '</td>';
-                            html += '<td>' + value.message + '</td>';
-                            html += '<td>' + value.status + '</td>';
-                            html += '</tr>';
-                        });
-
-                    } else {
-                        html += '<tr>';
-                        html +=
-                            '<td colspan="4" class="text-center">Tidak ada data yang gagal diimport</td>';
-                        html += '</tr>';
-                    }
-
-                    $('#hasil_import_data').html(html);
-
-                    // total data
-                    $('#totalData').html(response.data.total_data);
-                    $('#totalSukses').html(response.data.success);
-                    $('#totalError').html(response.data.failed);
-
+                    $('#btn-import').removeAttr('disabled');
+                    $('#btn-import').html('Import');
                 }
-                $('#btn-import').removeAttr('disabled');
-                $('#btn-import').html('Import');
+                // form reset
             },
             error: function() {
-                alert('Error');
                 $('#btn-import').removeAttr('disabled');
                 $('#btn-import').html('Import');
             }

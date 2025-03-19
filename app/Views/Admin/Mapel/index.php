@@ -70,7 +70,7 @@
                 <h5 class="modal-title" id="addLabel">Tambah Data Mapel</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" class="needs-validation" novalidate id="form-add">
+            <form method="post" class="" novalidate id="form-add">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="kode_mapel" class="form-label text-dark">Kode Mapel</label>
@@ -107,7 +107,7 @@
                 <h5 class="modal-title" id="editLabel">Edit Data Mapel</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" class="needs-validation" novalidate id="form-edit">
+            <form method="post" class="" novalidate id="form-edit">
                 <div class="modal-body">
                     <input type="hidden" name="id_mapel" id="edit_id">
                     <div class="mb-3">
