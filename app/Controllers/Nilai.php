@@ -13,7 +13,8 @@ class Nilai extends BaseController
 {  
     public function index(): string // menampilkan halaman dashboard
     { 
-      
+        $semesterModel = new semesterModel();
+        $data['semester'] = $semesterModel->findAll();
         $data['title'] = 'SIMAS | Pelengkap Nilai'; // set judul halaman
         $data['active'] = 'Nilai'; // set active menu
         return view('Admin/Rapor/Nilai/index', $data); // tampilkan view dashboard
@@ -50,22 +51,32 @@ class Nilai extends BaseController
 
     public function import(){
         $file_excel = $this->request->getFile('file'); // get file excel
+        $semester_aktif = $this->request->getPost('id_semester'); // get semester aktif
+
+        if ($file_excel == null || $semester_aktif == null) {
+            return $this->response->setJSON([
+                'error' => true,
+                'data' => 'Data tidak lengkap',
+                'status' => '422'
+            ]);
+        }
+        
         $validation = \Config\Services::validation(); // get validation
         
         $data_dapodikModel = new data_dapodikModel(); // get model data_dapodik
         $data_semeser = new semesterModel(); // get model semester
         $data_mapel = new mapelModel(); // get model mapel
         $nilai_raporModel = new nilai_raporModel(); // get model nilaik
+
         // to get all data dapodik
         $data_dapodik = $data_dapodikModel->get_data_dapodik();
         $data_dapodik = array_column($data_dapodik, 'id_data_dapodik', 'nis_data_dapodik');
-        // get semester aktif
-        $semester_aktif = $data_semeser->where('status_semester', '1')->first(); 
+        
         // get mapel
         $data_mapel = $data_mapel->findAll();
         $data_mapel = array_column($data_mapel, 'id_mapel', 'kode_mapel');
         // get nilai rapor
-        $data_nilai = $nilai_raporModel->getNilaiRapor()->where('nilai_rapor.id_semester', $semester_aktif['id_semester'])->findAll();
+        $data_nilai = $nilai_raporModel->getNilaiRapor()->where('nilai_rapor.id_semester', $semester_aktif)->findAll();
         $temp_data_nilai = [];
         foreach ($data_nilai as $item) {
             $temp_data_nilai[$item['id_nilai_rapor']] = [
@@ -181,7 +192,7 @@ class Nilai extends BaseController
                         $data = [
                             'id_mapel' => $value,
                             'id_data_dapodik' => $id_data_dapodik,
-                            'id_semester' => $semester_aktif['id_semester'],
+                            'id_semester' => $semester_aktif,
                             'nilai_rapor' => $nilai
                         ];
                         $nilai_raporModel->save($data);

@@ -84,10 +84,12 @@
                     <div class="accordion-item bg-white">
                         <h4 class="accordion-header" id="heading<?= $index; ?>">
                             <button class="accordion-button collapsed bg-white text-black fw-400" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapse<?= $index; ?>" aria-expanded="false"
+                                data-bs-toggle="collapse" data-bs-target="#collapse<?= $index; ?>" aria-expanded="true"
                                 aria-controls="collapse<?= $index; ?>">
-                                TA <?= $data_semester[0]['tahun_ajaran']; ?> - SMT
-                                <?= $data_semester[0]['nama_semester']; ?>
+                                TA <?= $data_semester[0]['tahun_ajaran']; ?> -
+                                <?= ($data_semester[0]['nama_semester'] == '1') ? 'Ganjil' : 'Genap'; ?>
+                                <span class="badge bg-primary mx-2 py-2 rounded-circle
+                                "> <?= count($data_semester); ?></span>
                             </button>
                         </h4>
                         <div id="collapse<?= $index; ?>" class="accordion-collapse collapse"
@@ -106,15 +108,15 @@
                                             <?php foreach ($data_semester as $value) : ?>
                                             <tr>
                                                 <td class="text-center text-black" width="5%"><?= $no++; ?></td>
-                                                <td width="80%" class="text-black"><?= $value['nama_mapel']; ?></td>
-                                                <td width="20%">
-                                                    <input type="text"
+                                                <td width="85%" class="text-black"><?= $value['nama_mapel']; ?></td>
+                                                <td width="10%">
+                                                    <input type="number"
                                                         class="form-control text-center text-black input_nilai_rapor"
                                                         data-id="<?= $value['id_nilai_rapor']; ?>"
                                                         style="min-width: 80px;" value="<?= $value['nilai_rapor']; ?>"
                                                         id="nilai_rapor_<?= $value['id_nilai_rapor']; ?>"
                                                         name="nilai_rapor_<?= $value['id_nilai_rapor']; ?>"
-                                                        maxlength="3">
+                                                        maxlength="3" style="min-width: 80px; max-width: 80px;">
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
@@ -180,7 +182,8 @@
                         <div class="col-md-12">
                             <div class="form-group mb-2">
                                 <label for="nilai_rapor" class="mb-0">Nilai Rapor</label>
-                                <input type="number" class="form-control" id="nilai_rapor" name="nilai_rapor" required>
+                                <input type="number" class="form-control" id="nilai_rapor" name="nilai_rapor" required
+                                    max="100" min="0">
 
                             </div>
                         </div>
@@ -202,12 +205,21 @@ $('#btn_back').click(function() {
     window.close();
 });
 
+
 $(document).ready(function() {
     $(".select2").select2({
         dropdownParent: $("#modalTambahNilaiRapor")
     });
 });
 
+$('input[type="number"]').on('input', function() {
+    if ($(this).val().length > 3) {
+        $(this).val($(this).val().slice(0, 3));
+    }
+    if ($(this).val() > 100) {
+        $(this).val('100');
+    }
+});
 
 
 $('.form_nilai_rapor').on('submit', function(e) {

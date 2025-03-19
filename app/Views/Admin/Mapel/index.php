@@ -8,7 +8,7 @@
             </div>
             <div class="header-title">
                 <!-- hapus semua data -->
-                <button type="button" class="btn btn-primary btn-lg btn-md" data-bs-toggle="modal"
+                <button type="button" class="btn btn-primary btn-md btn-sm" data-bs-toggle="modal"
                     data-bs-target="#add">
                     <svg class="icon-24" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">=
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -74,15 +74,16 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="kode_mapel" class="form-label text-dark">Kode Mapel</label>
-                        <input type="text" class="form-control" id="kode_mapel" name="kode_mapel" required
-                            maxlength="5">
+                        <input type="text" class="form-control" id="kode_mapel" name="kode_mapel" required maxlength="5"
+                            placeholder="Contoh: MTK">
                         <div class="invalid-feedback">
                             Kode mapel harus diisi.
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="nama_mapel" class="form-label text-dark">Nama Mapel</label>
-                        <input type="text" class="form-control" id="nama_mapel" name="nama_mapel" required>
+                        <input type="text" class="form-control" id="nama_mapel" name="nama_mapel" required
+                            placeholder="Contoh: Matematika">
                         <div class="invalid-feedback">
                             Nama mapel harus diisi.
                         </div>

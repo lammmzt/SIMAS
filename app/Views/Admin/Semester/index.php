@@ -8,7 +8,7 @@
             </div>
             <div class="header-title">
                 <!-- hapus semua data -->
-                <button type="button" class="btn btn-primary btn-lg btn-md" data-bs-toggle="modal"
+                <button type="button" class="btn btn-primary btn-md btn-sm" data-bs-toggle="modal"
                     data-bs-target="#add">
                     <svg class="icon-24" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">=
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -75,15 +75,19 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="tahun_ajaran" class="form-label text-dark">Tahun Ajaran</label>
-                        <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" required>
+                        <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" required autofocus
+                            placeholder="Contoh: 2021/2022">
                         <div class="invalid-feedback">
                             Tahun Ajaran harus diisi.
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="nama_semester" class="form-label text-dark">Nama semester</label>
-                        <input type="number" class="form-control" id="nama_semester" name="nama_semester" required
-                            max="2" min="1">
+                        <select class="form-select" id="nama_semester" name="nama_semester" required>
+                            <option value="">Pilih semester</option>
+                            <option value="1">Ganjil</option>
+                            <option value="2">Genap</option>
+                        </select>
                         <div class="invalid-feedback">
                             Nama semester harus diisi.
                         </div>
@@ -119,8 +123,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="nama_semester" class="form-label text-dark">Nama semester</label>
-                        <input type="number" class="form-control" id="edit_nama_semester" name="nama_semester" required
-                            max="2" min="1">
+                        <select class="form-select" id="edit_nama_semester" name="nama_semester" required>
+                            <option value="">Pilih semester</option>
+                        </select>
                         <div class="invalid-feedback">
                         </div>
                     </div>
@@ -169,8 +174,14 @@ function dataTablesDatasemester() {
                 title: 'Tahun Ajaran',
             },
             {
-                data: 'nama_semester',
-                title: 'Nama semester',
+                render: function(data, type, row) {
+                    if (row.nama_semester == 1) {
+                        return 'Ganjil';
+                    } else {
+                        return 'Genap';
+                    }
+                },
+                title: 'Nama Semester',
                 className: 'text-center',
             },
             {
@@ -264,13 +275,22 @@ $('#table_data_semester').on('click', '.btn-edit', function() {
         url: url,
         type: 'POST',
         data: {
-            id: id
+            id: id,
         },
         success: function(response) {
             if (response.status == '200') {
                 $('#edit').modal('show');
                 $('#edit_tahun_ajaran').val(response.data.tahun_ajaran);
-                $('#edit_nama_semester').val(response.data.nama_semester);
+                // select
+                var html = '';
+                if (response.data.nama_semester == 1) {
+                    html += '<option value="1" selected>Ganjil</option>';
+                    html += '<option value="2">Genap</option>';
+                } else {
+                    html += '<option value="1">Ganjil</option>';
+                    html += '<option value="2" selected>Genap</option>';
+                }
+                $('#edit_nama_semester').html(html);
                 $('#edit_id').val(id);
             } else {
                 sweetalert('error', 'Gagal', 'Terjadi kesalahan saat mengambil data');
@@ -325,11 +345,14 @@ $('#table_data_semester').on('click', '.change_status_semester', function() {
     var id = $(this).attr('id');
     // alert(id);
     var url = '<?= base_url('Semester/updateStatus') ?>';
+    // ubahan status
+    var status = $(this).data('status');
     $.ajax({
         url: url,
         type: 'POST',
         data: {
             id: id,
+            status: status
         },
         success: function(response) {
             if (response.status == '200') {

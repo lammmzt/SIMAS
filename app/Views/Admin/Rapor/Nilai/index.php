@@ -136,7 +136,23 @@
             <div class="modal-body">
                 <!-- <form class="needs-validation" novalidate enctype="multipart/form-data" method="post"
                     action="<?= base_url('Nilai/import') ?>"> -->
-                <form class="needs-validation" novalidate id="form-import" enctype="multipart/form-data" method="post">
+                <form class="needs-validation" id="form-import" enctype="multipart/form-data" method="post">
+                    <div class="mb-3">
+                        <label for="id_semester" class="form-label">Semester</label>
+                        <select class="form-select select1" id="id_semester" name="id_semester" required
+                            style="width: 100%; z-index: 9999;">
+                            <option value="">Pilih Semester</option>
+                            <?php foreach ($semester as $value) : ?>
+                            <option value="<?= $value['id_semester']; ?>">
+                                <?= $value['tahun_ajaran'] . ' - ' .   ($value['nama_semester'] == '1' ? 'Ganjil' : 'Genap'); ?>
+                            </option>
+                            <?php endforeach; ?>
+
+                        </select>
+                        <div class="invalid-feedback">
+                            Semester harus diisi
+                        </div>
+                    </div>
                     <div class="mb-4">
                         <label for="file" class="form-label">File</label>
                         <input type="file" class="form-control" id="file" name="file" required accept=".xlsx , .xls ">
@@ -363,6 +379,13 @@ function dataTablesDataSiswa() {
 
     });
 }
+
+
+$(document).ready(function() {
+    $(".select1").select2({
+        dropdownParent: $("#import")
+    });
+});
 dataTablesDataSiswa();
 
 // when change kelas_data_dapodik
@@ -389,11 +412,13 @@ $(document).ready(function() {
             },
             success: function(response) {
                 // hide modal import
-                $('#import').modal('hide');
-
                 if (response.error) {
-                    alert(response.data);
+                    sweetalert('error', response.data);
+                    $('#btn-import').removeAttr('disabled');
+                    $('#btn-import').html('Import');
+                    $('#form-import')[0].reset();
                 } else {
+                    $('#import').modal('hide');
                     $('#hasil-import').modal('show');
                     // hapus data form
                     $('#form-import')[0].reset();
@@ -428,9 +453,9 @@ $(document).ready(function() {
                 }
                 $('#btn-import').removeAttr('disabled');
                 $('#btn-import').html('Import');
+                $('#form-import')[0].reset();
             },
             error: function() {
-                alert('Error');
                 $('#btn-import').removeAttr('disabled');
                 $('#btn-import').html('Import');
             }

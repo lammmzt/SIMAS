@@ -199,14 +199,18 @@ $('#form_cari_data_rapor').submit(function(e) {
                 let html = '';
                 let index = 0;
                 for (const [key, value] of Object.entries(response.data.nilai_rapor)) {
-                    html += '<div class="accordion my-2" id="show_data' + index + '">';
+                    html += '<div class="accordion my-3" id="show_data' + index + '">';
                     html += '<div class="accordion-item bg-white">';
                     html += '<h4 class="accordion-header" id="heading' + index + '">';
                     html +=
                         '<button class="accordion-button collapsed bg-white text-black fw-400" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' +
-                        index + '" aria-expanded="false" aria-controls="collapse' + index +
+                        index + '" aria-expanded="true" aria-controls="collapse' + index +
                         '">';
-                    html += 'TA ' + value[0].tahun_ajaran + ' - SMT ' + value[0].nama_semester;
+                    html += 'TA ' + value[0].tahun_ajaran + ' - ' + (value[0].nama_semester ==
+                        '1' ? 'Ganjil' : 'Genap');
+                    html += '<span class="badge bg-primary rounded-pill py-2 mx-2">' + value
+                        .length +
+                        '</span>';
                     html += '</button>';
                     html += '</h4>';
                     html += '<div id="collapse' + index +
@@ -225,11 +229,11 @@ $('#form_cari_data_rapor').submit(function(e) {
                         html += '<td class="text-center text-black a" width="5%">' +
                             no++ +
                             '</td>';
-                        html += '<td width="80%" class="text-black text-capitalize">' +
+                        html += '<td width="85%" class="text-black text-capitalize">' +
                             element.nama_mapel + '</td>';
-                        html += '<td width="20%">';
+                        html += '<td width="10%">';
                         html +=
-                            '<input type="text" class="form-control text-center text-black" style="min-width: 80px;" value="' +
+                            '<input type="text" class="form-control text-center text-black" style="min-width: 80px; max-width: 80px" value="' +
                             element.nilai_rapor + '" id="nilai_rapor_' + element
                             .id_nilai_rapor + '" name="nilai_rapor_' + element
                             .id_nilai_rapor + '" readonly>';

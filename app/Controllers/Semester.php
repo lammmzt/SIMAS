@@ -28,7 +28,7 @@ class Semester extends BaseController
             ->add('status_semester', function ($row) {
                 return '
                     <div class="form-check form-switch form-check-inline">
-                        <input class="form-check-input change_status_semester" type="checkbox" id="'.$row->id_semester.'" '.($row->status_semester == 1 ? 'checked' : '').' />
+                        <input class="form-check-input change_status_semester" type="checkbox" id="'.$row->id_semester.'" '.($row->status_semester == 1 ? 'checked' : '').'  data-status="'.$row->status_semester.'"/>
                         <label class="form-check-label pl-2" for="'.$row->id_semester.'"></label>
                     </div>
                 ';
@@ -76,23 +76,24 @@ class Semester extends BaseController
         $validation =  \Config\Services::validation();
         $check = $semesterModel->where('tahun_ajaran', $this->request->getPost('tahun_ajaran'))->where('nama_semester', $this->request->getPost('nama_semester'))->countAllResults();
         if ($check > 0) {
-            return $this->response->setJSON([
-                'errors' => true,
-                'data' => 'Data sudah ada',
-                'status' => 400
-            ]);
+            $rules_tahun_ajaran = 'required|is_unique[semester.tahun_ajaran]';
+            $rules_nama_semester = 'required|is_unique[semester.nama_semester]';
+        }else{
+            $rules_tahun_ajaran = 'required';
+            $rules_nama_semester = 'required';
         }
         $validation->setRules([
            'tahun_ajaran' => [
                 'label' => 'Tajun Ajaran',
-                'rules' => 'required',
+                'rules' => $rules_tahun_ajaran,
                 'errors' => [
                     'required' => '{field} tidak boleh kosong',
+                    'is_unique' => '{field} sudah ada',
                 ],
             ],
             'nama_semester' => [
                 'label' => 'Nama semester',
-                'rules' => 'required',
+                'rules' => $rules_nama_semester,
                 'errors' => [
                     'required' => '{field} tidak boleh kosong',
                     'is_unique' => '{field} sudah ada',
@@ -129,27 +130,32 @@ class Semester extends BaseController
         if($this->request->getPost('tahun_ajaran') != $data_semester['tahun_ajaran'] || $this->request->getPost('nama_semester') != $data_semester['nama_semester']){
             $check = $semesterModel->where('tahun_ajaran', $this->request->getPost('tahun_ajaran'))->where('nama_semester', $this->request->getPost('nama_semester'))->countAllResults();
             if ($check > 0) {
-                return $this->response->setJSON([
-                    'errors' => true,
-                    'data' => 'Data sudah ada',
-                    'status' => 400
-                ]);
+                $rules_tahun_ajaran = 'required|is_unique[semester.tahun_ajaran]';
+                $rules_nama_semester = 'required|is_unique[semester.nama_semester]';
+            }else{
+                $rules_tahun_ajaran = 'required';
+                $rules_nama_semester = 'required';
             }
+        }else{
+            $rules_tahun_ajaran = 'required';
+            $rules_nama_semester = 'required';
         }
         
         $validation->setRules([
             'tahun_ajaran' => [
                 'label' => 'Tajun Ajaran',
-                'rules' => 'required',
+                'rules' => $rules_tahun_ajaran,
                 'errors' => [
                     'required' => '{field} tidak boleh kosong',
+                    'is_unique' => '{field} sudah ada',
                 ],
             ],
             'nama_semester' => [
                 'label' => 'Nama semester',
-                'rules' => 'required',
+                'rules' => $rules_nama_semester,
                 'errors' => [
                     'required' => '{field} tidak boleh kosong',
+                    'is_unique' => '{field} sudah ada',
                 ],
             ],
         ]);
@@ -177,10 +183,11 @@ class Semester extends BaseController
     {
         $semesterModel = new semesterModel();
         $id = $this->request->getPost('id');
+        $status = $this->request->getPost('status');
         $semesterModel->where('status_semester', '1')->set(['status_semester' => '0'])->update();
-        $data_semester = $semesterModel->getSemester($id);
+        $status = $status == '1' ? '0' : '1';
         $data = [
-            'status_semester' => $data_semester['status_semester'] == '1'? '0' : '1',
+            'status_semester' => $status,
             'updated_at' => date('Y-m-d H:i:s')
         ];
         $semesterModel->update($id, $data);
