@@ -315,4 +315,27 @@ class Nilai extends BaseController
             'status' => '200'
         ]);
     }
+
+    public function hapusKelas(){
+        $id_kelas = $this->request->getPost('id_kelas');
+        $id_semester = $this->request->getPost('id_semester');
+        $data_siswaModel = new data_siswaModel();
+        $nilaiModel = new nilai_raporModel();
+
+        $success = 0;
+        $data_siswa = $data_siswaModel->get_data_siswa()->where('kelas_data_dapodik', $id_kelas)->findAll();
+        foreach ($data_siswa as $siswa) {
+            $nilaiModel->where('id_data_dapodik', $siswa['id_data_dapodik'])->where('id_semester', $id_semester)->delete();
+            if($nilaiModel->affectedRows() > 0){
+                $success++;
+            }
+        }
+
+        return $this->response->setJSON([
+            'error' => false,
+            'data' => 'Data berhasil dihapus menghapus ' . $success . ' data',
+            'status' => '200'
+        ]);
+
+    }
 }
