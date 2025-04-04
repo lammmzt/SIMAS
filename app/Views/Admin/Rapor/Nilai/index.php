@@ -192,7 +192,7 @@
                         <div class="invalid-feedback">
                             File harus diisi
                         </div>
-                        <a href="<?= base_url('Assets/template/TTemplate Import Nilai.xlsx') ?>"
+                        <a href="<?= base_url('Assets/template/Template Import Nilai.xlsx') ?>"
                             class="my-2 text-decoration-none" target="_blank">Download template</a>
 
                     </div>
@@ -469,6 +469,9 @@ $('#tipe_nilai').change(function() {
     var tipe_nilai = $(this).val();
     if (tipe_nilai == '1') {
         $('#show_semester').show();
+        $('#id_semester').select2({
+            dropdownParent: $("#import")
+        });
     } else {
         $('#id_semester').val('');
         $('#id_semester').select2().trigger('change');
@@ -481,6 +484,9 @@ $('#hapus_tipe_nilai').change(function() {
     var tipe_nilai = $(this).val();
     if (tipe_nilai == '1') {
         $('#show_semester_hapus').show();
+        $('#hapus_id_semester').select2({
+            dropdownParent: $("#hapus")
+        });
     } else {
         $('#hapus_id_semester').val('');
         $('#hapus_id_semester').select2().trigger('change');
@@ -533,6 +539,10 @@ $(document).ready(function() {
                     $('#btn-import').removeAttr('disabled');
                     $('#btn-import').html('Import');
                     $('#form-import')[0].reset();
+                    $('#show_semester').hide();
+                    $('#tipe_nilai').val('').select2().trigger('change');
+                    $('#id_semester').val('').select2().trigger('change');
+                    $('#file').val('');
                 } else {
                     $('#import').modal('hide');
                     $('#hasil-import').modal('show');
@@ -565,7 +575,11 @@ $(document).ready(function() {
                     $('#totalSukses').html(response.data.success);
                     $('#totalError').html(response.data.failed);
                     $('#form-import')[0].reset();
-
+                    $('#show_semester').hide();
+                    // RESET SELECT2
+                    $('#tipe_nilai').val('').select2().trigger('change');
+                    $('#id_semester').val('').select2().trigger('change');
+                    $('#file').val('');
                     $('#btn-import').removeAttr('disabled');
                     $('#btn-import').html('Import');
                 }

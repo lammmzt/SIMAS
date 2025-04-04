@@ -79,7 +79,7 @@ class Nilai extends BaseController
         if($tipe_nilai == '1'){
             $data_nilai = $nilai_raporModel->getNilaiRapor()->where('nilai_rapor.id_semester', $semester_aktif)->where('nilai_rapor.tipe_nilai', $tipe_nilai)->findAll();
         }else{
-            $data_nilai = $nilai_raporModel->where('tipe_nilai', $tipe_nilai)->findAll();
+            $data_nilai = $nilai_raporModel->getNilaiRapor()->where('tipe_nilai', $tipe_nilai)->findAll();
             $semester_aktif = $data_semeser->where('status_semester', '1')->first()['id_semester'];
         }
         $temp_data_nilai = [];
@@ -349,7 +349,11 @@ class Nilai extends BaseController
         $success = 0;
         $data_siswa = $data_siswaModel->get_data_siswa()->where('kelas_data_dapodik', $id_kelas)->findAll();
         foreach ($data_siswa as $siswa) {
-            $nilaiModel->where('id_data_dapodik', $siswa['id_data_dapodik'])->where('id_semester', $id_semester)->where('tipe_nilai', $tipe_nilai)->delete();
+            if ($tipe_nilai == '1') {
+                $nilaiModel->where('id_data_dapodik', $siswa['id_data_dapodik'])->where('id_semester', $id_semester)->where('tipe_nilai', $tipe_nilai)->delete();
+            }else{
+                $nilaiModel->where('id_data_dapodik', $siswa['id_data_dapodik'])->where('tipe_nilai', $tipe_nilai)->delete();
+            }
             if($nilaiModel->affectedRows() > 0){
                 $success++;
             }

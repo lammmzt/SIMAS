@@ -312,8 +312,7 @@ class Rapor extends BaseController
             $data['urutan_mapel_lokal'] = $urutanMapelLokal;
             $data['imageSrc'] = $imageSrc;
             $html = view('Admin/Rapor/cetak/cetak_skl', $data);
-                    
-            $mpdf->SetProtection([], $userPassword, $ownerPassword);
+        
             // Tulis HTML ke PDF
             $mpdf->WriteHTML($html);
             $mpdf->Output($file_path, 'F'); // Simpan ke file
