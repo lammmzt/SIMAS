@@ -53,8 +53,7 @@
             <div class="row mx-2 mb-4">
                 <div class="row">
                     <div class="col-md-6 mb-2">
-                        <h5 class="card-title mb-2 justify-content-start">
-                            Nilai Rapor</h5>
+
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="d-flex justify-content-end">
@@ -72,6 +71,13 @@
                             </button>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <h5 class="card-title mb-2 justify-content-start">
+                            Nilai Rapor</h5>
+                    </div>
+
                 </div>
                 <?php 
                     if(empty($nilai_rapor)) {
@@ -152,6 +158,85 @@
                 $index++;
                 endforeach;
                 ?>
+                <hr style="border-top: 1px solid; margin-top: 20px;">
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <h5 class="card-title mb-2 justify-content-start">
+                            Nilai Ujian</h5>
+                    </div>
+
+                </div>
+                <?php 
+                    if(empty($nilai_ujian)) {
+                        echo '<div class="col-md-12 mb-4 mt-2 text-center">Data nilai ujian tidak ditemukan</div>';
+                    } else {
+                     
+                    
+                ?>
+                <div class="accordion my-2" id="show_data_ujian">
+                    <div class="accordion-item bg-white">
+                        <h4 class="accordion-header" id="heading_ujian">
+                            <button class="accordion-button collapsed bg-white text-black fw-400" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapse_ujian" aria-expanded="true"
+                                aria-controls="collapse_ujian"> Nilai Ujian Sekolah
+                                <span class="badge bg-primary mx-2 p-2 rounded-circle">
+                                    <?= count($nilai_ujian); ?></span>
+                            </button>
+                        </h4>
+                        <div id="collapse_ujian" class="accordion-collapse collapse" aria-labelledby="heading_ujian"
+                            data-bs-parent="#show_data_ujian">
+                            <div class="accordion-body">
+                                <div class="mt-2 table-responsive">
+                                    <table id="basic-table" class="table mb-0 table-striped " role="grid">
+                                        <tbody>
+                                            <?php 
+                                            $no = 1;
+                                            foreach ($nilai_ujian as $value) : ?>
+                                            <tr>
+                                                <td class="text-center text-black" width="5%"><?= $no++; ?></td>
+                                                <td width="80%" class="text-black"><?= $value['nama_mapel']; ?></td>
+                                                <td width="10%">
+                                                    <input type="number"
+                                                        class="form-control text-center text-black input_nilai_rapor"
+                                                        data-id="<?= $value['id_nilai_rapor']; ?>"
+                                                        style="min-width: 80px;" value="<?= $value['nilai_rapor']; ?>"
+                                                        id="nilai_rapor_<?= $value['id_nilai_rapor']; ?>"
+                                                        name="nilai_rapor_<?= $value['id_nilai_rapor']; ?>"
+                                                        maxlength="3" style="min-width: 80px; max-width: 80px;">
+                                                </td>
+                                                <td width="5%">
+                                                    <button class="btn btn-sm btn-danger btn-delete"
+                                                        data-id="<?= $value['id_nilai_rapor']; ?>">
+                                                        <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M19.3248 9.46826C19.3248 9.46826 18.7818 16.2033 18.4668 19.0403C18.3168 20.3953 17.4798 21.1893 16.1088 21.2143C13.4998 21.2613 10.8878 21.2643 8.27979 21.2093C6.96079 21.1823 6.13779 20.3783 5.99079 19.0473C5.67379 16.1853 5.13379 9.46826 5.13379 9.46826"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round">
+                                                            </path>
+                                                            <path d="M20.708 6.23975H3.75" stroke="currentColor"
+                                                                stroke-width="1.5" stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                            <path
+                                                                d="M17.4406 6.23973C16.6556 6.23973 15.9796 5.68473 15.8256 4.91573L15.5826 3.69973C15.4326 3.13873 14.9246 2.75073 14.3456 2.75073H10.1126C9.53358 2.75073 9.02558 3.13873 8.87558 3.69973L8.63258 4.91573C8.47858 5.68473 7.80258 6.23973 7.01758 6.23973"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php 
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -173,10 +258,22 @@
             <form method="POST" class="form_nilai_rapor">
                 <div class="modal-body p-4">
                     <div class="row pb-2">
-                        <div class="col-md-12">
+
+                        <div class="col-md-12 mb-2">
+                            <div class="form-group mb-2">
+                                <label for="tipe_nilai" class="form-label">Tipe Nilai</label>
+                                <select class="form-select" id="tipe_nilai" name="tipe_nilai" required>
+                                    <option value="">Pilih Tipe Nilai</option>
+                                    <option value="1">Nilai Rapor</option>
+                                    <option value="0">Nilai Ujian</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2" style="display: none;" id="show_semester">
                             <div class="form-group mb-2">
                                 <label for="id_semester" class="mb-0">Semester</label>
-                                <select class="form-select select2" id="id_semester" name="id_semester" required
+                                <select class="form-select select2" id="id_semester" name="id_semester"
                                     style="width: 100%; z-index: 9999;">
                                     <option value="">Pilih Semester</option>
                                     <?php foreach ($smt as $value) : ?>
@@ -187,7 +284,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12 mb-2">
                             <div class="form-group mb-2">
                                 <label for="id_mapel" class="mb-0 ">Mata Pelajaran</label>
                                 <select class="form-select select2" id="id_mapel" name="id_mapel" required
@@ -200,11 +297,11 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12 mb-2">
                             <div class="form-group mb-2">
                                 <label for="nilai_rapor" class="mb-0">Nilai Rapor</label>
                                 <input type="number" class="form-control" id="nilai_rapor" name="nilai_rapor" required
-                                    max="100" min="0">
+                                    max="100" min="0" maxlength="3" placeholder="Masukkan Nilai Rapor">
 
                             </div>
                         </div>
@@ -226,6 +323,16 @@ $('#btn_back').click(function() {
     window.close();
 });
 
+$('#tipe_nilai').change(function() {
+    var tipe_nilai = $(this).val();
+    if (tipe_nilai == '1') {
+        $('#show_semester').show();
+    } else {
+        $('#id_semester').val('');
+        $('#id_semester').select2().trigger('change');
+        $('#show_semester').hide();
+    }
+});
 
 $(document).ready(function() {
     $(".select2").select2({

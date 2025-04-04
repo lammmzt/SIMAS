@@ -52,8 +52,8 @@ class Nilai extends BaseController
     public function import(){
         $file_excel = $this->request->getFile('file'); // get file excel
         $semester_aktif = $this->request->getPost('id_semester'); // get semester aktif
-
-        if ($file_excel == null || $semester_aktif == null) {
+        $tipe_nilai = $this->request->getPost('tipe_nilai'); // get tipe nilai
+        if ($file_excel == null) {
             return $this->response->setJSON([
                 'error' => true,
                 'data' => 'Data tidak lengkap',
@@ -76,7 +76,12 @@ class Nilai extends BaseController
         $data_mapel = $data_mapel->findAll();
         $data_mapel = array_column($data_mapel, 'id_mapel', 'kode_mapel');
         // get nilai rapor
-        $data_nilai = $nilai_raporModel->getNilaiRapor()->where('nilai_rapor.id_semester', $semester_aktif)->findAll();
+        if($tipe_nilai == '1'){
+            $data_nilai = $nilai_raporModel->getNilaiRapor()->where('nilai_rapor.id_semester', $semester_aktif)->where('nilai_rapor.tipe_nilai', $tipe_nilai)->findAll();
+        }else{
+            $data_nilai = $nilai_raporModel->where('tipe_nilai', $tipe_nilai)->findAll();
+            $semester_aktif = $data_semeser->where('status_semester', '1')->first()['id_semester'];
+        }
         $temp_data_nilai = [];
         foreach ($data_nilai as $item) {
             $temp_data_nilai[$item['id_nilai_rapor']] = [
@@ -193,7 +198,9 @@ class Nilai extends BaseController
                             'id_mapel' => $value,
                             'id_data_dapodik' => $id_data_dapodik,
                             'id_semester' => $semester_aktif,
-                            'nilai_rapor' => $nilai
+                            'tipe_nilai' => $tipe_nilai,
+                            'nilai_rapor' => $nilai,
+                            'created_at' => date('Y-m-d H:i:s'),
                         ];
                         $nilai_raporModel->save($data);
                         // add to temp data nilai
@@ -208,7 +215,7 @@ class Nilai extends BaseController
                     'no' => $no,
                     'data' => 'Baris ke-' . $no . ' ' . $nama_lengkap,
                     'status' => 'Success',
-                    'message' => 'Data berhasil diupdate'
+                    'message' => 'Data nilai' . ($tipe_nilai == '1' ? ' rapor' : ' ujian') . ' berhasil diimport'
                 ];
                 $success++;
                 continue;
@@ -237,11 +244,21 @@ class Nilai extends BaseController
 
     public function save(){
         $nilai_raporModel = new nilai_raporModel();
+        $semesterModel = new semesterModel();
         $id_data_dapodik = $this->request->getPost('id_data_dapodik');
         $id_mapel = $this->request->getPost('id_mapel');
         $id_semester = $this->request->getPost('id_semester');
         $nilai = $this->request->getPost('nilai_rapor');
-        $check = $nilai_raporModel->where('id_data_dapodik', $id_data_dapodik)->where('id_mapel', $id_mapel)->where('id_semester', $id_semester)->first();
+        $tipe_nilai = $this->request->getPost('tipe_nilai');
+        
+        if($tipe_nilai == '0'){
+            $semester_aktif = $semesterModel->where('status_semester', '1')->first();
+            $id_semester = $semester_aktif['id_semester'];
+            $check = $nilai_raporModel->where('id_data_dapodik', $id_data_dapodik)->where('id_mapel', $id_mapel)->where('tipe_nilai', $tipe_nilai)->first();
+        }else{
+            $check = $nilai_raporModel->where('id_data_dapodik', $id_data_dapodik)->where('id_mapel', $id_mapel)->where('id_semester', $id_semester)->where('tipe_nilai', $tipe_nilai)->first();
+        }
+
         if ($check) {
             return $this->response->setJSON([
                 'error' => true,
@@ -249,11 +266,13 @@ class Nilai extends BaseController
                 'status' => '422'
             ]);
         }
+        
         $data = [
             'id_mapel' => $id_mapel,
             'id_data_dapodik' => $id_data_dapodik,
             'nilai_rapor' => $nilai,
-            'id_semester' => $id_semester
+            'id_semester' => $id_semester,
+            'tipe_nilai' => $tipe_nilai,
         ];
         $nilai_raporModel->save($data);
         return $this->response->setJSON([
@@ -286,19 +305,23 @@ class Nilai extends BaseController
         // $semester_aktif = $semesterModel->where('status_semester', '1')->first();
 
         $data_siswa = $data_dapodikModel->get_data_dapodik($id);
-        $nilai_rapor = $nilai_raporModel->getNilaiBySiswa($id);
+        $nilai_rapor = $nilai_raporModel->getNilaiBySiswa($id)->findAll();
         $nilai_rapor_grouped = [];
+        $nilai_ujian_grouped = $nilai_raporModel->getNilaiBySiswa($id)->where('nilai_rapor.tipe_nilai', '0')->orderBy('mapel.nama_mapel', 'ASC')->findAll();
         for ($i=0; $i < count($nilai_rapor); $i++) {
-            $nilai_rapor_grouped[$nilai_rapor[$i]['id_semester']][] = $nilai_rapor[$i];
+            if ($nilai_rapor[$i]['tipe_nilai'] == '1') {
+                $nilai_rapor_grouped[$nilai_rapor[$i]['id_semester']][] = $nilai_rapor[$i];
+            }
         }
         
-        // dd($nilai_rapor_grouped);
+        // dd($nilai_rapor_grouped, $nilai_ujian_grouped);
         // dd($data_siswa);
 
         $data['title'] = 'SIMAS | Detail Data Siswa'; // set judul halaman
         $data['active'] = 'Nilai'; // set active menu
         $data['data_siswa'] = $data_siswa;
-        $data['nilai_rapor'] = $nilai_rapor_grouped;    
+        $data['nilai_rapor'] = $nilai_rapor_grouped; 
+        $data['nilai_ujian'] = $nilai_ujian_grouped;   
         $data['mapel'] = $mapelModel->findAll();
         $data['smt'] = $semesterModel->findAll();
         // dd($data);
@@ -319,13 +342,14 @@ class Nilai extends BaseController
     public function hapusKelas(){
         $id_kelas = $this->request->getPost('id_kelas');
         $id_semester = $this->request->getPost('id_semester');
+        $tipe_nilai = $this->request->getPost('tipe_nilai');
         $data_siswaModel = new data_siswaModel();
         $nilaiModel = new nilai_raporModel();
 
         $success = 0;
         $data_siswa = $data_siswaModel->get_data_siswa()->where('kelas_data_dapodik', $id_kelas)->findAll();
         foreach ($data_siswa as $siswa) {
-            $nilaiModel->where('id_data_dapodik', $siswa['id_data_dapodik'])->where('id_semester', $id_semester)->delete();
+            $nilaiModel->where('id_data_dapodik', $siswa['id_data_dapodik'])->where('id_semester', $id_semester)->where('tipe_nilai', $tipe_nilai)->delete();
             if($nilaiModel->affectedRows() > 0){
                 $success++;
             }
@@ -333,9 +357,19 @@ class Nilai extends BaseController
 
         return $this->response->setJSON([
             'error' => false,
-            'data' => 'Data berhasil dihapus menghapus ' . $success . ' data',
+            'data' => 'Data berhasil dihapus menghapus nilai'. ($tipe_nilai == '1' ? ' rapor ' : ' ujian ') . $success . ' data',
             'status' => '200'
         ]);
 
+    }
+
+    // skl
+    public function SKL(): string // menampilkan halaman dashboard
+    { 
+        $semesterModel = new semesterModel();
+        $data['semester'] = $semesterModel->findAll();
+        $data['title'] = 'SIMAS | Nilai SKL'; // set judul halaman
+        $data['active'] = 'SKL'; // set active menu
+        return view('Admin/Rapor/SKL/index', $data); // tampilkan view dashboard
     }
 }

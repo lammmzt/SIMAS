@@ -79,7 +79,7 @@ class Filters extends BaseFilters
         ],
         'after' => [
             'filterAdmin' => ['except' => [ 
-                '/', 'Auth/logout', 'Auth/login','Data_siswa', 'Data_siswa/*', 'LandingPage', 'LandingPage/*', 'Users', 'Users/*', 'Rapor', 'Rapor/*', 'Mapel', 'Mapel/*', 'Semester','Semester/*', 'Nilai', 'Nilai/*', 
+                '/', 'Auth/logout', 'Auth/login','Data_siswa', 'Data_siswa/*', 'LandingPage', 'LandingPage/*', 'Users', 'Users/*', 'Rapor', 'Rapor/*', 'Mapel', 'Mapel/*', 'Semester','Semester/*', 'Nilai', 'Nilai/*', 'UrutanMapel', 'UrutanMapel/*',
             ]],
         ],
     ];

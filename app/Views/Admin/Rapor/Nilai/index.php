@@ -156,9 +156,23 @@
                 <!-- <form class="needs-validation" novalidate enctype="multipart/form-data" method="post"
                     action="<?= base_url('Nilai/import') ?>"> -->
                 <form class="" id="form-import" enctype="multipart/form-data" method="post">
+
                     <div class="mb-3">
+                        <label for="tipe_nilai" class="form-label">Tipe Nilai</label>
+                        <select class="form-select" id="tipe_nilai" name="tipe_nilai" required>
+                            <option value="">Pilih Tipe Nilai</option>
+                            <option value="1">Nilai Rapor</option>
+                            <option value="0">Nilai Ujian</option>
+
+                        </select>
+                        <div class="invalid-feedback">
+                            Tipe Nilai harus diisi
+                        </div>
+                    </div>
+
+                    <div class="mb-3" style="display: none;" id="show_semester">
                         <label for="id_semester" class="form-label">Semester</label>
-                        <select class="form-select select1" id="id_semester" name="id_semester" required
+                        <select class="form-select select1" id="id_semester" name="id_semester"
                             style="width: 100%; z-index: 9999;">
                             <option value="">Pilih Semester</option>
                             <?php foreach ($semester as $value) : ?>
@@ -350,9 +364,22 @@
             <form id="form-hapus" method="post">
                 <div class="modal-body">
                     <!-- form and slect semester -->
-                    <div class=" mb-3">
+
+                    <div class="mb-3">
+                        <label for="hapus_tipe_nilai" class="form-label">Tipe Nilai</label>
+                        <select class="form-select" id="hapus_tipe_nilai" name="hapus_tipe_nilai" required>
+                            <option value="">Pilih Tipe Nilai</option>
+                            <option value="1">Nilai Rapor</option>
+                            <option value="0">Nilai Ujian</option>
+
+                        </select>
+                        <div class="invalid-feedback">
+                            Tipe Nilai harus diisi
+                        </div>
+                    </div>
+                    <div class=" mb-3" style="display: none;" id="show_semester_hapus">
                         <label for="hapus_id_semester" class="form-label">Semester</label>
-                        <select class="form-select select3" id="hapus_id_semester" name="id_semester" required
+                        <select class="form-select select3" id="hapus_id_semester" name="id_semester"
                             style="width: 100%; z-index: 9999;">
                             <option value="">Pilih Semester</option>
                             <?php foreach ($semester as $value) : ?>
@@ -437,6 +464,29 @@ function dataTablesDataSiswa() {
     });
 }
 
+// show semester when tipe nilai is selected
+$('#tipe_nilai').change(function() {
+    var tipe_nilai = $(this).val();
+    if (tipe_nilai == '1') {
+        $('#show_semester').show();
+    } else {
+        $('#id_semester').val('');
+        $('#id_semester').select2().trigger('change');
+        $('#show_semester').hide();
+    }
+});
+
+// show semester when tipe nilai is selected
+$('#hapus_tipe_nilai').change(function() {
+    var tipe_nilai = $(this).val();
+    if (tipe_nilai == '1') {
+        $('#show_semester_hapus').show();
+    } else {
+        $('#hapus_id_semester').val('');
+        $('#hapus_id_semester').select2().trigger('change');
+        $('#show_semester_hapus').hide();
+    }
+});
 
 $(document).ready(function() {
     $(".select1").select2({
@@ -542,13 +592,15 @@ $('#form-hapus').submit(function(e) {
     $('#btn-hapus').html('<i class="fas fa-spinner fa-spin"></i> Loading...');
     var id_kelas = $('#kelas_data_dapodik').val();
     var id_semester = $('#hapus_id_semester').val();
+    var tipe_nilai = $('#hapus_tipe_nilai').val();
     // alert(id_kelas, id_semester);
     $.ajax({
         url: '<?= base_url('Nilai/hapusKelas') ?>',
         type: 'POST',
         data: {
             id_kelas: id_kelas,
-            id_semester: id_semester
+            id_semester: id_semester,
+            tipe_nilai: tipe_nilai
         },
         dataType: 'json',
         success: function(response) {

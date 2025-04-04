@@ -90,7 +90,14 @@ class Rapor extends BaseController
         $data_siswa = $siswaModel->getSiswaByKelas($nama_kelas);
         // dd($data_siswa);
         if ($data_siswa) {      
-           
+            ob_start();
+            $imagePath = FCPATH . 'Assets/img/foto_siswa.png';
+            $imageData = base64_encode(file_get_contents($imagePath));
+            $imageSrc = 'data:image/png;base64,' . $imageData;
+            $data['data_siswa'] = $data_siswa;
+            $data['imageSrc'] = $imageSrc;
+            $html = view('Admin/Rapor/cetak/cetak_all_pelengkap', $data);
+             ini_set("pcre.backtrack_limit", "10000000"); // Tambahkan ini
             $mpdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8',
             // 'format' => 'A4',
@@ -102,16 +109,10 @@ class Rapor extends BaseController
             'margin_header' => 0,
             'margin_footer' => 0,
             ]);
-
-            
-            $imagePath = FCPATH . 'Assets/img/foto_siswa.png';
-            $imageData = base64_encode(file_get_contents($imagePath));
-            $imageSrc = 'data:image/png;base64,' . $imageData;
-            $data['data_siswa'] = $data_siswa;
-            $data['imageSrc'] = $imageSrc;
-            $html = view('Admin/Rapor/cetak/cetak_all_pelengkap', $data);
+            $html = ob_get_clean();
             $mpdf->WriteHTML($html);
             $nama_file = 'plk_' . $nama_kelas . '.pdf';
+            
             // jika sudah ada file dengan nama yang sama, maka file tersebut akan dihapus
             if (file_exists(FCPATH . 'Assets/pdf/rapor_pelengkap/' . $nama_file)) {
                 unlink(FCPATH . 'Assets/pdf/rapor_pelengkap/' . $nama_file);
@@ -209,7 +210,7 @@ class Rapor extends BaseController
                                     <path d="M14.2882 15.3584H8.88818" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                         stroke-linejoin="round"></path>
                                     <path d="M12.2432 11.606H8.88721" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg> Lihat SKL
+                                </svg> Lihat Rapor Pelengkap
                             </a>
                         </div>
                     ';
@@ -223,13 +224,9 @@ class Rapor extends BaseController
     public function generateSKL()
     {
         $nama_kelas = $this->request->getPost('kelas_data_dapodik');
-        $siswaModel = new data_siswaModel(); // ambil model data siswa
-        $urutanMapelModel = new urutanMapelModel();
-        $nilaiRaporModel = new nilai_raporModel();
-        $semesterModel = new semesterModel();
-        $mapelModel = new mapelModel();
-        $data_siswa = $siswaModel->getSiswaByKelas($nama_kelas); // ambil data siswa berdasarkan kelas
-        
+        $siswaModel = new data_siswaModel();
+        $data_siswa = $siswaModel->getSiswaByKelas($nama_kelas);
+    
         if (!$data_siswa) {
             return $this->response->setJSON([
                 'error' => true,
@@ -237,49 +234,13 @@ class Rapor extends BaseController
                 'data' => 'Data siswa kelas ' . $nama_kelas . ' tidak ditemukan'
             ]);
         }
-        ini_set("pcre.backtrack_limit", "10000000");
-        $semesterAktif = $semesterModel->where('status_semester', '1')->first();
-        $data_urutan_mapel = $urutanMapelModel->getUrutanMapelBySemesterAndTingkatan($semesterAktif['id_semester'], 'XII')->findAll();
-        // dd($data_urutan_mapel); 
-        $data_nilai = $nilaiRaporModel->getNilaiByKelas($nama_kelas)->findAll();
-        // dd($data_nilai, $data_nilai_ujian);
-        $urutanMapelUmum = array();
-        $urutanMapelPilihan = array();
-        $urutanMapelLokal = array();
-        foreach ($data_urutan_mapel as $key => $value) {
-            if ($value['kel_mapel'] == 'Umum') {
-                $urutanMapelUmum[] = $value;
-            } elseif ($value['kel_mapel'] == 'Pilihan') {
-                $urutanMapelPilihan[] = $value;
-            } elseif ($value['kel_mapel'] == 'Muatan Lokal') {
-                $urutanMapelLokal[] = $value;
-            }
-        }
-        // dd($urutanMapelUmum, $urutanMapelPilihan, $urutanMapelLokal);
-        // sort array urutan mapel by no_urutan_mapel
-        usort($urutanMapelUmum, function ($a, $b) {
-            return $a['no_urutan_mapel'] <=> $b['no_urutan_mapel'];
-        });
-        usort($urutanMapelPilihan, function ($a, $b) {
-            return $a['no_urutan_mapel'] <=> $b['no_urutan_mapel'];
-        });
-        usort($urutanMapelLokal, function ($a, $b) {
-            return $a['no_urutan_mapel'] <=> $b['no_urutan_mapel'];
-        });
-        // dd($urutanMapelUmum, $urutanMapelPilihan, $urutanMapelLokal);
-        // goruping by siswa
-        $data_nilai_group = array();
-        foreach ($data_nilai as $key => $value) {
-            $data_nilai_group[$value['id_data_dapodik']][] = $value;
-        }
-            
+    
         $imagePath = FCPATH . 'Assets/img/kop_sekolah.png';
         $imageData = base64_encode(file_get_contents($imagePath));
         $imageSrc = 'data:image/png;base64,' . $imageData;
-        foreach ($data_nilai_group as $dtn) {
-
+        foreach ($data_siswa as $siswa) {
             // Buat nama file yang aman
-            $nama_file = sprintf("skl_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $dtn[0]['nama_lengkap_data_dapodik']), $nama_kelas);
+            $nama_file = sprintf("skl_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $siswa['nama_lengkap_data_siswa']), $nama_kelas);
             // hapus petik yang ada pada nama file
             $nama_file = str_replace("'", "", $nama_file);
             $file_path = FCPATH . 'Assets/pdf/SKL/' . $nama_file;
@@ -290,15 +251,14 @@ class Rapor extends BaseController
             }
         
             // Inisialisasi mPDF untuk setiap siswa (harus di dalam loop)
-            // dd($data_nilai_group);
             $mpdf = new \Mpdf\Mpdf([
-                'mode' => 'utf-8',
-                // 'format' => 'F4',
+                'mode'          => 'utf-8',
+                // 'format'        => 'F4',
                 'format' => [210, 330],
-                'margin_left' => 8,
-                'margin_right' => 8,
-                'margin_top' => 5,
-                'margin_bottom' => 5,
+                'margin_left'   => 15,
+                'margin_right'  => 10,
+                'margin_top'    => 15,
+                'margin_bottom' => 10,
                 'margin_header' => 0,
                 'margin_footer' => 0,
             ]);
@@ -306,14 +266,10 @@ class Rapor extends BaseController
             $mpdf->showImageErrors = true;
             
             // Ambil tampilan HTML
-            $data['data_nilai'] = $dtn;
-            $data['urutan_mapel_umum'] = $urutanMapelUmum;
-            $data['urutan_mapel_pilihan'] = $urutanMapelPilihan;
-            $data['urutan_mapel_lokal'] = $urutanMapelLokal;
+            $data['data_siswa'] = $siswa;
             $data['imageSrc'] = $imageSrc;
             $html = view('Admin/Rapor/cetak/cetak_skl', $data);
-                    
-            $mpdf->SetProtection([], $userPassword, $ownerPassword);
+        
             // Tulis HTML ke PDF
             $mpdf->WriteHTML($html);
             $mpdf->Output($file_path, 'F'); // Simpan ke file
@@ -328,9 +284,9 @@ class Rapor extends BaseController
         ]);
     }
 
-    public function cetakSemuaSKL()
+    public function cetakSemuaSKL($nama_kelas)
     {
-        $nama_kelas = $this->request->getPost('kelas_data_dapodik');
+        // $nama_kelas = $this->request->getPost('kelas_data_dapodik');
         $siswaModel = new data_siswaModel(); // ambil model data siswa
         $urutanMapelModel = new urutanMapelModel();
         $nilaiRaporModel = new nilai_raporModel();
@@ -340,41 +296,17 @@ class Rapor extends BaseController
         
         // dd($data_siswa);
         if ($data_siswa) { // jika data siswa ada
-            ini_set("pcre.backtrack_limit", "10000000");
             $semesterAktif = $semesterModel->where('status_semester', '1')->first();
-            $data_urutan_mapel = $urutanMapelModel->getUrutanMapelBySemesterAndTingkatan($semesterAktif['id_semester'], 'XII')->findAll();
+            $data_urutan_mapel = $urutanMapelModel->where('id_semester', $semesterAktif['id_semester'])->where('tingkatan_urutan_mapel', 'XII')->findAll();
             // dd($data_urutan_mapel); 
             $data_nilai = $nilaiRaporModel->getNilaiByKelas($nama_kelas)->findAll();
             // dd($data_nilai, $data_nilai_ujian);
-            $urutanMapelUmum = array();
-            $urutanMapelPilihan = array();
-            $urutanMapelLokal = array();
-            foreach ($data_urutan_mapel as $key => $value) {
-                if ($value['kel_mapel'] == 'Umum') {
-                    $urutanMapelUmum[] = $value;
-                } elseif ($value['kel_mapel'] == 'Pilihan') {
-                    $urutanMapelPilihan[] = $value;
-                } elseif ($value['kel_mapel'] == 'Muatan Lokal') {
-                    $urutanMapelLokal[] = $value;
-                }
-            }
-            // dd($urutanMapelUmum, $urutanMapelPilihan, $urutanMapelLokal);
-            // sort array urutan mapel by no_urutan_mapel
-            usort($urutanMapelUmum, function ($a, $b) {
-                return $a['no_urutan_mapel'] <=> $b['no_urutan_mapel'];
-            });
-            usort($urutanMapelPilihan, function ($a, $b) {
-                return $a['no_urutan_mapel'] <=> $b['no_urutan_mapel'];
-            });
-            usort($urutanMapelLokal, function ($a, $b) {
-                return $a['no_urutan_mapel'] <=> $b['no_urutan_mapel'];
-            });
-            // dd($urutanMapelUmum, $urutanMapelPilihan, $urutanMapelLokal);
             // goruping by siswa
             $data_nilai_group = array();
             foreach ($data_nilai as $key => $value) {
                 $data_nilai_group[$value['id_data_dapodik']][] = $value;
             }
+            
             
             // dd($data_nilai_group);
             $mpdf = new \Mpdf\Mpdf([
@@ -383,7 +315,7 @@ class Rapor extends BaseController
             'format' => [210, 330],
             'margin_left' => 8,
             'margin_right' => 8,
-            'margin_top' => 5,
+            'margin_top' => 2,
             'margin_bottom' => 5,
             'margin_header' => 0,
             'margin_footer' => 0,
@@ -395,9 +327,6 @@ class Rapor extends BaseController
             $imageSrc = 'data:image/png;base64,' . $imageData;
             $data['data_nilai'] = $data_nilai_group;
             $data['imageSrc'] = $imageSrc;
-            $data['urutan_mapel_umum'] = $urutanMapelUmum;
-            $data['urutan_mapel_pilihan'] = $urutanMapelPilihan;
-            $data['urutan_mapel_lokal'] = $urutanMapelLokal;
             $html = view('Admin/Rapor/cetak/cetak_all_SKL', $data);
             $mpdf->WriteHTML($html);
             $nama_file = 'skl_' . $nama_kelas . '.pdf';
@@ -425,4 +354,9 @@ class Rapor extends BaseController
         }
     }
 
+    public function viewTestSKL($id){
+        $data['title'] = 'SIMAS | Pelengkap Rapor'; // set judul halaman
+        $data['active'] = 'pelengkap_rapor'; // set active menu
+        return view('Admin/Rapor/Pelengkap', $data); // tampilkan view dashboard
+    }
 }

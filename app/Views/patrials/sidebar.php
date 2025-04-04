@@ -150,6 +150,21 @@
                                 <span class="item-name">Mapel</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?= $active == 'UrutanMapel' ? 'active' : ''; ?>"
+                                href="<?= base_url('UrutanMapel'); ?>">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon">U</i>
+                                <span class="item-name">Urutan Mapel</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>
@@ -265,6 +280,21 @@
                                 </i>
                                 <i class="sidenav-mini-icon"> P </i>
                                 <span class="item-name">Cetak Pelengkap </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?= $active == 'SKL'  ? 'active' : ''; ?>"
+                                href="<?= base_url('Nilai/SKL'); ?>">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> S </i>
+                                <span class="item-name">Cetak SKL </span>
                             </a>
                         </li>
 
