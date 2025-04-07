@@ -60,7 +60,24 @@
                                 <path d="M9.29639 13.5942L11.6414 15.9492L13.9864 13.5942" stroke="currentColor"
                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
-                            Cetak Semua
+                            Cetak SKL
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-md btn-sm mx-2" id="btn-cetak-all-transrkip">
+                            <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M14.7369 2.76175H8.08489C6.00489 2.75375 4.30089 4.41075 4.25089 6.49075V17.2277C4.20589 19.3297 5.87389 21.0697 7.97489 21.1147C8.01189 21.1147 8.04889 21.1157 8.08489 21.1147H16.0729C18.1629 21.0407 19.8149 19.3187 19.8029 17.2277V8.03775L14.7369 2.76175Z"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M14.4751 2.75V5.659C14.4751 7.079 15.6241 8.23 17.0441 8.234H19.7981"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M11.6421 15.9497V9.90869" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M9.29639 13.5942L11.6414 15.9492L13.9864 13.5942" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            Cetak Transkrip
                         </button>
                     </div>
                 </div>
@@ -204,9 +221,31 @@ $('#btn-generate').click(function() {
             },
             success: function(response) {
                 if (response.error == false) {
-                    $('#loading-page').hide();
-                    sweetalert('success', 'Berhasil', response.data);
-                    $('#table_data_siswa').DataTable().ajax.reload();
+                    // sweetalert('success', 'Berhasil', response.data);
+                    // $('#table_data_siswa').DataTable().ajax.reload();
+                    $.ajax({
+                        url: '<?= base_url('Rapor/generateTranskrip') ?>',
+                        type: 'POST',
+                        data: {
+                            kelas_data_dapodik: kelas_data_dapodik
+                        },
+                        success: function(response) {
+                            if (response.error == false) {
+                                $('#loading-page').hide();
+                                sweetalert('success', 'Berhasil',
+                                    'Generate SKL dan Transkrip Berhasil');
+                                $('#table_data_siswa').DataTable().ajax.reload();
+                            } else {
+                                $('#loading-page').hide();
+                                sweetalert('error', 'Gagal', response.data);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            $('#loading-page').hide();
+                            sweetalert('error', 'Gagal',
+                                'Terjadi kesalahan pada server');
+                        }
+                    });
                 } else {
                     $('#loading-page').hide();
                     sweetalert('error', 'Gagal', response.data);
@@ -238,6 +277,38 @@ $('#btn-cetak-all').click(function() {
                 if (response.error == false) {
                     $('#loading-page').hide();
                     window.open('<?= base_url('Assets/pdf/SKL/') ?>' + response.data,
+                        '_blank');
+                } else {
+                    $('#loading-page').hide();
+                    sweetalert('error', 'Gagal', response.data);
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#loading-page').hide();
+                sweetalert('error', 'Gagal', 'Terjadi kesalahan pada server');
+            }
+        });
+    }
+});
+
+// when click cetak all transkrip
+$('#btn-cetak-all-transrkip').click(function() {
+    var kelas_data_dapodik = $('#kelas_data_dapodik').val();
+    if (kelas_data_dapodik == '') {
+        sweetalert('error', 'Gagal', 'Pilih kelas terlebih dahulu');
+    } else {
+        // add loading
+        $('#loading-page').show();
+        $.ajax({
+            url: '<?= base_url('Rapor/cetakSemuaTranskrip') ?>',
+            type: 'POST',
+            data: {
+                kelas_data_dapodik: kelas_data_dapodik
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    $('#loading-page').hide();
+                    window.open('<?= base_url('Assets/pdf/TRANSKRIP/') ?>' + response.data,
                         '_blank');
                 } else {
                     $('#loading-page').hide();

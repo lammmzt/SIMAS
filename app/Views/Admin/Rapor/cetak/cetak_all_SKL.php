@@ -48,7 +48,7 @@ p {
 }
 
 $jumlah = count($data_nilai);
-$no = 1;
+$rowss = 1;
 
 // dd($data_nilai);
 foreach ($data_nilai as $data) :
@@ -257,10 +257,12 @@ foreach ($data_nilai as $data) :
         </tr>
     </table>
 </div>
-<?php endforeach; ?>
-<?php if ($no < $jumlah) : ?>
+<?php 
+$rowss++;
+if ($rowss < $jumlah) : ?>
 <div style="page-break-after: always;"></div>
 <?php endif; ?>
+<?php endforeach; ?>
 <script type="text/javascript">
 function formatDateIndo(date) {
     var monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",

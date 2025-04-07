@@ -203,7 +203,7 @@ foreach ($data_siswa as $data_siswa) :
         <td><?=$data_siswa['pekerjaan_wali_data_siswa'] ?>
     </tr>
 </table>
-<table style="margin-top: 30px; <?php if ($no <= $jumlah) echo 'page-break-after: always;'; ?>">
+<table style="margin-top: 30px; <?php if ($no < $jumlah) echo 'page-break-after: always;'; ?>">
     <tr>
         <td style="width: 25%"></td>
         <td style="width: 20%; margin-right: 20px; "><img src="<?= $imageSrc ?>" alt="Foto Peserta Didik"
