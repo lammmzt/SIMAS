@@ -540,7 +540,7 @@ $(document).ready(function() {
                     $('#btn-import').html('Import');
                     $('#form-import')[0].reset();
                     $('#show_semester').hide();
-                    $('#tipe_nilai').val('').select2().trigger('change');
+                    $('#tipe_nilai').val('');
                     $('#id_semester').val('').select2().trigger('change');
                     $('#file').val('');
                 } else {
@@ -577,7 +577,7 @@ $(document).ready(function() {
                     $('#form-import')[0].reset();
                     $('#show_semester').hide();
                     // RESET SELECT2
-                    $('#tipe_nilai').val('').select2().trigger('change');
+                    $('#tipe_nilai').val('');
                     $('#id_semester').val('').select2().trigger('change');
                     $('#file').val('');
                     $('#btn-import').removeAttr('disabled');
