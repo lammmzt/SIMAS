@@ -311,5 +311,41 @@ $('#btn-update').click(function(e) {
         }
     });
 });
+
+// delete data btn-delete
+$('#table_data_mapel').on('click', '.btn-delete', function() {
+    var id = $(this).data('id');
+    var url = '<?= base_url('Mapel/delete') ?>';
+    Swal.fire({
+        title: 'Apakah anda yakin?',
+        text: "Data yang dihapus tidak dapat dikembalikan!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Hapus!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    id_mapel: id
+                },
+                success: function(response) {
+                    if (response.status == '200') {
+                        sweetalert('success', 'Berhasil', response.data);
+                        $('#table_data_mapel').DataTable().ajax.reload();
+                    } else {
+                        sweetalert('error', 'Gagal', response.data);
+                    }
+                },
+                error: function() {
+                    sweetalert('error', 'Gagal', 'Terjadi kesalahan saat menghapus data');
+                }
+            });
+        }
+    })
+});
 </script>
 <?= $this->endSection('script'); ?>
