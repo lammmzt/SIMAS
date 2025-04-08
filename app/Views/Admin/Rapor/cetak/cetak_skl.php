@@ -238,7 +238,7 @@ p {
         </tr>
     </table>
     <p style="margin-top: 5px;">Surat Keterangan Lulus ini berlaku sementara sampai dengan
-        diterbitkannya Ijazag Tahun Ajaran 2024/2025, untuk menjadikan maklumat bagi yang berkepentingan.</p>
+        diterbitkannya Ijazah Tahun Ajaran 2024/2025, untuk menjadikan maklumat bagi yang berkepentingan.</p>
 
     <table style="margin-top: 3px;">
         <tr>

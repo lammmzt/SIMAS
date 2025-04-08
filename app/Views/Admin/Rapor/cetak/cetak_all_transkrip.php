@@ -573,7 +573,7 @@ foreach ($data_nilai as $data) :
         </tr>
     </table>
 </div>
-<?php if ($no_rows < $jumlah) : ?>
+<?php if ($no_rows <= $jumlah) : ?>
 <div style="page-break-after: always;"></div>
 <?php endif; ?>
 <?php endforeach; ?>
