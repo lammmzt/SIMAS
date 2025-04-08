@@ -105,7 +105,7 @@ foreach ($data_nilai as $data) :
 ?>
 
 <img src="<?= $imageSrc ?>" alt="Logo" style="width: 100%; text-align: center;">
-<table style="margin-top: 2px;">
+<table style="margin-top: 1px;">
     <tr>
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
