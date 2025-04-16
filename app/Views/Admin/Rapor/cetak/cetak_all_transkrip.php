@@ -106,12 +106,12 @@ foreach ($data_nilai as $data) :
 
     <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 34%; width: 34%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 36%; width: 36%;"
                 colspan="2" rowspan="3">
                 Mata Pelajaran
             </td>
 
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 48%; width: 48%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 54%; width: 54%;"
                 colspan="6">
                 Nilai Semester
             </td>
@@ -136,23 +136,23 @@ foreach ($data_nilai as $data) :
             </td>
         </tr>
         <tr>
-            <td style="border: 1px solid black; text-align: center; max-width: 8%; width: 8%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 1
             </td>
 
-            <td style="border: 1px solid black; text-align: center; max-width: 8%; width: 8%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 2
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 8%; width: 8%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 3
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 8%; width: 8%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 4
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 8%; width: 8%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 5
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 8%; width: 8%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 6
             </td>
         </tr>
@@ -510,7 +510,7 @@ foreach ($data_nilai as $data) :
             <td style="width: 45%"></td>
             <td style="width: 20%; margin-right: 20px; "></td>
             <td style="width: 28%; text-align: left;" id="ttd">
-                <p style="">Pekalongan,</p>
+                <p style="">Pekalongan, <?= formatDateIndo(date('Y-m-d')) ?></p>
                 <p style="">Kepala Sekolah</p><br><br><br><br><br>
                 <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. ABDUR ROZAK</p>
                 <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>

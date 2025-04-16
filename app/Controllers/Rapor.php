@@ -256,6 +256,7 @@ class Rapor extends BaseController
                 'data' => 'Data siswa kelas ' . $nama_kelas . ' tidak ditemukan'
             ]);
         }
+        
         ini_set("pcre.backtrack_limit", "10000000");
         $semesterAktif = $semesterModel->where('status_semester', '1')->first();
         $data_urutan_mapel = $urutanMapelModel->getUrutanMapelBySemesterAndTingkatan($semesterAktif['id_semester'], 'XII')->findAll();
@@ -443,16 +444,16 @@ class Rapor extends BaseController
         }
     }
 
-    public function cetakSemuaTranskrip()
+    public function cetakSemuaTranskrip($nama_kelas)
     {
-        $nama_kelas = $this->request->getPost('kelas_data_dapodik');
+        // $nama_kelas = $this->request->getPost('kelas_data_dapodik');
         $siswaModel = new data_siswaModel(); // ambil model data siswa
         $urutanMapelModel = new urutanMapelModel();
         $nilaiRaporModel = new nilai_raporModel();
         $semesterModel = new semesterModel();
         $mapelModel = new mapelModel();
         $data_siswa = $siswaModel->getSiswaByKelas($nama_kelas); // ambil data siswa berdasarkan kelas
-        
+        // dd($data_siswa);
         // dd($data_siswa);
         if ($data_siswa) { // jika data siswa ada
             ini_set("pcre.backtrack_limit", "10000000");
