@@ -444,9 +444,9 @@ class Rapor extends BaseController
         }
     }
 
-    public function cetakSemuaTranskrip($nama_kelas)
+    public function cetakSemuaTranskrip()
     {
-        // $nama_kelas = $this->request->getPost('kelas_data_dapodik');
+        $nama_kelas = $this->request->getPost('kelas_data_dapodik');
         $siswaModel = new data_siswaModel(); // ambil model data siswa
         $urutanMapelModel = new urutanMapelModel();
         $nilaiRaporModel = new nilai_raporModel();
