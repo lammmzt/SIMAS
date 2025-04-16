@@ -33,10 +33,13 @@ class Rapor extends BaseController
                 'data' => 'Data siswa kelas ' . $nama_kelas . ' tidak ditemukan'
             ]);
         }
-    
+        ini_set("pcre.backtrack_limit", "10000000");
         $imagePath = FCPATH . 'Assets/img/foto_siswa.png';
         $imageData = base64_encode(file_get_contents($imagePath));
         $imageSrc = 'data:image/png;base64,' . $imageData;
+        $ttd_kepsek = FCPATH . 'Assets/img/ttd_kepsek.png';
+        $imageData2 = base64_encode(file_get_contents($ttd_kepsek));
+        $imageSrc2 = 'data:image/png;base64,' . $imageData2;
         foreach ($data_siswa as $siswa) {
             // Buat nama file yang aman
             $nama_file = sprintf("plk_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $siswa['nama_lengkap_data_siswa']), $nama_kelas);
@@ -67,6 +70,7 @@ class Rapor extends BaseController
             // Ambil tampilan HTML
             $data['data_siswa'] = $siswa;
             $data['imageSrc'] = $imageSrc;
+            $data['ttd_kepsek'] = $imageSrc2;
             $html = view('Admin/Rapor/cetak/cetak_pelengkap', $data);
         
             // Tulis HTML ke PDF
@@ -103,12 +107,17 @@ class Rapor extends BaseController
             'margin_footer' => 0,
             ]);
 
-            
+            ini_set("pcre.backtrack_limit", "10000000");
             $imagePath = FCPATH . 'Assets/img/foto_siswa.png';
             $imageData = base64_encode(file_get_contents($imagePath));
             $imageSrc = 'data:image/png;base64,' . $imageData;
             $data['data_siswa'] = $data_siswa;
             $data['imageSrc'] = $imageSrc;
+
+            $ttd_kepsek = FCPATH . 'Assets/img/ttd_kepsek.png';
+            $imageData2 = base64_encode(file_get_contents($ttd_kepsek));
+            $imageSrc2 = 'data:image/png;base64,' . $imageData2;
+            $data['ttd_kepsek'] = $imageSrc2;
             $html = view('Admin/Rapor/cetak/cetak_all_pelengkap', $data);
             $mpdf->WriteHTML($html);
             $nama_file = 'plk_' . $nama_kelas . '.pdf';

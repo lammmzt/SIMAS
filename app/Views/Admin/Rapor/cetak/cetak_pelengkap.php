@@ -17,6 +17,12 @@ td {
 p {
     font-size: 15px;
 }
+
+.ttd_kepsek {
+    width: 230px;
+    height: auto;
+    margin-top: -50px;
+}
 </style>
 <?php if ( !function_exists('formatDateIndo')) {
     function formatDateIndo($date) {
@@ -197,19 +203,21 @@ p {
 <table style="margin-top: 30px;">
     <tr>
         <td style="width: 25%"></td>
-        <td style="width: 20%; margin-right: 20px; "><img src="<?= $imageSrc ?>" alt="Foto Peserta Didik"
+        <td style="width: 20%; margin-right: 20px;"><img src="<?= $imageSrc ?>" alt="Foto Peserta Didik"
                 style="width: 100px; height: 120px;"></td>
-        <td style="width: 40%; text-align: left;" id="ttd">
+        <td style="width: 40%; text-align: left;" class="ttd">
             <p style="font-size: 15px;">Pekalongan,
                 <?=formatDateIndo($data_siswa['tanggal_diterima_data_siswa']) ?></p>
             <p style="font-size: 15px;">Kepala Sekolah</p><br><br><br><br><br>
-            <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. ABDUR ROZAK</p>
-            <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
+            <img src="<?= $ttd_kepsek ?>" alt="Tanda Tangan" class="ttd_kepsek">
+            <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Yulianto Nurul Furqon, M.Pd.
+            </p>
+            <p style="font-weight: bold; font-size: 13px;">NIP. 19720708 200212 1 005</p>
         </td>
         </td>
     </tr>
     <style type="text/css">
-    #ttd p {
+    .ttd p {
         margin: 0;
         padding: 0;
     }

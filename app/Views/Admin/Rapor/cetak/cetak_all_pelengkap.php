@@ -1,6 +1,6 @@
 <style>
 body {
-    font-family: Times New Roman, ;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -18,9 +18,10 @@ p {
     font-size: 15px;
 }
 
-#ttd p {
-    margin: 0;
-    padding: 0;
+.ttd_kepsek {
+    width: 230px;
+    height: auto;
+    margin-top: -50px;
 }
 </style>
 <?php if ( !function_exists('formatDateIndo')) {
@@ -206,19 +207,22 @@ foreach ($data_siswa as $data_siswa) :
 <table style="margin-top: 30px; <?php if ($no <= $jumlah) echo 'page-break-after: always;'; ?>">
     <tr>
         <td style="width: 25%"></td>
-        <td style="width: 20%; margin-right: 20px; "><img src="<?= $imageSrc ?>" alt="Foto Peserta Didik"
+        <td style="width: 20%; margin-right: 20px;"><img src="<?= $imageSrc ?>" alt="Foto Peserta Didik"
                 style="width: 100px; height: 120px;"></td>
-        <td style="width: 40%; text-align: left;" id="ttd">
+        <td style="width: 40%; text-align: left;" class="ttd">
             <p style="font-size: 15px;">Pekalongan,
                 <?=formatDateIndo($data_siswa['tanggal_diterima_data_siswa']) ?></p>
             <p style="font-size: 15px;">Kepala Sekolah</p><br><br><br><br><br>
-            <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. ABDUR ROZAK</p>
-            <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
+            <img src="<?= $ttd_kepsek ?>" alt="Tanda Tangan" class="ttd_kepsek">
+            <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Yulianto Nurul Furqon, M.Pd.
+            </p>
+            <p style="font-weight: bold; font-size: 13px;">NIP. 19720708 200212 1 005</p>
         </td>
         </td>
     </tr>
 </table>
 <?php endforeach; ?>
+
 <script type="text/javascript">
 function formatDateIndo(date) {
     var monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
