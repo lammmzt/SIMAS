@@ -47,24 +47,22 @@ p {
     }
 }
 
-$jumlah = count($data_nilai);
-$no_rows = 1;
-
-// dd($data_nilai);
-foreach ($data_nilai as $data) :
     $groupNilaiRaporByMapel = array();
-    $no_rows++;
+    $groupNilaiUjianByMapel = array();
     // dd($data);
-    foreach ($data as $key => $value) {
+    foreach ($data_nilai as $key => $value) {
         if ($value['tipe_nilai'] == '1') {
             $groupNilaiRaporByMapel[$value['id_mapel']][] = $value;
-        } 
+        } else{
+            $groupNilaiUjianByMapel[$value['id_mapel']][] = $value;
+        }
     }
 
     $groupNilaiKelasX = array();
     $groupNilaiKelasXI = array();
     $groupNilaiKelasXII = array();
     $averageNilaiByMapel = array();
+    // dd($groupNilaiRaporByMapel, $groupNilaiUjianByMapel);
 
 ?>
 
@@ -85,18 +83,19 @@ foreach ($data_nilai as $data) :
         <tr>
             <td style="width: 15%; min-width: 15%;">Nama </td>
             <td style="width: 8px;">:</td>
-            <td style="width: 38%; min-width: 38%;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?>
+            <td style="width: 38%; min-width: 38%;">
+                <?= ucwords(strtolower($data_nilai[0]['nama_lengkap_data_dapodik'])) ?>
             </td>
             <td style="width: 2%; min-width: 2%;"></td>
             <td style="width: 12%; min-width: 12%;">Kelas</td>
             <td style="width: 8px; min-width: 8px;">:</td>
-            <td style="width: 31%; min-width: 31%;"><?= $data[0]['kelas_data_dapodik'] ?></td>
+            <td style="width: 31%; min-width: 31%;"><?= $data_nilai[0]['kelas_data_dapodik'] ?></td>
         </tr>
         <tr>
             <td style="width: 12%; min-width: 12%;">NIS / NISN</td>
             <td style="width: 8px;">:</td>
-            <td style="width: 38%; min-width: 38%;"><?= $data[0]['nis_data_dapodik'] ?> /
-                <?= $data[0]['id_data_dapodik'] ?></td>
+            <td style="width: 38%; min-width: 38%;"><?= $data_nilai[0]['nis_data_dapodik'] ?> /
+                <?= $data_nilai[0]['id_data_dapodik'] ?></td>
             <td style="width: 2%; min-width: 2%;"></td>
             <td style="width: 12%; min-width: 12%;">Sekolah</td>
             <td style="width: 8px; min-width: 8px;">:</td>
@@ -114,6 +113,10 @@ foreach ($data_nilai as $data) :
             <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 48%; width: 48%;"
                 colspan="6">
                 Nilai Semester
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 8%; width: 8%;"
+                rowspan="3">
+                Nilai Ujian
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 8%; width: 8%;"
                 rowspan="3">
@@ -168,12 +171,14 @@ foreach ($data_nilai as $data) :
         $jumlah_nilai_smt_4 = 0;
         $jumlah_nilai_smt_5 = 0;
         $jumlah_nilai_smt_6 = 0;
+        $jumlah_data_ujian = 0;
         $jumlah_data_smt_1 = 0;
         $jumlah_data_smt_2 = 0;
         $jumlah_data_smt_3 = 0;
         $jumlah_data_smt_4 = 0;
         $jumlah_data_smt_5 = 0;
         $jumlah_data_smt_6 = 0;
+        $jumlah_nilai_ujian = 0;
         $no = 1;
         foreach ($urutan_mapel_umum as $key => $value) {
             // check if mapel exist in groupNilaiRaporByMapel
@@ -184,6 +189,7 @@ foreach ($data_nilai as $data) :
                 $smt4 = 0;
                 $smt5 = 0;
                 $smt6 = 0;
+                $ujian = 0;
                 $rata_rata = 0;
                 foreach ($groupNilaiRaporByMapel[$value['id_mapel']] as $key2 => $value2) {
                     if ($value2['tahun_ajaran'] == '2022/2023' && $value2['nama_semester'] == '1') {
@@ -212,6 +218,13 @@ foreach ($data_nilai as $data) :
                         $jumlah_data_smt_6++;
                     }
                 }
+                if (array_key_exists($value['id_mapel'], $groupNilaiUjianByMapel)) {
+                    $ujian = $groupNilaiUjianByMapel[$value['id_mapel']][0]['nilai_rapor'];
+                    $jumlah_nilai_ujian += $ujian;
+                    $jumlah_data_ujian++;
+                } else {
+                    $ujian = 0;
+                }
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;">' . $no . '</td>';
                 echo '<td style="border: 1px solid black; text-align: left;">' . $value['nama_mapel'] . '</td>';
@@ -221,6 +234,7 @@ foreach ($data_nilai as $data) :
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt4 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt4 == 0 ? '-' : number_format($smt4, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt6 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt6 == 0 ? '-' : number_format($smt6, 2, '.', '')) . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;'.($ujian == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($ujian == 0 ? '-' : number_format($ujian, 2, '.', '')) . '</td>';
                 // jumlah tidak kosong
                 $jumlah_nilai = 0;
                 if ($smt1 != 0) {
@@ -242,9 +256,13 @@ foreach ($data_nilai as $data) :
                     $jumlah_nilai++;
                 }
 
+                if ($ujian != 0) {
+                    $jumlah_nilai++;
+                }
+
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 ) / $jumlah_nilai;
+                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 + $ujian) / $jumlah_nilai;
                 } else {
                     $rata_rata = 0;
                 }
@@ -273,6 +291,7 @@ foreach ($data_nilai as $data) :
                 $smt4 = 0;
                 $smt5 = 0;
                 $smt6 = 0;
+                $ujian = 0;
                 $rata_rata = 0;
                 foreach ($groupNilaiRaporByMapel[$value['id_mapel']] as $key2 => $value2) {
                     if ($value2['tahun_ajaran'] == '2022/2023' && $value2['nama_semester'] == '1') {
@@ -301,6 +320,13 @@ foreach ($data_nilai as $data) :
                         $jumlah_data_smt_6++;
                     }
                 }
+                if (array_key_exists($value['id_mapel'], $groupNilaiUjianByMapel)) {
+                    $ujian = $groupNilaiUjianByMapel[$value['id_mapel']][0]['nilai_rapor'];
+                    $jumlah_nilai_ujian += $ujian;
+                    $jumlah_data_ujian++;
+                } else {
+                    $ujian = 0;
+                }
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;">' . $no . '</td>';
                 echo '<td style="border: 1px solid black; text-align: left;">' . $value['nama_mapel'] . '</td>';
@@ -310,6 +336,7 @@ foreach ($data_nilai as $data) :
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt4 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt4 == 0 ? '-' : number_format($smt4, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt6 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt6 == 0 ? '-' : number_format($smt6, 2, '.', '')) . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;'.($ujian == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($ujian == 0 ? '-' : number_format($ujian, 2, '.', '')) . '</td>';
                 // jumlah tidak kosong
                 $jumlah_nilai = 0;
                 if ($smt1 != 0) {
@@ -330,10 +357,13 @@ foreach ($data_nilai as $data) :
                 if ($smt6 != 0) {
                     $jumlah_nilai++;
                 }
+                if ($ujian != 0) {
+                    $jumlah_nilai++;
+                }
 
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 ) / $jumlah_nilai;
+                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 + $ujian) / $jumlah_nilai;
                 } else {
                     $rata_rata = 0;
                 }
@@ -361,6 +391,7 @@ foreach ($data_nilai as $data) :
                 $smt4 = 0;
                 $smt5 = 0;
                 $smt6 = 0;
+                $ujian = 0;
                 $rata_rata = 0;
                 foreach ($groupNilaiRaporByMapel[$value['id_mapel']] as $key2 => $value2) {
                     if ($value2['tahun_ajaran'] == '2022/2023' && $value2['nama_semester'] == '1') {
@@ -389,7 +420,13 @@ foreach ($data_nilai as $data) :
                         $jumlah_data_smt_6++;
                     }
                 }
-                
+                if (array_key_exists($value['id_mapel'], $groupNilaiUjianByMapel)) {
+                    $ujian = $groupNilaiUjianByMapel[$value['id_mapel']][0]['nilai_rapor'];
+                    $jumlah_nilai_ujian += $ujian;
+                    $jumlah_data_ujian++;
+                } else {
+                    $ujian = 0;
+                }
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;">' . $no . '</td>';
                 echo '<td style="border: 1px solid black; text-align: left;">' . $value['nama_mapel'] . '</td>';
@@ -399,6 +436,7 @@ foreach ($data_nilai as $data) :
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt4 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt4 == 0 ? '-' : number_format($smt4, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt6 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt6 == 0 ? '-' : number_format($smt6, 2, '.', '')) . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;'.($ujian == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($ujian == 0 ? '-' : number_format($ujian, 2, '.', '')) . '</td>';
                 // jumlah tidak kosong
                 $jumlah_nilai = 0;
 
@@ -426,9 +464,13 @@ foreach ($data_nilai as $data) :
                     $jumlah_nilai++;
                 }
 
+                if ($ujian != 0) {
+                    $jumlah_nilai++;
+                }
+
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai;
+                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 + $ujian) / $jumlah_nilai;
                 } else {
                     $rata_rata = 0;
                 }
@@ -447,7 +489,8 @@ foreach ($data_nilai as $data) :
         $average_smt_4 = 0;
         $average_smt_5 = 0;
         $average_smt_6 = 0;
-        // dd($jumlah_nilai_smt_1, $jumlah_nilai_smt_2, $jumlah_nilai_smt_3, $jumlah_nilai_smt_4, $jumlah_nilai_smt_5, $jumlah_nilai_smt_6, $jumlah_data_smt_1);
+        $average_ujian = 0;
+        // dd($jumlah_nilai_smt_1, $jumlah_nilai_smt_2, $jumlah_nilai_smt_3, $jumlah_nilai_smt_4, $jumlah_nilai_smt_5, $jumlah_nilai_smt_6, $jumlah_data_ujian, $jumlah_data_smt_1);
         if ($jumlah_data_smt_1 > 0) {
             $average_smt_1 = number_format($jumlah_nilai_smt_1 / $jumlah_data_smt_1, 2, '.', '');
             // dd($average_smt_1);
@@ -467,8 +510,11 @@ foreach ($data_nilai as $data) :
         if ($jumlah_data_smt_6 > 0) {
             $average_smt_6 = number_format($jumlah_nilai_smt_6 / $jumlah_data_smt_6, 2, '.', '');
         }
+        if ($jumlah_data_ujian > 0) {
+            $average_ujian = number_format($jumlah_nilai_ujian / $jumlah_data_ujian, 2, '.', '');
+        }
             
-        $average_all = (($average_smt_1 + $average_smt_2 + $average_smt_3 + $average_smt_4 + $average_smt_5 + $average_smt_6) / 6);
+        $average_all = (($average_smt_1 + $average_smt_2 + $average_smt_3 + $average_smt_4 + $average_smt_5 + $average_smt_6 + $average_ujian) / 7);
         // dd($average_all);
         ?>
         <tr>
@@ -493,11 +539,14 @@ foreach ($data_nilai as $data) :
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
                 <?= ($jumlah_data_smt_6 > 0 ? $average_smt_6 : '-') ?>
             </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= ($jumlah_data_ujian > 0 ? $average_ujian : '-') ?>
+            </td>
 
         </tr>
         <tr>
             <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="2">
-                IP Semester
+                IP Kumulatif
             </td>
             <td style="border: 1px solid black; text-align: left; font-weight: bold;" colspan="8">
                 <?= number_format($average_all, 2, '.', '') ?>
@@ -519,10 +568,6 @@ foreach ($data_nilai as $data) :
         </tr>
     </table>
 </div>
-<?php if ($no_rows <= $jumlah) : ?>
-<div style="page-break-after: always;"></div>
-<?php endif; ?>
-<?php endforeach; ?>
 <script type="text/javascript">
 function formatDateIndo(date) {
     var monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",

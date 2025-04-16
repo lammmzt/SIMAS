@@ -114,9 +114,7 @@
                                 <th>NIS</th>
                                 <th>NISN</th>
                                 <th>Kelas</th>
-                                <th>Nama Ayah</th>
-                                <th>Nama Ibu</th>
-                                <th>Alamat</th>
+                                <th>Status</th>
                                 <th style="min-width: 100px">Action</th>
                             </tr>
                             <!-- kolom  PENCARIAN -->
@@ -130,8 +128,6 @@
                                         placeholder="Cari NISN"></th>
                                 <th><input type="text" class="form-control form-control-sm column-search"
                                         placeholder="Cari Kelas"></th>
-                                <th></th>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -414,28 +410,18 @@ function dataTablesDataSiswa() {
             {
                 data: 'kelas_data_dapodik'
             },
-            // {
-            //     // title: 'Status',
-            //     data: 'status_pengecekan',
-            //     render: function(data, type, row) {
-            //         if (data == '1') {
-            //             return '<span class="badge bg-success">Terverifikasi</span>';
-            //         } else if (data == '2') {
-            //             return '<span class="badge bg-danger">Tidak Valid</span>';
-            //         } else {
-            //             return '<span class="badge bg-warning">Belum Verifikasi</span>';
-            //         }
-            //     }
-            // },
-
             {
-                data: 'nama_ayah_data_siswa'
-            },
-            {
-                data: 'nama_ibu_data_siswa'
-            },
-            {
-                data: 'alamat_data_siswa'
+                // title: 'Status',
+                data: 'status_pengecekan',
+                render: function(data, type, row) {
+                    if (data == '1') {
+                        return '<span class="badge bg-success">Terverifikasi</span>';
+                    } else if (data == '2') {
+                        return '<span class="badge bg-danger">Tidak Valid</span>';
+                    } else {
+                        return '<span class="badge bg-warning">Belum Verifikasi</span>';
+                    }
+                }
             },
             {
                 // title: 'Action',
@@ -450,7 +436,7 @@ function dataTablesDataSiswa() {
         ],
         "columnDefs": [{
             "orderable": false,
-            "targets": [0, 8]
+            "targets": [0, 5]
         }],
         initComplete: function() {
             this.api()
