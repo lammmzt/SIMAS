@@ -149,7 +149,7 @@ p {
             </td>
         </tr>
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="10">
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="9">
                 Kelompok Mata Pelajaran Umum
             </td>
         </tr>
@@ -239,7 +239,7 @@ p {
         }
         ?>
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="10">
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="9">
                 Kelompok Mata Pelajaran Pilihan
             </td>
         </tr>
@@ -318,7 +318,7 @@ p {
         }
         ?>
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="10">
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="9">
                 Muatan Lokal
             </td>
         </tr>
