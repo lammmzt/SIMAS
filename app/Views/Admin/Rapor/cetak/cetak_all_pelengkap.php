@@ -21,7 +21,7 @@ p {
 .ttd_kepsek {
     width: 230px;
     height: auto;
-    margin-top: -50px;
+    margin-top: -60px;
 }
 </style>
 <?php if ( !function_exists('formatDateIndo')) {
