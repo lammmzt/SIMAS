@@ -205,7 +205,7 @@ p {
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt2 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt2 == 0 ? '-' : number_format($smt2, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt3 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt3 == 0 ? '-' : number_format($smt3, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt4 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt4 == 0 ? '-' : number_format($smt4, 2, '.', '')) . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
+                echo '<td colspan="2" style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
                 // jumlah tidak kosong
                 $jumlah_nilai = 0;
                 if ($smt1 != 0) {
@@ -285,7 +285,7 @@ p {
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt2 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt2 == 0 ? '-' : number_format($smt2, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt3 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt3 == 0 ? '-' : number_format($smt3, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt4 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt4 == 0 ? '-' : number_format($smt4, 2, '.', '')) . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
+                echo '<td colspan="2" style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
                 // jumlah tidak kosong
                 $jumlah_nilai = 0;
                 if ($smt1 != 0) {
@@ -364,7 +364,7 @@ p {
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt2 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt2 == 0 ? '-' : number_format($smt2, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt3 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt3 == 0 ? '-' : number_format($smt3, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt4 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt4 == 0 ? '-' : number_format($smt4, 2, '.', '')) . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
+                echo '<td colspan="2" style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
                 // jumlah tidak kosong
                 $jumlah_nilai = 0;
 
