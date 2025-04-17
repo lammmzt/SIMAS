@@ -102,16 +102,16 @@ p {
 
     <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 40%; width: 40%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 36%; width: 36%;"
                 colspan="2" rowspan="3">
                 Mata Pelajaran
             </td>
 
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 48%; width: 48%;"
-                colspan="5">
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 54%; width: 54%;"
+                colspan="6">
                 Nilai Semester
             </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 10%; width: 10%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 8%; width: 8%;"
                 rowspan="3">
                 Rata-rata
             </td>
@@ -126,30 +126,31 @@ p {
                 colspan="2">
                 Kelas XI
             </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 10%; width: 10%;">
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 16%; width: 16%;"
+                colspan="2">
                 Kelas XII
             </td>
         </tr>
         <tr>
-            <td style="border: 1px solid black; text-align: center; max-width: 10%; width: 10%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 1
             </td>
 
-            <td style="border: 1px solid black; text-align: center; max-width: 10%; width: 10%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 2
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 10%; width: 10%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 3
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 10%; width: 10%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 4
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 10%; width: 10%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 5
             </td>
         </tr>
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="9">
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="10">
                 Kelompok Mata Pelajaran Umum
             </td>
         </tr>
@@ -239,7 +240,7 @@ p {
         }
         ?>
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="9">
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="10">
                 Kelompok Mata Pelajaran Pilihan
             </td>
         </tr>
@@ -318,7 +319,7 @@ p {
         }
         ?>
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="9">
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="10">
                 Muatan Lokal
             </td>
         </tr>
