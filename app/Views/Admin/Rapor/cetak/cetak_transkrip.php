@@ -145,7 +145,8 @@ p {
             <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 4
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
+            <td colspan="2"
+                style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 5
             </td>
         </tr>
