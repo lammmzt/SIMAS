@@ -102,13 +102,13 @@ p {
 
     <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 39%; width: 39%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 40%; width: 40%;"
                 colspan="2" rowspan="3">
                 Mata Pelajaran
             </td>
 
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 59%; width: 59%;"
-                colspan="6">
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 48%; width: 48%;"
+                colspan="5">
                 Nilai Semester
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 10%; width: 10%;"
@@ -118,11 +118,11 @@ p {
         </tr>
 
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 20%; width: 20%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 16%; width: 16%;"
                 colspan="2">
                 Kelas X
             </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 20%; width: 20%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 16%; width: 16%;"
                 colspan="2">
                 Kelas XI
             </td>
