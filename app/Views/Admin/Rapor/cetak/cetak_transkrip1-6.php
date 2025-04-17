@@ -68,7 +68,7 @@ p {
     <tr>
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
-            <h3 style="font-weight: bold">TRANSKRIP NILAI RAPOR 1 s.d. 5</h3>
+            <h3 style="font-weight: bold">TRANSKRIP NILAI</h3>
             <!-- <h4 style="font-weight: bold">TAHUN AJARAN 2024/2025</h4> -->
             <!-- <p>Nomor : 420 / 128.a</p> -->
         </td>
@@ -102,51 +102,54 @@ p {
 
     <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 39%; width: 39%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 36%; width: 36%;"
                 colspan="2" rowspan="3">
                 Mata Pelajaran
             </td>
 
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 59%; width: 59%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 54%; width: 54%;"
                 colspan="6">
                 Nilai Semester
             </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 10%; width: 10%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 8%; width: 8%;"
                 rowspan="3">
                 Rata-rata
             </td>
         </tr>
 
         <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 20%; width: 20%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 16%; width: 16%;"
                 colspan="2">
                 Kelas X
             </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 20%; width: 20%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 16%; width: 16%;"
                 colspan="2">
                 Kelas XI
             </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 10%; width: 10%;"
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 16%; width: 16%;"
                 colspan="2">
                 Kelas XII
             </td>
         </tr>
         <tr>
-            <td style="border: 1px solid black; text-align: center; max-width: 10%; width: 10%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 1
             </td>
 
-            <td style="border: 1px solid black; text-align: center; max-width: 10%; width: 10%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 2
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 10%; width: 10%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 3
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 10%; width: 10%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 4
             </td>
-            <td style="border: 1px solid black; text-align: center; max-width: 10%; width: 10%; font-size: 14px;">
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
                 SMT 5
+            </td>
+            <td style="border: 1px solid black; text-align: center; max-width: 9%; width: 9%; font-size: 14px;">
+                SMT 6
             </td>
         </tr>
         <tr>
@@ -166,6 +169,7 @@ p {
         $jumlah_data_smt_3 = 0;
         $jumlah_data_smt_4 = 0;
         $jumlah_data_smt_5 = 0;
+        $jumlah_data_smt_6 = 0;
         $no = 1;
         foreach ($urutan_mapel_umum as $key => $value) {
             // check if mapel exist in groupNilaiRaporByMapel
@@ -175,6 +179,7 @@ p {
                 $smt3 = 0;
                 $smt4 = 0;
                 $smt5 = 0;
+                $smt6 = 0;
                 $rata_rata = 0;
                 foreach ($groupNilaiRaporByMapel[$value['id_mapel']] as $key2 => $value2) {
                     if ($value2['tahun_ajaran'] == '2022/2023' && $value2['nama_semester'] == '1') {
@@ -197,7 +202,11 @@ p {
                         $smt5 = $value2['nilai_rapor'];
                         $jumlah_nilai_smt_5 += $smt5;
                         $jumlah_data_smt_5++;
-                    } 
+                    } elseif ($value2['tahun_ajaran'] == '2024/2025' && $value2['nama_semester'] == '2') {
+                        $smt6 = $value2['nilai_rapor'];
+                        $jumlah_nilai_smt_6 += $smt6;
+                        $jumlah_data_smt_6++;
+                    }
                 }
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;">' . $no . '</td>';
@@ -207,6 +216,7 @@ p {
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt3 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt3 == 0 ? '-' : number_format($smt3, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt4 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt4 == 0 ? '-' : number_format($smt4, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;'.($smt6 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt6 == 0 ? '-' : number_format($smt6, 2, '.', '')) . '</td>';
                 // jumlah tidak kosong
                 $jumlah_nilai = 0;
                 if ($smt1 != 0) {
@@ -224,10 +234,13 @@ p {
                 if ($smt5 != 0) {
                     $jumlah_nilai++;
                 }
+                if ($smt6 != 0) {
+                    $jumlah_nilai++;
+                }
 
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5) / $jumlah_nilai;
+                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai;
                 } else {
                     $rata_rata = 0;
                 }
@@ -255,6 +268,7 @@ p {
                 $smt3 = 0;
                 $smt4 = 0;
                 $smt5 = 0;
+                $smt6 = 0;
                 $rata_rata = 0;
                 foreach ($groupNilaiRaporByMapel[$value['id_mapel']] as $key2 => $value2) {
                     if ($value2['tahun_ajaran'] == '2022/2023' && $value2['nama_semester'] == '1') {
@@ -277,7 +291,11 @@ p {
                         $smt5 = $value2['nilai_rapor'];
                         $jumlah_nilai_smt_5 += $smt5;
                         $jumlah_data_smt_5++;
-                    } 
+                    } elseif ($value2['tahun_ajaran'] == '2024/2025' && $value2['nama_semester'] == '2') {
+                        $smt6 = $value2['nilai_rapor'];
+                        $jumlah_nilai_smt_6 += $smt6;
+                        $jumlah_data_smt_6++;
+                    }
                 }
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;">' . $no . '</td>';
@@ -287,6 +305,7 @@ p {
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt3 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt3 == 0 ? '-' : number_format($smt3, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt4 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt4 == 0 ? '-' : number_format($smt4, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;'.($smt6 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt6 == 0 ? '-' : number_format($smt6, 2, '.', '')) . '</td>';
                 // jumlah tidak kosong
                 $jumlah_nilai = 0;
                 if ($smt1 != 0) {
@@ -304,10 +323,13 @@ p {
                 if ($smt5 != 0) {
                     $jumlah_nilai++;
                 }
+                if ($smt6 != 0) {
+                    $jumlah_nilai++;
+                }
 
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5) / $jumlah_nilai;
+                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai;
                 } else {
                     $rata_rata = 0;
                 }
@@ -334,6 +356,7 @@ p {
                 $smt3 = 0;
                 $smt4 = 0;
                 $smt5 = 0;
+                $smt6 = 0;
                 $rata_rata = 0;
                 foreach ($groupNilaiRaporByMapel[$value['id_mapel']] as $key2 => $value2) {
                     if ($value2['tahun_ajaran'] == '2022/2023' && $value2['nama_semester'] == '1') {
@@ -356,7 +379,11 @@ p {
                         $smt5 = $value2['nilai_rapor'];
                         $jumlah_nilai_smt_5 += $smt5;
                         $jumlah_data_smt_5++;
-                    } 
+                    } elseif ($value2['tahun_ajaran'] == '2024/2025' && $value2['nama_semester'] == '2') {
+                        $smt6 = $value2['nilai_rapor'];
+                        $jumlah_nilai_smt_6 += $smt6;
+                        $jumlah_data_smt_6++;
+                    }
                 }
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;">' . $no . '</td>';
@@ -366,6 +393,7 @@ p {
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt3 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt3 == 0 ? '-' : number_format($smt3, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt4 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt4 == 0 ? '-' : number_format($smt4, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt5 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt5 == 0 ? '-' : number_format($smt5, 2, '.', '')) . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;'.($smt6 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt6 == 0 ? '-' : number_format($smt6, 2, '.', '')) . '</td>';
                 // jumlah tidak kosong
                 $jumlah_nilai = 0;
 
@@ -389,9 +417,13 @@ p {
                     $jumlah_nilai++;
                 }
 
+                if ($smt6 != 0) {
+                    $jumlah_nilai++;
+                }
+
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5) / $jumlah_nilai;
+                    $rata_rata = ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai;
                 } else {
                     $rata_rata = 0;
                 }
@@ -409,7 +441,8 @@ p {
         $average_smt_3 = 0;
         $average_smt_4 = 0;
         $average_smt_5 = 0;
-        // dd($jumlah_nilai_smt_1, $jumlah_nilai_smt_2, $jumlah_nilai_smt_3, $jumlah_nilai_smt_4, $jumlah_nilai_smt_5, $jumlah_data_smt_1);
+        $average_smt_6 = 0;
+        // dd($jumlah_nilai_smt_1, $jumlah_nilai_smt_2, $jumlah_nilai_smt_3, $jumlah_nilai_smt_4, $jumlah_nilai_smt_5, $jumlah_nilai_smt_6, $jumlah_data_smt_1);
         if ($jumlah_data_smt_1 > 0) {
             $average_smt_1 = number_format($jumlah_nilai_smt_1 / $jumlah_data_smt_1, 2, '.', '');
             // dd($average_smt_1);
@@ -426,8 +459,11 @@ p {
         if ($jumlah_data_smt_5 > 0) {
             $average_smt_5 = number_format($jumlah_nilai_smt_5 / $jumlah_data_smt_5, 2, '.', '');
         }
+        if ($jumlah_data_smt_6 > 0) {
+            $average_smt_6 = number_format($jumlah_nilai_smt_6 / $jumlah_data_smt_6, 2, '.', '');
+        }
             
-        $average_all = (($average_smt_1 + $average_smt_2 + $average_smt_3 + $average_smt_4 + $average_smt_5) / 5);
+        $average_all = (($average_smt_1 + $average_smt_2 + $average_smt_3 + $average_smt_4 + $average_smt_5 + $average_smt_6) / 6);
         // dd($average_all);
         ?>
         <tr>
@@ -448,6 +484,9 @@ p {
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
                 <?= ($jumlah_data_smt_5 > 0 ? $average_smt_5 : '-') ?>
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= ($jumlah_data_smt_6 > 0 ? $average_smt_6 : '-') ?>
             </td>
 
         </tr>
