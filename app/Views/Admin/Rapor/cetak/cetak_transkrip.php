@@ -126,8 +126,7 @@ p {
                 colspan="2">
                 Kelas XI
             </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 10%; width: 10%;"
-                colspan="2">
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; max-width: 10%; width: 10%;">
                 Kelas XII
             </td>
         </tr>
@@ -160,7 +159,6 @@ p {
         $jumlah_nilai_smt_3 = 0;
         $jumlah_nilai_smt_4 = 0;
         $jumlah_nilai_smt_5 = 0;
-        $jumlah_nilai_smt_6 = 0;
         $jumlah_data_smt_1 = 0;
         $jumlah_data_smt_2 = 0;
         $jumlah_data_smt_3 = 0;
