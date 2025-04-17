@@ -68,7 +68,7 @@ p {
     <tr>
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
-            <h3 style="font-weight: bold">TRANSKRIP NILAI RAPOR 1 s.d. 5</h3>
+            <h3 style="font-weight: bold">TRANSKRIP NILAI RAPOR SEMESTER 1 s.d. 5</h3>
             <!-- <h4 style="font-weight: bold">TAHUN AJARAN 2024/2025</h4> -->
             <!-- <p>Nomor : 420 / 128.a</p> -->
         </td>
