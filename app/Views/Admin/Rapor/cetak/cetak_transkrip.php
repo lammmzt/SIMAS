@@ -446,7 +446,7 @@ p {
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
                 <?= ($jumlah_data_smt_4 > 0 ? $average_smt_4 : '-') ?>
             </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+            <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">
                 <?= ($jumlah_data_smt_5 > 0 ? $average_smt_5 : '-') ?>
             </td>
 
