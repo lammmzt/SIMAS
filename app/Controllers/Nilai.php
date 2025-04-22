@@ -368,12 +368,5 @@ class Nilai extends BaseController
     }
 
     // skl
-    public function SKL(): string // menampilkan halaman dashboard
-    { 
-        $semesterModel = new semesterModel();
-        $data['semester'] = $semesterModel->findAll();
-        $data['title'] = 'SIMAS | Nilai SKL'; // set judul halaman
-        $data['active'] = 'SKL'; // set active menu
-        return view('Admin/Rapor/SKL/index', $data); // tampilkan view dashboard
-    }
+    
 }

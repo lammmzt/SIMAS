@@ -151,7 +151,7 @@ function dataTablesDataSiswa() {
         autoWidth: false,
         responsive: true,
         ajax: {
-            url: '<?= base_url('Rapor/ajaxDataTablesSKL') ?>',
+            url: '<?= base_url('Kelulusan/ajaxDataTablesSKL') ?>',
             type: 'POST',
             data: function(data) {
                 data.kelas_data_dapodik = $('#kelas_data_dapodik').val();
@@ -214,7 +214,7 @@ $('#btn-generate').click(function() {
         // add loading
         $('#loading-page').show();
         $.ajax({
-            url: '<?= base_url('Rapor/generateSKL') ?>',
+            url: '<?= base_url('Kelulusan/generateSKL') ?>',
             type: 'POST',
             data: {
                 kelas_data_dapodik: kelas_data_dapodik
@@ -224,7 +224,7 @@ $('#btn-generate').click(function() {
                     // sweetalert('success', 'Berhasil', response.data);
                     // $('#table_data_siswa').DataTable().ajax.reload();
                     $.ajax({
-                        url: '<?= base_url('Rapor/generateTranskrip') ?>',
+                        url: '<?= base_url('Kelulusan/generateTranskrip') ?>',
                         type: 'POST',
                         data: {
                             kelas_data_dapodik: kelas_data_dapodik
@@ -268,7 +268,7 @@ $('#btn-cetak-all').click(function() {
         // add loading
         $('#loading-page').show();
         $.ajax({
-            url: '<?= base_url('Rapor/cetakSemuaSKL') ?>',
+            url: '<?= base_url('Kelulusan/cetakSemuaSKL') ?>',
             type: 'POST',
             data: {
                 kelas_data_dapodik: kelas_data_dapodik
@@ -300,7 +300,7 @@ $('#btn-cetak-all-transrkip').click(function() {
         // add loading
         $('#loading-page').show();
         $.ajax({
-            url: '<?= base_url('Rapor/cetakSemuaTranskrip') ?>',
+            url: '<?= base_url('Kelulusan/cetakSemuaTranskrip') ?>',
             type: 'POST',
             data: {
                 kelas_data_dapodik: kelas_data_dapodik
