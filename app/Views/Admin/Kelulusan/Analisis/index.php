@@ -1,5 +1,8 @@
 <?= $this->extend('Templates/index') ?>
 <?= $this->section('konten') ?>
+<?php 
+ini_set('memory_limit', '256M');
+?>
 <style>
 .table th {
     text-align: center;
