@@ -29,7 +29,7 @@ class urutanMapelModel extends Model
     public function getUrutanMapelBySemesterAndTingkatan($semester, $tingkatan)
     {
         return $this
-        ->select('urutan_mapel.id_urutan_mapel, urutan_mapel.kel_mapel, urutan_mapel.tingkatan_urutan_mapel, urutan_mapel.id_semester, urutan_mapel.id_mapel, urutan_mapel.no_urutan_mapel, mapel.nama_mapel, semester.nama_semester, semester.tahun_ajaran')
+        ->select('urutan_mapel.id_urutan_mapel,mapel.kode_mapel, urutan_mapel.kel_mapel, urutan_mapel.tingkatan_urutan_mapel, urutan_mapel.id_semester, urutan_mapel.id_mapel, urutan_mapel.no_urutan_mapel, mapel.nama_mapel, semester.nama_semester, semester.tahun_ajaran')
         ->join('mapel', 'mapel.id_mapel = urutan_mapel.id_mapel')
         ->join('semester', 'semester.id_semester = urutan_mapel.id_semester')
         ->where(['urutan_mapel.id_semester' => $semester, 'urutan_mapel.tingkatan_urutan_mapel' => $tingkatan]);

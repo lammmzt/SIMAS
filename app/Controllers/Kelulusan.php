@@ -495,7 +495,168 @@ class Kelulusan extends BaseController
     }
     // =================== TRANSKRIP ==================
 
+
+    // analisis
+    public function Analisis(): string // menampilkan halaman dashboard
+    { 
+        if($this->request->getPost('kelas_data_dapodik')){
+            $nama_kelas = $this->request->getPost('kelas_data_dapodik');
+        }else{
+            $nama_kelas = '';
+        }
+        
+        $siswaModel = new data_siswaModel(); // ambil model data siswa
+        $urutanMapelModel = new urutanMapelModel();
+        $nilaiRaporModel = new nilai_raporModel();
+        $semesterModel = new semesterModel();
+        $mapelModel = new mapelModel();
+        $data_siswa = $siswaModel->getSiswaByKelas($nama_kelas); // ambil data siswa berdasarkan kelas
+        // dd($data_siswa);
+        if ($data_siswa) { // jika data siswa ada
+            $semesterAktif = $semesterModel->where('status_semester', '1')->first();
+            $data_urutan_mapel = $urutanMapelModel->getUrutanMapelBySemesterAndTingkatan($semesterAktif['id_semester'], 'XII')->orderBy('kel_mapel', 'DESC')->orderBy('no_urutan_mapel', 'ASC')->findAll();
+            // dd($data_urutan_mapel); 
+            $data_nilai = $nilaiRaporModel->getNilaiByKelas($nama_kelas)->findAll();
+            // dd($data_nilai);
+            $urutanMapelUmum = array();
+            $urutanMapelPilihan = array();
+            $urutanMapelLokal = array();
+            
+            // dd($urutanMapelUmum, $urutanMapelPilihan, $urutanMapelLokal);
+            // goruping by siswa
+            $data_nilai_group = array();
+            foreach ($data_nilai as $key => $value) {
+                $data_nilai_group[$value['id_data_dapodik']][] = $value;
+            }
+            
+            $data['data_nilai'] = $data_nilai_group;
+            $data['data_mapel'] = $data_urutan_mapel;
+            // dd($data);
+        }else{
+            $data['data_nilai'] = array();
+            $data['data_mapel'] = array();
+        }
+        
+        $semesterModel = new semesterModel();
+        $data['semester'] = $semesterModel->findAll();
+        $data['title'] = 'SIMAS | Nilai SKL'; // set judul halaman
+        $data['active'] = 'SKL'; // set active menu
+        return view('Admin/Kelulusan/Analisis/index', $data); // tampilkan view dashboard
+    }
+
+    public function Analisis2(): string // menampilkan halaman dashboard
+    { 
+        $semesterModel = new semesterModel();
+        $data['semester'] = $semesterModel->findAll();
+        $data['title'] = 'SIMAS | Nilai SKL'; // set judul halaman
+        $data['active'] = 'SKL'; // set active menu
+        return view('Admin/Kelulusan/Analisis/index', $data); // tampilkan view dashboard
+    }
     
+    public function previewTemplateAnalsis(){
+        return view('Admin/Kelulusan/Analisis/cetak/cetak_all_analisis');
+    }
+    
+    public function cetakSemuaAnalisis()
+    {
+        $nama_kelas = $this->request->getPost('kelas_data_dapodik');
+        $siswaModel = new data_siswaModel(); // ambil model data siswa
+        $urutanMapelModel = new urutanMapelModel();
+        $nilaiRaporModel = new nilai_raporModel();
+        $semesterModel = new semesterModel();
+        $mapelModel = new mapelModel();
+        $data_siswa = $siswaModel->getSiswaByKelas($nama_kelas); // ambil data siswa berdasarkan kelas
+        // dd($data_siswa);
+        // dd($data_siswa);
+        if ($data_siswa) { // jika data siswa ada
+            ini_set("pcre.backtrack_limit", "10000000");
+            $semesterAktif = $semesterModel->where('status_semester', '1')->first();
+            $data_urutan_mapel = $urutanMapelModel->getUrutanMapelBySemesterAndTingkatan($semesterAktif['id_semester'], 'XII')->findAll();
+            // dd($data_urutan_mapel); 
+            $data_nilai = $nilaiRaporModel->getNilaiByKelas($nama_kelas)->findAll();
+            // dd($data_nilai, $data_nilai_ujian);
+            $urutanMapelUmum = array();
+            $urutanMapelPilihan = array();
+            $urutanMapelLokal = array();
+            foreach ($data_urutan_mapel as $key => $value) {
+                if ($value['kel_mapel'] == 'Umum') {
+                    $urutanMapelUmum[] = $value;
+                } elseif ($value['kel_mapel'] == 'Pilihan') {
+                    $urutanMapelPilihan[] = $value;
+                } elseif ($value['kel_mapel'] == 'Muatan Lokal') {
+                    $urutanMapelLokal[] = $value;
+                }
+            }
+            // dd($urutanMapelUmum, $urutanMapelPilihan, $urutanMapelLokal);
+            // sort array urutan mapel by no_urutan_mapel
+            usort($urutanMapelUmum, function ($a, $b) {
+                return $a['no_urutan_mapel'] <=> $b['no_urutan_mapel'];
+            });
+            usort($urutanMapelPilihan, function ($a, $b) {
+                return $a['no_urutan_mapel'] <=> $b['no_urutan_mapel'];
+            });
+            usort($urutanMapelLokal, function ($a, $b) {
+                return $a['no_urutan_mapel'] <=> $b['no_urutan_mapel'];
+            });
+            // dd($urutanMapelUmum, $urutanMapelPilihan, $urutanMapelLokal);
+            // goruping by siswa
+            $data_nilai_group = array();
+            foreach ($data_nilai as $key => $value) {
+                $data_nilai_group[$value['id_data_dapodik']][] = $value;
+            }
+            
+            // dd($data_nilai_group);
+            $mpdf = new \Mpdf\Mpdf([
+            'mode' => 'utf-8',
+            // 'format' => 'F4',
+            'format' => [330, 210],
+            'margin_left' => 8,
+            'margin_right' => 8,
+            'margin_top' => 8,
+            'margin_bottom' => 5,
+            'margin_header' => 0,
+            'margin_footer' => 0,
+            ]);
+
+            
+            $imagePath = FCPATH . 'Assets/img/kop_sekolah.png';
+            $imageData = base64_encode(file_get_contents($imagePath));
+            $imageSrc = 'data:image/png;base64,' . $imageData;
+            $data['data_nilai'] = $data_nilai_group;
+            $data['imageSrc'] = $imageSrc;
+            $data['urutan_mapel_umum'] = $urutanMapelUmum;
+            $data['urutan_mapel_pilihan'] = $urutanMapelPilihan;
+            $data['urutan_mapel_lokal'] = $urutanMapelLokal;
+            // dd($data);
+            // return view('Admin/Kelulusan/SKL/cetak/cetak_transkrip', $data);
+            $html = view('Admin/Kelulusan/Analisis/cetak/cetak_all_analisis', $data);
+            $mpdf->WriteHTML($html);
+            $nama_file = 'analisis_' . $nama_kelas . '.pdf';
+            
+            // jika sudah ada file dengan nama yang sama, maka file tersebut akan dihapus
+            if (file_exists(FCPATH . 'Assets/pdf/Analisis/' . $nama_file)) {
+                unlink(FCPATH . 'Assets/pdf/Analisis/' . $nama_file);
+            }
+            
+            // view result
+            $mpdf->Output(FCPATH . 'Assets/pdf/Analisis/' . $nama_file, 'F');
+            return $this->response->setJSON([
+                'error' => false,
+                'status' => '200',
+                'data' => $nama_file,
+            ]);
+            
+            // exit(); 
+        } else {
+            return $this->response->setJSON([
+                'error' => true,
+                'status' => '404',
+                'data' => 'Data siswa kelas ' . $nama_kelas . ' tidak ditemukan'
+            ]);
+        }
+    }
+
+   
 }
 
 ?>
