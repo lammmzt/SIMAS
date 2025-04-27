@@ -11,11 +11,11 @@ table {
 
 td {
     padding: 3px;
-    font-size: 14.5px;
+    font-size: 14px;
 }
 
 p {
-    font-size: 14.5px;
+    font-size: 14px;
     margin: 0;
     padding: 0;
 }
@@ -250,8 +250,8 @@ foreach ($data_nilai as $data) :
             <td style="width: 28%; text-align: left;" id="ttd">
                 <p style="">Pekalongan,</p>
                 <p style="">Kepala Sekolah</p><br><br><br><br><br>
-                <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. ABDUR ROZAK</p>
-                <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
+                <p style="text-decoration: underline; font-weight: bold; font-size: 12px;">Drs. ABDUR ROZAK</p>
+                <p style="font-weight: bold; font-size: 12px;">NIP. 19650802 199203 1 008</p>
             </td>
             </td>
         </tr>
