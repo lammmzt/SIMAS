@@ -122,15 +122,32 @@ tbody tr {
                                 <select class="form-select mt-2 select2" id="kelas_data_dapodik"
                                     name="kelas_data_dapodik">
                                     <option value="">Pilih Kelas</option>
-                                    <option value="XII Kartini 1">XII Kartini 1</option>
-                                    <option value="XII Kartini 2">XII Kartini 2</option>
-                                    <option value="XII Kartini 3">XII Kartini 3</option>
-                                    <option value="XII Kartini 4">XII Kartini 4</option>
-                                    <option value="XII Kartini 5">XII Kartini 5</option>
-                                    <option value="XII Kartini 6">XII Kartini 6</option>
-                                    <option value="XII Kartini 7">XII Kartini 7</option>
-                                    <option value="XII Kartini 8">XII Kartini 8</option>
-                                    <option value="XII Kartini 9">XII Kartini 9</option>
+                                    <option value="XII Kartini 1"
+                                        <?= ($nama_kelas == 'XII Kartini 1') ? 'slected' : ''?>>
+                                    <option value="XII Kartini 2"
+                                        <?= ($nama_kelas == 'XII Kartini 2') ? 'slected' : ''?>>XII
+                                        Kartini 2</option>
+                                    <option value="XII Kartini 3"
+                                        <?= ($nama_kelas == 'XII Kartini 3') ? 'slected' : ''?>>XII
+                                        Kartini 3</option>
+                                    <option value="XII Kartini 4"
+                                        <?= ($nama_kelas == 'XII Kartini 4') ? 'slected' : ''?>>XII
+                                        Kartini 4</option>
+                                    <option value="XII Kartini 5"
+                                        <?= ($nama_kelas == 'XII Kartini 5') ? 'slected' : ''?>>XII
+                                        Kartini 5</option>
+                                    <option value="XII Kartini 6"
+                                        <?= ($nama_kelas == 'XII Kartini 6') ? 'slected' : ''?>>XII
+                                        Kartini 6</option>
+                                    <option value="XII Kartini 7"
+                                        <?= ($nama_kelas == 'XII Kartini 7') ? 'slected' : ''?>>XII
+                                        Kartini 7</option>
+                                    <option value="XII Kartini 8"
+                                        <?= ($nama_kelas == 'XII Kartini 8') ? 'slected' : ''?>>XII
+                                        Kartini 8</option>
+                                    <option value="XII Kartini 9"
+                                        <?= ($nama_kelas == 'XII Kartini 9') ? 'slected' : ''?>>XII
+                                        Kartini 9</option>
                                 </select>
                             </div>
                         </form>

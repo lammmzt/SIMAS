@@ -541,6 +541,7 @@ class Kelulusan extends BaseController
         $data['semester'] = $semesterModel->findAll();
         $data['title'] = 'SIMAS | Nilai SKL'; // set judul halaman
         $data['active'] = 'SKL'; // set active menu
+        $data['nama_kelas'] = $nama_kelas;
         return view('Admin/Kelulusan/Analisis/index', $data); // tampilkan view dashboard
     }
 
