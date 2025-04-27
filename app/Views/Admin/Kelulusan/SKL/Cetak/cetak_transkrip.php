@@ -180,6 +180,7 @@ p {
         $jumlah_data_smt_6 = 0;
         $jumlah_nilai_ujian = 0;
         $no = 1;
+        
         foreach ($urutan_mapel_umum as $key => $value) {
             // check if mapel exist in groupNilaiRaporByMapel
             if (array_key_exists($value['id_mapel'], $groupNilaiRaporByMapel)) {
