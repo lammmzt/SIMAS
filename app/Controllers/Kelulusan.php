@@ -175,7 +175,7 @@ class Kelulusan extends BaseController
             $data['urutan_mapel_pilihan'] = $urutanMapelPilihan;
             $data['urutan_mapel_lokal'] = $urutanMapelLokal;
             $data['imageSrc'] = $imageSrc;
-            $html = view('Admin/Kelulusan/SKL/cetak/cetak_skl', $data);
+            $html = view('Admin/Kelulusan/SKL/Cetak/cetak_skl', $data);
         
             // Tulis HTML ke PDF
             $mpdf->WriteHTML($html);
@@ -261,7 +261,7 @@ class Kelulusan extends BaseController
             $data['urutan_mapel_umum'] = $urutanMapelUmum;
             $data['urutan_mapel_pilihan'] = $urutanMapelPilihan;
             $data['urutan_mapel_lokal'] = $urutanMapelLokal;
-            $html = view('Admin/Kelulusan/SKL/cetak/cetak_all_SKL', $data);
+            $html = view('Admin/Kelulusan/SKL/Cetak/cetak_all_SKL', $data);
             $mpdf->WriteHTML($html);
             $nama_file = 'skl_' . $nama_kelas . '.pdf';
             
@@ -359,8 +359,8 @@ class Kelulusan extends BaseController
             $data['urutan_mapel_pilihan'] = $urutanMapelPilihan;
             $data['urutan_mapel_lokal'] = $urutanMapelLokal;
             // dd($data);
-            // return view('Admin/Kelulusan/SKL/cetak/cetak_transkrip', $data);
-            $html = view('Admin/Kelulusan/SKL/cetak/cetak_all_transkrip', $data);
+            // return view('Admin/Kelulusan/SKL/Cetak/cetak_transkrip', $data);
+            $html = view('Admin/Kelulusan/SKL/Cetak/cetak_all_transkrip', $data);
             $mpdf->WriteHTML($html);
             $nama_file = 'transkrip_' . $nama_kelas . '.pdf';
             
@@ -478,7 +478,7 @@ class Kelulusan extends BaseController
             $data['urutan_mapel_pilihan'] = $urutanMapelPilihan;
             $data['urutan_mapel_lokal'] = $urutanMapelLokal;
             $data['imageSrc'] = $imageSrc;
-            $html = view('Admin/Kelulusan/SKL/cetak/cetak_transkrip', $data);
+            $html = view('Admin/Kelulusan/SKL/Cetak/cetak_transkrip', $data);
         
             // Tulis HTML ke PDF
             $mpdf->WriteHTML($html);
@@ -555,7 +555,7 @@ class Kelulusan extends BaseController
     }
     
     public function previewTemplateAnalsis(){
-        return view('Admin/Kelulusan/Analisis/cetak/cetak_all_analisis');
+        return view('Admin/Kelulusan/Analisis/Cetak/cetak_all_analisis');
     }
     
     public function cetakSemuaAnalisis()
@@ -629,8 +629,8 @@ class Kelulusan extends BaseController
             $data['urutan_mapel_pilihan'] = $urutanMapelPilihan;
             $data['urutan_mapel_lokal'] = $urutanMapelLokal;
             // dd($data);
-            // return view('Admin/Kelulusan/SKL/cetak/cetak_transkrip', $data);
-            $html = view('Admin/Kelulusan/Analisis/cetak/cetak_all_analisis', $data);
+            // return view('Admin/Kelulusan/SKL/Cetak/cetak_transkrip', $data);
+            $html = view('Admin/Kelulusan/Analisis/Cetak/cetak_all_analisis', $data);
             $mpdf->WriteHTML($html);
             $nama_file = 'analisis_' . $nama_kelas . '.pdf';
             
