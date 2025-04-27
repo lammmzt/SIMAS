@@ -11,11 +11,11 @@ table {
 
 td {
     padding: 3px;
-    font-size: 14px;
+    font-size: 14.5px;
 }
 
 p {
-    font-size: 14px;
+    font-size: 14.5px;
     margin: 0;
     padding: 0;
 }
