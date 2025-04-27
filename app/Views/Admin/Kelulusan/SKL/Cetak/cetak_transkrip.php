@@ -551,7 +551,7 @@ p {
             <td style="width: 45%"></td>
             <td style="width: 20%; margin-right: 20px; "></td>
             <td style="width: 28%; text-align: left;" id="ttd">
-                <p style="">Pekalongan,</p>
+                <p style="">Pekalongan, <?= formatDateIndo(date('Y-m-d')) ?></p>
                 <p style="">Kepala Sekolah</p><br><br><br><br><br>
                 <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. ABDUR ROZAK</p>
                 <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
