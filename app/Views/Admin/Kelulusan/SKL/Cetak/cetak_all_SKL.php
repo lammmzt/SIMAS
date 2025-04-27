@@ -1,3 +1,6 @@
+<?php 
+ini_set('memory_limit', '256M');
+?>
 <style>
 body {
     font-family: 'Times New Roman', Times, serif;
