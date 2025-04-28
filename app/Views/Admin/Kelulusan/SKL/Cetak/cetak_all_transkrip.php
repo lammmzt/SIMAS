@@ -70,7 +70,7 @@ foreach ($data_nilai as $data) :
     $groupNilaiKelasX = array();
     $groupNilaiKelasXI = array();
     $groupNilaiKelasXII = array();
-    $averageNilaiByMapel = array();
+    $averageNilaiByMapel = 0;
     // dd($groupNilaiRaporByMapel, $groupNilaiUjianByMapel);
 
 ?>
@@ -270,7 +270,7 @@ foreach ($data_nilai as $data) :
                 } else {
                     $rata_rata = 0;
                 }
-                $averageNilaiByMapel += $rata_rata;
+                $averageNilaiByMapel += number_format($rata_rata, 2);
                 
                 echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
                 echo '</tr>';
@@ -370,7 +370,7 @@ foreach ($data_nilai as $data) :
                 } else {
                     $rata_rata = 0;
                 }
-                $averageNilaiByMapel += $rata_rata;
+                $averageNilaiByMapel += number_format($rata_rata, 2);
                 echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
                 echo '</tr>';
                 $no++;
@@ -475,7 +475,8 @@ foreach ($data_nilai as $data) :
                     $rata_rata = 0;
                 }
 
-                $averageNilaiByMapel += $rata_rata;
+                $averageNilaiByMapel += number_format($rata_rata, 2);
+                $IP_Kumulatif = $averageNilaiByMapel / 17;
                 echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
                 echo '</tr>';
                 $no++;
