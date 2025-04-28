@@ -260,7 +260,7 @@ p {
             
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                   $avgRapor = number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 / $jumlah_nilai,2);
+                    $avgRapor = number_format(($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai,2);
                     $averageRess = ($ujian != 0) ? ($avgRapor + $ujian) / 2 : $avgRapor;
                 } else {
                     $averageRess = 0;
@@ -360,7 +360,7 @@ p {
             
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                     $avgRapor = number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 / $jumlah_nilai,2);
+                     $avgRapor = number_format(($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai,2);
                      $averageRess = ($ujian != 0) ? ($avgRapor + $ujian) / 2 : $avgRapor;
                 } else {
                     $averageRess = 0;
@@ -467,7 +467,7 @@ p {
             
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                     $avgRapor = number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 / $jumlah_nilai,2);
+                     $avgRapor = number_format(($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai,2);
                      $averageRess = ($ujian != 0) ? ($avgRapor + $ujian) / 2 : $avgRapor;
                 } else {
                     $averageRess = 0;
