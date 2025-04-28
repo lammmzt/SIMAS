@@ -106,7 +106,7 @@ p {
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
             <h4 style="text-decoration: underline; font-weight: bold;">SURAT KETERANGAN LULUS</h4>
-            <h4 style="font-weight: bold">SMA NEGERI 1 PEKALONGAN</h4>
+            <h4 style="font-weight: bold">TAHUN AJARAN 2024/2025</h4>
             <p>Nomor : 420 / 128.a</p>
         </td>
         <td style="width: 25%"></td>
