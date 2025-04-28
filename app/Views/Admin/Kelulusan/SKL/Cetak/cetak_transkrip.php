@@ -260,7 +260,7 @@ p {
             
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                    $rata_rata = ($ujian != 0) ? ((($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai) + $ujian) / 2 : ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai;
+                    $rata_rata = ($ujian != 0) ? (((number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai) + $ujian) / 2 : (number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai;
                 } else {
                     $rata_rata = 0;
                 }
@@ -359,7 +359,7 @@ p {
             
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                     $rata_rata = ($ujian != 0) ? ((($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai) + $ujian) / 2 : ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai;
+                     $rata_rata = ($ujian != 0) ? (((number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai) + $ujian) / 2 : (number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai;
                 } else {
                     $rata_rata = 0;
                 }
@@ -465,7 +465,7 @@ p {
             
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                     $rata_rata = ($ujian != 0) ? ((($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai) + $ujian) / 2 : ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai;
+                     $rata_rata = ($ujian != 0) ? (((number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai) + $ujian) / 2 : (number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai;
                 } else {
                     $rata_rata = 0;
                 }

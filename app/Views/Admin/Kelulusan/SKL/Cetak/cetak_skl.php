@@ -81,13 +81,13 @@ p {
             }
             $averageNilaiUjian = $totalUjian / $countUjian;
             // calculate average nilai akhir
-            $averageNilaiAkhir = ($averageNilaiRapor + $averageNilaiUjian) / 2;
+            $averageNilaiAkhir = (number_format($averageNilaiRapor, 2) + $averageNilaiUjian) / 2;
         } else {
             // jika tidak ada nilai ujian, gunakan nilai rapor saja
             $averageNilaiAkhir = $averageNilaiRapor;
         }
         $jumlah_mapel++;
-        $total_nilai_akhir += number_format($averageNilaiAkhir, 2, '.', '');
+        $total_nilai_akhir += number_format($averageNilaiAkhir, 2);
         // dd($averageNilaiRapor);
         $groupAverageNilaiAkhirByMapel[$key] = array(
             'id_mapel' => $key,
@@ -129,6 +129,7 @@ p {
             <td><?= ucwords(strtolower($data_nilai[0]['tempat_lahir_data_dapodik'])) ?>,
                 <?= formatDateIndo($data_nilai[0]['tanggal_lahir_data_dapodik']) ?></td>
         </tr>
+
         <tr>
             <td>NIS / NISN</td>
             <td>:</td>

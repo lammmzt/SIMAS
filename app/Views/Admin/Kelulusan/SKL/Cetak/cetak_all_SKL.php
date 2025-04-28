@@ -88,7 +88,7 @@ foreach ($data_nilai as $data) :
             }
             $averageNilaiUjian = $totalUjian / $countUjian;
             // calculate average nilai akhir
-            $averageNilaiAkhir = ($averageNilaiRapor + $averageNilaiUjian) / 2;
+            $averageNilaiAkhir = (number_format($averageNilaiRapor, 2) + $averageNilaiUjian) / 2;
         } else {
             // jika tidak ada nilai ujian, gunakan nilai rapor saja
             $averageNilaiAkhir = $averageNilaiRapor;
