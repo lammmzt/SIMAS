@@ -218,7 +218,6 @@ tbody tr {
                             foreach ($data_nilai as $data) {
                                 $groupMapelAktif = array();
                                    
-                                   
                                 // dd($data);
                                 foreach ($data as $key => $value) {
                                     if ($value['tipe_nilai'] == '1') {
