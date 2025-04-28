@@ -135,11 +135,6 @@ foreach ($data_nilai as $data) :
             <td><?= ucwords(strtolower($data[0]['tempat_lahir_data_dapodik'])) ?>,
                 <?= formatDateIndo($data[0]['tanggal_lahir_data_dapodik']) ?></td>
         </tr>
-        <tr>
-            <td>Nama Orang Tua/Wali</td>
-            <td>:</td>
-            <td><?= ucwords(strtolower($data[0]['nama_ayah_data_dapodik'])) ?></td>
-        </tr>
 
         <tr>
             <td>NIS / NISN</td>

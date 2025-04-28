@@ -130,12 +130,6 @@ p {
                 <?= formatDateIndo($data_nilai[0]['tanggal_lahir_data_dapodik']) ?></td>
         </tr>
         <tr>
-            <td>Nama Orang Tua/Wali</td>
-            <td>:</td>
-            <td><?= ucwords(strtolower($data_nilai[0]['nama_ayah_data_dapodik'])) ?></td>
-        </tr>
-
-        <tr>
             <td>NIS / NISN</td>
             <td>:</td>
             <td><?= $data_nilai[0]['nis_data_dapodik'] ?> / <?= $data_nilai[0]['id_data_dapodik'] ?></td>
