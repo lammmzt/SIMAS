@@ -148,8 +148,8 @@ foreach ($data_nilai as $data) :
         </tr>
     </table>
     <p style="margin-top: 3px;">
-        Dinyatakan <b>LULUS</b> dari satuan pendidikan berdasarkan kreteria kelulusan SMA Negeri 1 Pekalongan, Kota
-        Pekalongan Tahun Ajaran 2024/2025 dengan nilai sebagai berikut:
+        Dinyatakan <b>LULUS</b> dari satuan pendidikan berdasarkan kriteria kelulusan SMA Negeri 1 Pekalongan, Tahun
+        Ajaran 2024/2025 dengan nilai sebagai berikut:
     </p>
     <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
         <tr>
