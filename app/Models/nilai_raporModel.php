@@ -57,7 +57,8 @@ class nilai_raporModel extends Model
         ->join('urutan_mapel', 'urutan_mapel.id_mapel = mapel.id_mapel')
         ->join('semester', 'semester.id_semester = nilai_rapor.id_semester')
         ->join('data_dapodik', 'data_dapodik.id_data_dapodik = nilai_rapor.id_data_dapodik')
-        ->where(['data_dapodik.kelas_data_dapodik' => $id_kelas]);
+        ->where(['data_dapodik.kelas_data_dapodik' => $id_kelas])
+        ->orderBy('data_dapodik.nama_lengkap_data_dapodik', 'ASC');
     }
 }
 ?>

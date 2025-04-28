@@ -123,30 +123,31 @@ tbody tr {
                                     name="kelas_data_dapodik">
                                     <option value="">Pilih Kelas</option>
                                     <option value="XII Kartini 1"
-                                        <?= ($nama_kelas == 'XII Kartini 1') ? 'slected' : ''?>>
+                                        <?= ($nama_kelas == 'XII Kartini 1' ? 'slected' : '')?>> XII Kartini 1
+                                    </option>
                                     <option value="XII Kartini 2"
-                                        <?= ($nama_kelas == 'XII Kartini 2') ? 'slected' : ''?>>XII
+                                        <?= ($nama_kelas == 'XII Kartini 2' ? 'slected' : '')?>>XII
                                         Kartini 2</option>
                                     <option value="XII Kartini 3"
-                                        <?= ($nama_kelas == 'XII Kartini 3') ? 'slected' : ''?>>XII
+                                        <?= ($nama_kelas == 'XII Kartini 3' ? 'slected' : '')?>>XII
                                         Kartini 3</option>
                                     <option value="XII Kartini 4"
-                                        <?= ($nama_kelas == 'XII Kartini 4') ? 'slected' : ''?>>XII
+                                        <?= ($nama_kelas == 'XII Kartini 4' ? 'slected' : '')?>>XII
                                         Kartini 4</option>
                                     <option value="XII Kartini 5"
-                                        <?= ($nama_kelas == 'XII Kartini 5') ? 'slected' : ''?>>XII
+                                        <?= ($nama_kelas == 'XII Kartini 5' ? 'slected' : '')?>>XII
                                         Kartini 5</option>
                                     <option value="XII Kartini 6"
-                                        <?= ($nama_kelas == 'XII Kartini 6') ? 'slected' : ''?>>XII
+                                        <?= ($nama_kelas == 'XII Kartini 6' ? 'slected' : '')?>>XII
                                         Kartini 6</option>
                                     <option value="XII Kartini 7"
-                                        <?= ($nama_kelas == 'XII Kartini 7') ? 'slected' : ''?>>XII
+                                        <?= ($nama_kelas == 'XII Kartini 7' ? 'slected' : '')?>>XII
                                         Kartini 7</option>
                                     <option value="XII Kartini 8"
-                                        <?= ($nama_kelas == 'XII Kartini 8') ? 'slected' : ''?>>XII
+                                        <?= ($nama_kelas == 'XII Kartini 8' ? 'slected' : '')?>>XII
                                         Kartini 8</option>
                                     <option value="XII Kartini 9"
-                                        <?= ($nama_kelas == 'XII Kartini 9') ? 'slected' : ''?>>XII
+                                        <?= ($nama_kelas == 'XII Kartini 9' ? 'slected' : '')?>>XII
                                         Kartini 9</option>
                                 </select>
                             </div>
@@ -154,7 +155,7 @@ tbody tr {
                     </div>
                     <div class="col-md-9 py-2 d-flex justify-content-end align-items-end ">
                         <!-- btn generate dan cetak -->
-                        <button type="button" class="btn btn-secondary btn-md btn-sm mx-2" id="btn-cetak-all">
+                        <button type="button" class="btn btn-secondary btn-md btn-sm mx-2" id="btn-cetak-prev">
                             <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -169,7 +170,24 @@ tbody tr {
                                 <path d="M9.29639 13.5942L11.6414 15.9492L13.9864 13.5942" stroke="currentColor"
                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
-                            Cetak Analisis
+                            Print Preview
+                        </button>
+                        <button type="button" class="btn btn-primary btn-md btn-sm mx-2" id="btn-cetak-pdf">
+                            <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M14.7369 2.76175H8.08489C6.00489 2.75375 4.30089 4.41075 4.25089 6.49075V17.2277C4.20589 19.3297 5.87389 21.0697 7.97489 21.1147C8.01189 21.1147 8.04889 21.1157 8.08489 21.1147H16.0729C18.1629 21.0407 19.8149 19.3187 19.8029 17.2277V8.03775L14.7369 2.76175Z"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M14.4751 2.75V5.659C14.4751 7.079 15.6241 8.23 17.0441 8.234H19.7981"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M11.6421 15.9497V9.90869" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M9.29639 13.5942L11.6414 15.9492L13.9864 13.5942" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            Print PDF
                         </button>
                     </div>
                 </div>
@@ -605,27 +623,44 @@ tbody tr {
 
                             <tr>
                                 <td style="text-align: center; background-color: #9BEC00;">NS</td>
-                                <?php 
-                                    foreach ($data_mapel as $key => $value) {
-                                        if (array_key_exists($value['id_mapel'], $groupNilaiRaporByMapel)) {
-                                            if (array_key_exists($value['id_mapel'], $sumNilaiRaporByMapel)) {
-                                                $averageRapor = $sumNilaiRaporByMapel[$value['id_mapel']]['total_nilai'] / $sumNilaiRaporByMapel[$value['id_mapel']]['total_data'];
-                                                $averageRapor = number_format($averageRapor, 2);
+                                <?php  
+                                foreach ($data_mapel as $key => $value) {
+                                    if (array_key_exists($value['id_mapel'], $groupNilaiRaporByMapel)) {
+                                        if (array_key_exists($value['id_mapel'], $sumNilaiRaporByMapel)) {
+                                            $totalNilai = $sumNilaiRaporByMapel[$value['id_mapel']]['total_nilai'];
+                                            $totalData = $sumNilaiRaporByMapel[$value['id_mapel']]['total_data'];
+                                        
+                                            // Pastikan totalNilai dan totalData adalah angka
+                                            if (is_numeric($totalNilai) && is_numeric($totalData) && $totalData != 0) {
+                                                $averageRapor = $totalNilai / $totalData;
+                                                $averageRapor = number_format($averageRapor, 2, '.', '');
+                                            
                                                 if (array_key_exists($value['id_mapel'], $groupNilaiUjianByMapel)) {
-                                                    $average = ($averageRapor + $groupNilaiUjianByMapel[$value['id_mapel']][0]['nilai_rapor']) / 2;
-                                                }else{
+                                                    $nilaiUjian = $groupNilaiUjianByMapel[$value['id_mapel']][0]['nilai_rapor'];
+                                                    
+                                                    // Pastikan nilaiUjian adalah angka
+                                                    if (is_numeric($nilaiUjian)) {
+                                                        $average = ($averageRapor + $nilaiUjian) / 2;
+                                                    } else {
+                                                        $average = $averageRapor;
+                                                    }
+                                                } else {
                                                     $average = $averageRapor;
                                                 }
+                                            
                                                 echo '<td style="text-align: center; background-color: #9BEC00;">' . number_format($average, 2, ',', '.') . '</td>';
                                             } else {
                                                 echo '<td style="text-align: center; background-color: #9BEC00;">-</td>';
                                             }
-                                        }else {
-                                            continue;
+                                        } else {
+                                            echo '<td style="text-align: center; background-color: #9BEC00;">-</td>';
                                         }
+                                    } else {
+                                        continue;
                                     }
-                                    // dd($sumNilaiRaporByMapel);
+                                }
                                 ?>
+
                             </tr>
 
                             <?php
@@ -646,6 +681,10 @@ tbody tr {
 <?= $this->endSection('konten'); ?>
 <?= $this->section('script'); ?>
 <script type="text/javascript">
+var nama_kelas = "<?= $nama_kelas ?>";
+if (nama_kelas != "") {
+    $('#kelas_data_dapodik').val(nama_kelas);
+}
 // when on change kelas
 $(document).ready(function() {
     $('#kelas_data_dapodik').change(function() {
@@ -667,6 +706,49 @@ $(document).ready(function() {
             "className": 'dt-body-center'
         }]
     });
+});
+// when click cetak prev
+$('#btn-cetak-prev').click(function() {
+    var kelas_data_dapodik = $('#kelas_data_dapodik').val();
+    if (kelas_data_dapodik == '') {
+        sweetalert('error', 'Gagal', 'Pilih kelas terlebih dahulu');
+    } else {
+        window.open('<?= base_url('Kelulusan/cetak_analisis/') ?>' +
+            kelas_data_dapodik,
+            '_blank');
+    }
+});
+
+// when click cetak pdf
+$('#btn-cetak-pdf').click(function() {
+    var kelas_data_dapodik = $('#kelas_data_dapodik').val();
+    if (kelas_data_dapodik == '') {
+        sweetalert('error', 'Gagal', 'Pilih kelas terlebih dahulu');
+    } else {
+        // add loading
+        $('#loading-page').show();
+        $.ajax({
+            url: '<?= base_url('Kelulusan/cetakSemuaAnalisis') ?>',
+            type: 'POST',
+            data: {
+                kelas_data_dapodik: kelas_data_dapodik
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    $('#loading-page').hide();
+                    window.open('<?= base_url('Assets/pdf/Analisis/') ?>' + response.data,
+                        '_blank');
+                } else {
+                    $('#loading-page').hide();
+                    sweetalert('error', 'Gagal', response.data);
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#loading-page').hide();
+                sweetalert('error', 'Gagal', 'Terjadi kesalahan pada server');
+            }
+        });
+    }
 });
 </script>
 <?= $this->endSection('script'); ?>

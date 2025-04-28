@@ -26,15 +26,8 @@ p {
 
 .container_tabel {
     text-align: justify;
-    margin: 6px 20px;
-}
-
-@media print {
-    @page {
-        size: 33cm 21cm;
-        margin: 6px 20px;
-    }
-
+    margin: 0 20px;
+    padding: 0;
 }
 </style>
 <table border="1" style="border-collapse: collapse; width: 100%; border: 1px solid black;">
@@ -505,16 +498,6 @@ p {
     </tfoot>
 </table>
 <script type="text/javascript">
-// on open print
-document.addEventListener("DOMContentLoaded", function() {
-    window.print();
-
-    window.onafterprint = function() {
-        window.close();
-    };
-
-});
-
 function formatDateIndo(date) {
     var monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
         "Juli", "Agustus", "September", "Oktober", "November", "Desember"
