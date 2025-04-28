@@ -140,9 +140,6 @@
                                 </div>
                                 <!--logo End-->
 
-
-
-
                                 <h4 class="logo-title">SIMAS</h4>
                             </div>
                             <button class="btn-close float-end"></button>
@@ -152,10 +149,14 @@
                                     href="<?= base_url('LandingPage'); ?>">
                                     Verval Data Siswa </a>
                             </li>
-                            <li class="nav-item  "><a class="nav-link <?= $active == 'Rapor' ? 'active':''; ?>"
+                            <li class="nav-item  "><a class="nav-link <?= $active == 'Home' ? 'active':''; ?>"
+                                    href="<?= base_url('Pengumuman'); ?>">
+                                    Pengumuman Kelulusan </a>
+                            </li>
+                            <!-- <li class="nav-item  "><a class="nav-link <?= $active == 'Rapor' ? 'active':''; ?>"
                                     href="<?= base_url('LandingPage/Rapor'); ?>">
                                     Verval Data Rapor </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div> <!-- container-fluid.// -->
                 </nav>

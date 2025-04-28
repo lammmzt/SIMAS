@@ -270,6 +270,7 @@ foreach ($data_nilai as $data) :
                 } else {
                     $rata_rata = 0;
                 }
+                $averageNilaiByMapel += $rata_rata;
                 
                 echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
                 echo '</tr>';
@@ -369,6 +370,7 @@ foreach ($data_nilai as $data) :
                 } else {
                     $rata_rata = 0;
                 }
+                $averageNilaiByMapel += $rata_rata;
                 echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
                 echo '</tr>';
                 $no++;
@@ -473,6 +475,7 @@ foreach ($data_nilai as $data) :
                     $rata_rata = 0;
                 }
 
+                $averageNilaiByMapel += $rata_rata;
                 echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
                 echo '</tr>';
                 $no++;
@@ -480,74 +483,13 @@ foreach ($data_nilai as $data) :
                 continue; // skip if mapel not exist in groupAverageNilaiAkhirByMapel
             }
         }
-
-        $average_smt_1 = 0;
-        $average_smt_2 = 0;
-        $average_smt_3 = 0;
-        $average_smt_4 = 0;
-        $average_smt_5 = 0;
-        $average_smt_6 = 0;
-        $average_ujian = 0;
-        // dd($jumlah_nilai_smt_1, $jumlah_nilai_smt_2, $jumlah_nilai_smt_3, $jumlah_nilai_smt_4, $jumlah_nilai_smt_5, $jumlah_nilai_smt_6, $jumlah_data_ujian, $jumlah_data_smt_1);
-        if ($jumlah_data_smt_1 > 0) {
-            $average_smt_1 = number_format($jumlah_nilai_smt_1 / $jumlah_data_smt_1, 2, '.', '');
-            // dd($average_smt_1);
-        } 
-        if ($jumlah_data_smt_2 > 0) {
-            $average_smt_2 = number_format($jumlah_nilai_smt_2 / $jumlah_data_smt_2, 2, '.', '');
-        }
-        if ($jumlah_data_smt_3 > 0) {
-            $average_smt_3 = number_format($jumlah_nilai_smt_3 / $jumlah_data_smt_3, 2, '.', '');
-        }
-        if ($jumlah_data_smt_4 > 0) {
-            $average_smt_4 = number_format($jumlah_nilai_smt_4 / $jumlah_data_smt_4, 2, '.', '');
-        }
-        if ($jumlah_data_smt_5 > 0) {
-            $average_smt_5 = number_format($jumlah_nilai_smt_5 / $jumlah_data_smt_5, 2, '.', '');
-        }
-        if ($jumlah_data_smt_6 > 0) {
-            $average_smt_6 = number_format($jumlah_nilai_smt_6 / $jumlah_data_smt_6, 2, '.', '');
-        }
-        if ($jumlah_data_ujian > 0) {
-            $average_ujian = number_format($jumlah_nilai_ujian / $jumlah_data_ujian, 2, '.', '');
-        }
-            
-        $average_all = ((($average_smt_1 + $average_smt_2 + $average_smt_3 + $average_smt_4 + $average_smt_5 + $average_smt_6) / 6) + $average_ujian)/2 ;
-        // dd($average_all);
         ?>
-        <tr>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="2">
-                Rata-rata Nilai
-            </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= ($jumlah_data_smt_1 > 0 ? $average_smt_1 : '-') ?>
-            </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= ($jumlah_data_smt_2 > 0 ? $average_smt_2 : '-') ?>
-            </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= ($jumlah_data_smt_3 > 0 ? $average_smt_3 : '-') ?>
-            </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= ($jumlah_data_smt_4 > 0 ? $average_smt_4 : '-') ?>
-            </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= ($jumlah_data_smt_5 > 0 ? $average_smt_5 : '-') ?>
-            </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= ($jumlah_data_smt_6 > 0 ? $average_smt_6 : '-') ?>
-            </td>
-            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= ($jumlah_data_ujian > 0 ? $average_ujian : '-') ?>
-            </td>
-
-        </tr>
         <tr>
             <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="2">
                 IP Kumulatif
             </td>
             <td style="border: 1px solid black; text-align: left; font-weight: bold;" colspan="8">
-                <?= number_format($average_all, 2, '.', '') ?>
+                <?= number_format($averageNilaiByMapel / 17, 2, '.', '') ?>
             </td>
         </tr>
     </table>

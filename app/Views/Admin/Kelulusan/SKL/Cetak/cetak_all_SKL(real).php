@@ -14,11 +14,11 @@ table {
 
 td {
     padding: 3px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 p {
-    font-size: 15px;
+    font-size: 14px;
     margin: 0;
     padding: 0;
 }
@@ -113,6 +113,8 @@ foreach ($data_nilai as $data) :
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
             <h4 style="text-decoration: underline; font-weight: bold;">SURAT KETERANGAN LULUS</h4>
+            <h4 style="font-weight: bold">SMA NEGERI 1 PEKALONGAN</h4>
+            <h4 style="font-weight: bold">SEKOLAH PENGGERAK</h4>
             <h4 style="font-weight: bold">TAHUN AJARAN 2024/2025</h4>
             <p>Nomor : 420 / 128.a</p>
         </td>
@@ -142,9 +144,14 @@ foreach ($data_nilai as $data) :
         </tr>
 
         <tr>
-            <td>NIS / NISN</td>
+            <td>Nomor Induk Siswa</td>
             <td>:</td>
-            <td><?= $data[0]['nis_data_dapodik'] ?> / <?= $data[0]['id_data_dapodik'] ?></td>
+            <td><?= $data[0]['nis_data_dapodik'] ?></td>
+        </tr>
+        <tr>
+            <td>Nomor Induk Siswa Nasional</td>
+            <td>:</td>
+            <td><?= $data[0]['id_data_dapodik'] ?></td>
         </tr>
     </table>
     <p style="margin-top: 3px;">
@@ -236,7 +243,8 @@ foreach ($data_nilai as $data) :
                 <?= number_format($averageNilai, 2, '.', '') ?></td>
         </tr>
     </table>
-    <p style="margin-top: 5px;">Demikian Surat Keterangan Lulus ini dibuat untuk digunakan sebagaimana semestinya.</p>
+    <p style="margin-top: 5px;">Surat Keterangan Lulus ini berlaku sementara sampai dengan
+        diterbitkannya Ijazah Tahun Ajaran 2024/2025, untuk menjadikan maklumat bagi yang berkepentingan.</p>
 
     <table style="margin-top: 3px;">
         <tr>
@@ -245,8 +253,8 @@ foreach ($data_nilai as $data) :
             <td style="width: 28%; text-align: left;" id="ttd">
                 <p style="">Pekalongan,</p>
                 <p style="">Kepala Sekolah</p><br><br><br><br><br>
-                <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. ABDUR ROZAK</p>
-                <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
+                <p style="text-decoration: underline; font-weight: bold; font-size: 12px;">Drs. ABDUR ROZAK</p>
+                <p style="font-weight: bold; font-size: 12px;">NIP. 19650802 199203 1 008</p>
             </td>
             </td>
         </tr>

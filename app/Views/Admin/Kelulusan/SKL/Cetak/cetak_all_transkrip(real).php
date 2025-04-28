@@ -1,3 +1,6 @@
+<?php 
+ini_set('memory_limit', '256M');
+?>
 <style>
 body {
     font-family: 'Times New Roman', Times, serif;
@@ -47,10 +50,16 @@ p {
     }
 }
 
+$jumlah = count($data_nilai);
+$no_rows = 1;
+
+// dd($data_nilai);
+foreach ($data_nilai as $data) :
     $groupNilaiRaporByMapel = array();
     $groupNilaiUjianByMapel = array();
+    $no_rows++;
     // dd($data);
-    foreach ($data_nilai as $key => $value) {
+    foreach ($data as $key => $value) {
         if ($value['tipe_nilai'] == '1') {
             $groupNilaiRaporByMapel[$value['id_mapel']][] = $value;
         } else{
@@ -83,19 +92,18 @@ p {
         <tr>
             <td style="width: 15%; min-width: 15%;">Nama </td>
             <td style="width: 8px;">:</td>
-            <td style="width: 38%; min-width: 38%;">
-                <?= ucwords(strtolower($data_nilai[0]['nama_lengkap_data_dapodik'])) ?>
+            <td style="width: 38%; min-width: 38%;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?>
             </td>
             <td style="width: 2%; min-width: 2%;"></td>
             <td style="width: 12%; min-width: 12%;">Kelas</td>
             <td style="width: 8px; min-width: 8px;">:</td>
-            <td style="width: 31%; min-width: 31%;"><?= $data_nilai[0]['kelas_data_dapodik'] ?></td>
+            <td style="width: 31%; min-width: 31%;"><?= $data[0]['kelas_data_dapodik'] ?></td>
         </tr>
         <tr>
             <td style="width: 12%; min-width: 12%;">NIS / NISN</td>
             <td style="width: 8px;">:</td>
-            <td style="width: 38%; min-width: 38%;"><?= $data_nilai[0]['nis_data_dapodik'] ?> /
-                <?= $data_nilai[0]['id_data_dapodik'] ?></td>
+            <td style="width: 38%; min-width: 38%;"><?= $data[0]['nis_data_dapodik'] ?> /
+                <?= $data[0]['id_data_dapodik'] ?></td>
             <td style="width: 2%; min-width: 2%;"></td>
             <td style="width: 12%; min-width: 12%;">Sekolah</td>
             <td style="width: 8px; min-width: 8px;">:</td>
@@ -180,7 +188,6 @@ p {
         $jumlah_data_smt_6 = 0;
         $jumlah_nilai_ujian = 0;
         $no = 1;
-        
         foreach ($urutan_mapel_umum as $key => $value) {
             // check if mapel exist in groupNilaiRaporByMapel
             if (array_key_exists($value['id_mapel'], $groupNilaiRaporByMapel)) {
@@ -257,7 +264,6 @@ p {
                     $jumlah_nilai++;
                 }
 
-            
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
                     $rata_rata = ($ujian != 0) ? ((($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai) + $ujian) / 2 : ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai;
@@ -265,7 +271,6 @@ p {
                     $rata_rata = 0;
                 }
                 
-                $averageNilaiByMapel += $rata_rata;
                 echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
                 echo '</tr>';
                 $no++;
@@ -357,14 +362,13 @@ p {
                     $jumlah_nilai++;
                 }
             
+
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
                      $rata_rata = ($ujian != 0) ? ((($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai) + $ujian) / 2 : ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai;
                 } else {
                     $rata_rata = 0;
                 }
-                
-                $averageNilaiByMapel += $rata_rata;
                 echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
                 echo '</tr>';
                 $no++;
@@ -462,7 +466,6 @@ p {
                     $jumlah_nilai++;
                 }
 
-            
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
                      $rata_rata = ($ujian != 0) ? ((($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai) + $ujian) / 2 : ($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6) / $jumlah_nilai;
@@ -470,7 +473,6 @@ p {
                     $rata_rata = 0;
                 }
 
-                $averageNilaiByMapel += $rata_rata;
                 echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
                 echo '</tr>';
                 $no++;
@@ -479,15 +481,73 @@ p {
             }
         }
 
-       
+        $average_smt_1 = 0;
+        $average_smt_2 = 0;
+        $average_smt_3 = 0;
+        $average_smt_4 = 0;
+        $average_smt_5 = 0;
+        $average_smt_6 = 0;
+        $average_ujian = 0;
+        // dd($jumlah_nilai_smt_1, $jumlah_nilai_smt_2, $jumlah_nilai_smt_3, $jumlah_nilai_smt_4, $jumlah_nilai_smt_5, $jumlah_nilai_smt_6, $jumlah_data_ujian, $jumlah_data_smt_1);
+        if ($jumlah_data_smt_1 > 0) {
+            $average_smt_1 = number_format($jumlah_nilai_smt_1 / $jumlah_data_smt_1, 2, '.', '');
+            // dd($average_smt_1);
+        } 
+        if ($jumlah_data_smt_2 > 0) {
+            $average_smt_2 = number_format($jumlah_nilai_smt_2 / $jumlah_data_smt_2, 2, '.', '');
+        }
+        if ($jumlah_data_smt_3 > 0) {
+            $average_smt_3 = number_format($jumlah_nilai_smt_3 / $jumlah_data_smt_3, 2, '.', '');
+        }
+        if ($jumlah_data_smt_4 > 0) {
+            $average_smt_4 = number_format($jumlah_nilai_smt_4 / $jumlah_data_smt_4, 2, '.', '');
+        }
+        if ($jumlah_data_smt_5 > 0) {
+            $average_smt_5 = number_format($jumlah_nilai_smt_5 / $jumlah_data_smt_5, 2, '.', '');
+        }
+        if ($jumlah_data_smt_6 > 0) {
+            $average_smt_6 = number_format($jumlah_nilai_smt_6 / $jumlah_data_smt_6, 2, '.', '');
+        }
+        if ($jumlah_data_ujian > 0) {
+            $average_ujian = number_format($jumlah_nilai_ujian / $jumlah_data_ujian, 2, '.', '');
+        }
+            
+        $average_all = ((($average_smt_1 + $average_smt_2 + $average_smt_3 + $average_smt_4 + $average_smt_5 + $average_smt_6) / 6) + $average_ujian)/2 ;
+        // dd($average_all);
         ?>
+        <tr>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="2">
+                Rata-rata Nilai
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= ($jumlah_data_smt_1 > 0 ? $average_smt_1 : '-') ?>
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= ($jumlah_data_smt_2 > 0 ? $average_smt_2 : '-') ?>
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= ($jumlah_data_smt_3 > 0 ? $average_smt_3 : '-') ?>
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= ($jumlah_data_smt_4 > 0 ? $average_smt_4 : '-') ?>
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= ($jumlah_data_smt_5 > 0 ? $average_smt_5 : '-') ?>
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= ($jumlah_data_smt_6 > 0 ? $average_smt_6 : '-') ?>
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= ($jumlah_data_ujian > 0 ? $average_ujian : '-') ?>
+            </td>
 
+        </tr>
         <tr>
             <td style="border: 1px solid black; text-align: center; font-weight: bold; height: 26px;" colspan="2">
                 IP Kumulatif
             </td>
             <td style="border: 1px solid black; text-align: left; font-weight: bold;" colspan="8">
-                <?= number_format($averageNilaiByMapel / 17, 2, '.', '') ?>
+                <?= number_format($average_all, 2, '.', '') ?>
             </td>
         </tr>
     </table>
@@ -506,6 +566,10 @@ p {
         </tr>
     </table>
 </div>
+<?php if ($no_rows <= $jumlah) : ?>
+<div style="page-break-after: always;"></div>
+<?php endif; ?>
+<?php endforeach; ?>
 <script type="text/javascript">
 function formatDateIndo(date) {
     var monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
