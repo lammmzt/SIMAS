@@ -40,6 +40,7 @@ p {
 <table border="1" style="border-collapse: collapse; width: 100%; border: 1px solid black;">
     <?php 
     if($data_mapel != null):
+        ini_set('memory_limit', '256M');
         foreach ($data_nilai as $data) {
             $groupMapelAktif = array();
                
