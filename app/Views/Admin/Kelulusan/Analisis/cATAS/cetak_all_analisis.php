@@ -497,7 +497,7 @@ p {
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="5" style="text-align: center;">Keterangan :Keterangan : NS adalah nilia rata-rata dari mapel
+            <td colspan="5" style="text-align: center;">Keterangan : NS adalah nilia rata-rata dari mapel
                 tiap
                 semester yang kemudian ditambah nilai ASAJ dan dibagi 2.</td>
         </tr>
