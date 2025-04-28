@@ -191,7 +191,7 @@ p {
                 $smt5 = 0;
                 $smt6 = 0;
                 $ujian = 0;
-                $rata_rata = 0;
+                $averageRess = 0;
                 foreach ($groupNilaiRaporByMapel[$value['id_mapel']] as $key2 => $value2) {
                     if ($value2['tahun_ajaran'] == '2022/2023' && $value2['nama_semester'] == '1') {
                         $smt1 = $value2['nilai_rapor'];
@@ -260,13 +260,14 @@ p {
             
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                    $rata_rata = ($ujian != 0) ? (((number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai) + $ujian) / 2 : (number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai;
+                   $avgRapor = number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 / $jumlah_nilai,2);
+                    $averageRess = ($ujian != 0) ? ($avgRapor + $ujian) / 2 : $avgRapor;
                 } else {
-                    $rata_rata = 0;
+                    $averageRess = 0;
                 }
                 
-                $averageNilaiByMapel += number_format($rata_rata, 2);
-                echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
+                $averageNilaiByMapel += number_format($averageRess, 2);
+                echo '<td style="border: 1px solid black; text-align: center;">' . number_format($averageRess, 2, '.', '') . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -291,7 +292,7 @@ p {
                 $smt5 = 0;
                 $smt6 = 0;
                 $ujian = 0;
-                $rata_rata = 0;
+                $averageRess = 0;
                 foreach ($groupNilaiRaporByMapel[$value['id_mapel']] as $key2 => $value2) {
                     if ($value2['tahun_ajaran'] == '2022/2023' && $value2['nama_semester'] == '1') {
                         $smt1 = $value2['nilai_rapor'];
@@ -359,13 +360,14 @@ p {
             
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                     $rata_rata = ($ujian != 0) ? (((number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai) + $ujian) / 2 : (number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai;
+                     $avgRapor = number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 / $jumlah_nilai,2);
+                     $averageRess = ($ujian != 0) ? ($avgRapor + $ujian) / 2 : $avgRapor;
                 } else {
-                    $rata_rata = 0;
+                    $averageRess = 0;
                 }
                 
-                $averageNilaiByMapel += number_format($rata_rata, 2);
-                echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
+                $averageNilaiByMapel += number_format($averageRess, 2);
+                echo '<td style="border: 1px solid black; text-align: center;">' . number_format($averageRess, 2, '.', '') . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -390,7 +392,7 @@ p {
                 $smt5 = 0;
                 $smt6 = 0;
                 $ujian = 0;
-                $rata_rata = 0;
+                $averageRess = 0;
                 foreach ($groupNilaiRaporByMapel[$value['id_mapel']] as $key2 => $value2) {
                     if ($value2['tahun_ajaran'] == '2022/2023' && $value2['nama_semester'] == '1') {
                         $smt1 = $value2['nilai_rapor'];
@@ -465,14 +467,15 @@ p {
             
                 // hitung rata-rata
                 if ($jumlah_nilai > 0) {
-                     $rata_rata = ($ujian != 0) ? (((number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai) + $ujian) / 2 : (number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6, 2)) / $jumlah_nilai;
+                     $avgRapor = number_format($smt1 + $smt2 + $smt3 + $smt4 + $smt5 + $smt6 / $jumlah_nilai,2);
+                     $averageRess = ($ujian != 0) ? ($avgRapor + $ujian) / 2 : $avgRapor;
                 } else {
-                    $rata_rata = 0;
+                    $averageRess = 0;
                 }
 
-                $averageNilaiByMapel += number_format($rata_rata, 2);
+                $averageNilaiByMapel += number_format($averageRess, 2);
                 $IP_Kumulatif = $averageNilaiByMapel / 17;
-                echo '<td style="border: 1px solid black; text-align: center;">' . number_format($rata_rata, 2, '.', '') . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;">' . number_format($averageRess, 2, '.', '') . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
