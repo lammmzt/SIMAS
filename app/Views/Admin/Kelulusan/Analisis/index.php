@@ -405,12 +405,11 @@ tbody tr {
                                     // dd($sumNilaiRaporByMapel);
                                 ?>
                                 <td style="text-align: center; width: 3%; min-width: 3%; max-width: 3%; writing-mode: vertical-rl; transform: rotate(180deg);"
-                                    rowspan="9">Sikap</td>
+                                    rowspan="9">Sangat Baik</td>
                                 <td style=" text-align: center; width: 3%; min-width: 3%; max-width: 3%; writing-mode: vertical-rl; transform: rotate(180deg);"
-                                    rowspan="9">Kehadiran</td>
+                                    rowspan="9"></td>
                                 <td style="text-align: center; width: 3%; min-width: 3%; max-width: 3%; writing-mode: vertical-rl; transform: rotate(180deg);"
-                                    rowspan="9">Lulus/Tidak
-                                    Lulus</td>
+                                    rowspan="9">LULUS</td>
                             </tr>
                             <tr>
                                 <td style="text-align: center;">SMT 2</td>
