@@ -490,7 +490,7 @@ foreach ($data_nilai as $data) :
                 IP Kumulatif
             </td>
             <td style="border: 1px solid black; text-align: left; font-weight: bold;" colspan="8">
-                <?= number_format($averageNilaiByMapel / 17, 2, '.', '') ?>
+                <?= number_format($IP_Kumulatif, 2, '.', '') ?>
             </td>
         </tr>
     </table>
