@@ -498,10 +498,9 @@ p {
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="5" style="text-align: center;">Keterangan :<br> 1. Nilai Rapor adalah nilai yang diperoleh
-                siswa dari hasil penilaian harian, UTS, UAS, dan Ujian Akhir Semester.<br> 2. Nilai ASAJ adalah nilai
-                yang diperoleh siswa dari hasil penilaian akhir tahun.<br> 3. Nilai NS adalah nilai akhir semester yang
-                diperoleh siswa dari rata-rata nilai rapor dan nilai ASAJ.</td>
+            <td colspan="5" style="text-align: center;">Keterangan :Keterangan : NS adalah nilia rata-rata dari mapel
+                tiap
+                semester yang kemudian ditambah nilai ASAJ dan dibagi 2.</td>
         </tr>
     </tfoot>
 </table>
