@@ -194,9 +194,9 @@ body {
                 <div class="row m-2">
                     <div class="col-md-12">
                         <!-- detail nama  -->
+                        <p>Pekalongan, 05 Mei 2025</p>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <p>Pekalongan, 05 Mei 2025</p>
                                 <h3 class="font-weight-bold" id="hasil_nama_lengkap"></h3>
                                 <p id="hasil_nama_kelas"></p>
                             </div>
