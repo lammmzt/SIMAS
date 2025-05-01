@@ -196,7 +196,7 @@ body {
                         <!-- detail nama  -->
                         <div class="d-flex justify-content-between">
                             <div>
-                                <!-- <p>1926 - 0101213213</p> -->
+                                <p>Pekalongan, 05 Mei 2025</p>
                                 <h3 class="font-weight-bold" id="hasil_nama_lengkap"></h3>
                                 <p id="hasil_nama_kelas"></p>
                             </div>
