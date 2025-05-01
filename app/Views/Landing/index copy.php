@@ -46,40 +46,29 @@
             <!--Nav Start-->
             <nav class="nav navbar navbar-expand-lg navbar-light iq-navbar">
                 <div class="container-fluid navbar-inner">
-                    <!-- <button data-trigger="navbar_main" class="d-xl-none btn btn-primary rounded-pill p-1 pt-0"
+                    <button data-trigger="navbar_main" class="d-xl-none btn btn-primary rounded-pill p-1 pt-0"
                         type="button">
                         <svg width="20px" class="icon-20" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z">
                             </path>
                         </svg>
-                    </button> -->
+                    </button>
                     <a href="<?= base_url('LandingPage'); ?>" class="navbar-brand">
                         <img src="<?= base_url('Assets/img/LOGO SMANSA.png'); ?>" class="img-fluid" alt="logo"
                             width="50">
                         <h4 class="logo-title">SIMAS</h4>
                     </a>
 
-                    <div class="container_mobile navbar-toggler border-0">
-                        <div class="color_themes light_mode mx-2" data-setting="color-mode" data-name="color"
-                            data-value="dark" id="dark_mobile" style="display: none;">
-                            <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill="currentColor"
-                                    d="M9,2C7.95,2 6.95,2.16 6,2.46C10.06,3.73 13,7.5 13,12C13,16.5 10.06,20.27 6,21.54C6.95,21.84 7.95,22 9,22A10,10 0 0,0 19,12A10,10 0 0,0 9,2Z" />
-                            </svg>
-                            <span class="ms-2 ">
-                        </div>
-                        <div class="color_themes dark_mode mx-2 text-white" data-setting="color-mode" data-name="color"
-                            data-value="light" id="light_mobile" style="display: none;">
-                            <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill="currentColor"
-                                    d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" />
-                            </svg>
-                            <span class="ms-2 "></span>
-                        </div>
-                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <span class="navbar-toggler-bar bar1 mt-2"></span>
+                            <span class="navbar-toggler-bar bar2"></span>
+                            <span class="navbar-toggler-bar bar3"></span>
+                        </span>
+                    </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto  navbar-list mb-2 mb-lg-0">
 
@@ -128,12 +117,17 @@
                     </div>
                 </div>
             </nav>
-            <!-- <div class="navbar dual-horizontal">
+            <div class="navbar dual-horizontal">
+                <!-- Horizontal Menu Start -->
                 <nav id="navbar_main"
                     class="mobile-offcanvas nav navbar navbar-expand-xl hover-nav horizontal-nav mx-md-auto">
                     <div class="container-fluid">
                         <div class="offcanvas-header px-0">
                             <div class="navbar-brand ms-3">
+                                <!--Logo start-->
+                                <!--logo End-->
+
+                                <!--Logo start-->
                                 <div class="logo-main">
                                     <div class="logo-normal">
                                         <img src="<?= base_url('Assets/img/LOGO SMANSA.png'); ?>" class="img-fluid"
@@ -144,6 +138,8 @@
                                             alt="logo" width="50">
                                     </div>
                                 </div>
+                                <!--logo End-->
+
                                 <h4 class="logo-title">SIMAS</h4>
                             </div>
                             <button class="btn-close float-end"></button>
@@ -157,14 +153,15 @@
                                     href="<?= base_url('Pengumuman'); ?>">
                                     Pengumuman Kelulusan </a>
                             </li>
-                            <li class="nav-item  "><a class="nav-link <?= $active == 'Rapor' ? 'active':''; ?>"
+                            <!-- <li class="nav-item  "><a class="nav-link <?= $active == 'Rapor' ? 'active':''; ?>"
                                     href="<?= base_url('LandingPage/Rapor'); ?>">
                                     Verval Data Rapor </a>
-                            </li>
+                            </li> -->
                         </ul>
-                    </div>
+                    </div> <!-- container-fluid.// -->
                 </nav>
-            </div> -->
+                <!-- Sidebar Menu End -->
+            </div>
             <!--Nav End-->
             <div class="conatiner-fluid content-inner pb-0">
                 <?= $this->renderSection('content') ?>
@@ -232,58 +229,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?= $this->renderSection('script')?>
-    <script>
-    $(document).ready(function() {
 
-
-        // check if dark mode is enabled
-        if (localStorage.getItem('color-mode') == 'dark') {
-            $('#dark').addClass('active');
-            $('#dark_mobile').addClass('active');
-            $('body').addClass('dark');
-            $('#light').show();
-            $('#light_mobile').show();
-            $('#dark').hide();
-            $('#dark_mobile').hide();
-        } else {
-            $('#light').addClass('active');
-            $('#light_mobile').addClass('active');
-            $('body').removeClass('dark');
-            $('#dark').show();
-            $('#dark_mobile').show();
-            $('#light').hide();
-            $('#light_mobile').hide();
-        }
-
-        // change color mode
-        $('.color_themes').click(function() {
-            var mode = $(this).data('value');
-            localStorage.setItem('color-mode', mode);
-            if (mode == 'dark') {
-                $('#dark').addClass('active');
-                $('#dark_mobile').addClass('active');
-                $('#light').removeClass('active');
-                $('#light_mobile').removeClass('active');
-                $('body').addClass('dark');
-                $('#light').show();
-                $('#dark').hide();
-                $('#light_mobile').show();
-                $('#dark_mobile').hide();
-            } else {
-                $('#light').addClass('active');
-                $('#dark').removeClass('active');
-                $('#light_mobile').addClass('active');
-                $('#dark_mobile').removeClass('active');
-                $('body').removeClass('dark');
-                $('#dark').show();
-                $('#light').hide();
-                $('#dark_mobile').show();
-                $('#light_mobile').hide();
-            }
-        });
-
-    });
-    </script>
 </body>
 
 </html>

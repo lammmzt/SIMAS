@@ -135,6 +135,40 @@ class LandingPage extends BaseController
         }
         return $this->response->setJSON($data);
     }
+
+    public function Pengumuman(): string // menampilkan halaman dashboard
+    {
+        $data['title'] = 'SIMAS | Pengumuman'; // set judul halaman
+        $data['active'] = 'Home'; // set active menu
+        return view('Landing/Pengumuman', $data); // tampilkan view dashboard
+    }
+
+    public function fetchSiswaByNISN(){
+        $nisn = $this->request->getPost('nisn');
+        $tgl_lahir = $this->request->getPost('tgl_lahir');
+        $data_siswaModel = new data_siswaModel();
+        $check = $data_siswaModel->where('nisn_data_siswa', $nisn)->where('tanggal_lahir_data_siswa', $tgl_lahir)->first();
+        if($check){
+            $data_siswa = $data_siswaModel->get_data_siswa($check['id_data_siswa']);
+            $nama_siswa = $data_siswa['nama_lengkap_data_siswa'];
+            $nama_siswa = str_replace("'", "", $nama_siswa);
+            $fileFoto = $nama_siswa . '.jpg';
+            $pathFoto = base_url('Assets/img/foto_siswa/' . $fileFoto);
+            if (file_exists($pathFoto)) {
+                $fileFoto = 'defaullt.png';
+            }
+            $data['foto_siswa_data_siswa'] = $fileFoto;
+            $data['error'] = false;
+            $data['status'] = '200';
+            $data['data'] = $data_siswa;
+        } else {
+            $data['error'] = true;
+            $data['status'] = '400';
+            $data['data'] = 'Data siswa tidak ditemukan';
+        }
+      
+        return $this->response->setJSON($data);
+    }
 }
 
 ?>

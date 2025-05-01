@@ -11,14 +11,14 @@ class Middleware implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (!session()->get('logged_in')) {
-            return redirect()->to('/LandingPage');
+            return redirect()->to('/Pengumuman');
         }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
         if (!session()->get('role') == 'Admin') {
-            return redirect()->to('/LandingPage');
+            return redirect()->to('/Pengumuman');
         }
     }
 }

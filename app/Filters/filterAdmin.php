@@ -11,7 +11,7 @@ class filterAdmin implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (session()->get('role') == '') {
-            return redirect()->to('/LandingPage');
+            return redirect()->to('/Pengumuman');
         }
     }
 

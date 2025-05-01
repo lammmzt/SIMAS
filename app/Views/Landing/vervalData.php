@@ -455,44 +455,6 @@
 <?= $this->endSection('content') ?>
 <?= $this->section('script') ?>
 <script type="text/javascript">
-$(document).ready(function() {
-
-
-    // check if dark mode is enabled
-    if (localStorage.getItem('color-mode') == 'dark') {
-        $('#dark').addClass('active');
-        $('body').addClass('dark');
-        $('#light').show();
-        $('#dark').hide();
-    } else {
-        $('#light').addClass('active');
-        $('body').removeClass('dark');
-        $('#dark').show();
-        $('#light').hide();
-    }
-
-    // change color mode
-    $('.color_themes').click(function() {
-        var mode = $(this).data('value');
-        localStorage.setItem('color-mode', mode);
-        if (mode == 'dark') {
-            $('#dark').addClass('active');
-            $('#light').removeClass('active');
-            $('body').addClass('dark');
-            $('#light').show();
-            $('#dark').hide();
-        } else {
-            $('#light').addClass('active');
-            $('#dark').removeClass('active');
-            $('body').removeClass('dark');
-            $('#dark').show();
-            $('#light').hide();
-        }
-    });
-
-});
-
-
 // fungsi sweetalert
 function sweetalert(icon, title, text, type) {
     Swal.fire({
