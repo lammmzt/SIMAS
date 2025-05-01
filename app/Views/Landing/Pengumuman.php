@@ -86,6 +86,7 @@ body {
 @media (max-width: 768px) {
     body {
         overflow-x: hidden;
+        max-width: 100%;
     }
 }
 </style>
