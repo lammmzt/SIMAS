@@ -197,7 +197,7 @@ body {
                         <p class="model_mobile mb-1">Pekalongan, 05 Mei 2025</p>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <p class="model_desktop m-0">Pekalongan, 05 Mei 2025</p>
+                                <p class="model_desktop mb-1">Pekalongan, 05 Mei 2025</p>
                                 <h3 class="font-weight-bold" id="hasil_nama_lengkap"></h3>
                                 <p id="hasil_nama_kelas"></p>
                             </div>
