@@ -89,6 +89,153 @@ body {
         max-width: 100%;
     }
 }
+
+@media (max-width: 576px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 320px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 280px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 240px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 200px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 160px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 120px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 100px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 768px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 576px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 480px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 360px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 320px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 280px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 240px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 200px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 160px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 120px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+@media (max-min: 100px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
 </style>
 <div class="row" id="form_cari">
     <div class="col-lg-12">
