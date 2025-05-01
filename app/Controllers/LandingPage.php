@@ -153,9 +153,10 @@ class LandingPage extends BaseController
             $nama_siswa = $data_siswa['nama_lengkap_data_siswa'];
             $nama_siswa = str_replace("'", "", $nama_siswa);
             $fileFoto = $nama_siswa . '.jpg';
-            $pathFoto = base_url('Assets/img/foto_siswa/' . $fileFoto);
-            if (file_exists($pathFoto)) {
-                $fileFoto = 'defaullt.png';
+            $pathFoto = FCPATH . 'Assets/img/foto_siswa/' . $fileFoto;
+                    
+            if (!file_exists($pathFoto)) {
+                $fileFoto = 'default.png';
             }
             $data['foto_siswa_data_siswa'] = $fileFoto;
             $data['error'] = false;
