@@ -85,7 +85,7 @@ body {
 
 @media (max-width: 768px) {
     body {
-        overflow: auto;
+        overflow-x: hidden;
     }
 }
 </style>
