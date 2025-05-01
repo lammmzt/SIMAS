@@ -87,14 +87,40 @@ body {
     font-size: 2rem;
 }
 
-@media (max-width: 924px) {
+@media (max-width: 1012px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    .model_mobile {
+        display: block !important;
+    }
+
+    .model_desktop {
+        display: none !important;
+    }
+
+    .header_lulus {
+        background: linear-gradient(to right, #034275, #0169be);
+    }
+
     .terompet {
         font-size: 1.2rem;
     }
 }
 
-/*  jika width 611px hide */
-@media (max-width: 611px) {
+@media (min-width: 1012px) {
+    .model_mobile {
+        display: none !important;
+    }
+
+    .model_desktop {
+        display: block !important;
+    }
+}
+
+@media (max-width: 768px) {
     body {
         overflow-x: hidden;
         max-width: 100%;
@@ -113,7 +139,37 @@ body {
     }
 }
 
-@media (min-width: 611px) {
+@media (min-width: 768px) {
+    .model_mobile {
+        display: none !important;
+    }
+
+    .model_desktop {
+        display: block !important;
+    }
+}
+
+/*  jika width 645px hide */
+@media (max-width: 645px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    .model_mobile {
+        display: block !important;
+    }
+
+    .model_desktop {
+        display: none !important;
+    }
+
+    .header_lulus {
+        background: linear-gradient(to right, #034275, #0169be);
+    }
+}
+
+@media (min-width: 645px) {
     .model_mobile {
         display: none !important;
     }
