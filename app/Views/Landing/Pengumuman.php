@@ -95,6 +95,11 @@ body {
 
 /*  jika width 611px hide */
 @media (max-width: 611px) {
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
     #logo_mobile {
         display: block !important;
     }
