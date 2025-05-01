@@ -83,157 +83,38 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
+.terompet {
+    font-size: 2rem;
+}
+
+@media (max-width: 924px) {
+    .terompet {
+        font-size: 1.2rem;
     }
 }
 
-@media (max-width: 576px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
+/*  jika width 611px hide */
+@media (max-width: 611px) {
+    #logo_mobile {
+        display: block !important;
+    }
+
+    #logo_desktop {
+        display: none !important;
+    }
+
+    .header_lulus {
+        background: linear-gradient(to right, #034275, #0169be);
     }
 }
 
-@media (max-width: 480px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
+@media (min-width: 611px) {
+    #logo_mobile {
+        display: none !important;
     }
-}
 
-@media (max-width: 360px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 320px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 280px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 240px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 200px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 160px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 120px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 100px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 768px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 576px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 480px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 360px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 320px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 280px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 240px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 200px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 160px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 120px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
-    }
-}
-
-@media (max-min: 100px) {
-    body {
-        overflow-x: hidden;
-        max-width: 100%;
+    #logo_desktop {
+        display: block !important;
     }
 }
 </style>
@@ -293,10 +174,12 @@ body {
     <div class="col-md-8 col-lg-8 col-xl-8 mx-auto mt-4 mb-4">
         <div class="overflow-hidden card" data-aos="fade-up" data-aos-delay="600">
             <div class="flex-wrap card-header d-flex justify-content-between header_lulus">
+                <img src="<?= base_url('Assets/img/LOGO SMANSA.svg'); ?>" alt="logo" class="img-fluid mb-2" width="80"
+                    height="80" id="logo_mobile" style="display: none;">
                 <h4 class="card-title  text-white fw-bold align-self-center mt-2 mb-4">
-                    SELAMAT! ANDA DINYATAKAN LULUS
+                    SELAMAT! ANDA DINYATAKAN LULUS <span class="terompet">🎉</span>
                 </h4>
-                <div class="d-flex align-items-center mt-2 mb-4">
+                <div class="d-flex align-items-center mt-2 mb-4" id="logo_desktop">
                     <img src="<?= base_url('Assets/img/LOGO SMANSA.svg'); ?>" alt="logo" class="img-fluid" width="100"
                         height="100">
                 </div>
