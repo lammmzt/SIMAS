@@ -237,10 +237,10 @@ body {
             <div class="flex-wrap card-header d-flex justify-content-between header_lulus">
                 <img src="<?= base_url('Assets/img/LOGO SMANSA.svg'); ?>" alt="logo" class="img-fluid mb-2 model_mobile"
                     width="80" height="80" style="display: none;">
-                <h4 class="card-title  text-white fw-bold align-self-center mt-2 mb-4">
+                <h4 class="card-title  text-white fw-bold align-self-center mt-2 mb-3">
                     SELAMAT! ANDA DINYATAKAN LULUS <span class="terompet">🎉</span>
                 </h4>
-                <div class="d-flex align-items-center mt-2 mb-4 model_desktop">
+                <div class="d-flex align-items-center mt-2 mb-3 model_desktop">
                     <img src="<?= base_url('Assets/img/LOGO SMANSA.svg'); ?>" alt="logo" class="img-fluid" width="100"
                         height="100">
                 </div>
