@@ -194,7 +194,7 @@ body {
                 <div class="row m-2">
                     <div class="col-md-12">
                         <!-- detail nama  -->
-                        <p class="model_mobile m-0">Pekalongan, 05 Mei 2025</p>
+                        <p class="model_mobile mb-1">Pekalongan, 05 Mei 2025</p>
                         <div class="d-flex justify-content-between">
                             <div>
                                 <p class="model_desktop m-0">Pekalongan, 05 Mei 2025</p>
