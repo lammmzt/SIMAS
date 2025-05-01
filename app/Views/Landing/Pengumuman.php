@@ -100,11 +100,11 @@ body {
         max-width: 100%;
     }
 
-    #logo_mobile {
+    .model_mobile {
         display: block !important;
     }
 
-    #logo_desktop {
+    .model_desktop {
         display: none !important;
     }
 
@@ -114,11 +114,11 @@ body {
 }
 
 @media (min-width: 611px) {
-    #logo_mobile {
+    .model_mobile {
         display: none !important;
     }
 
-    #logo_desktop {
+    .model_desktop {
         display: block !important;
     }
 }
@@ -179,12 +179,12 @@ body {
     <div class="col-md-8 col-lg-8 col-xl-8 mx-auto mt-4 mb-4">
         <div class="overflow-hidden card" data-aos="fade-up" data-aos-delay="600">
             <div class="flex-wrap card-header d-flex justify-content-between header_lulus">
-                <img src="<?= base_url('Assets/img/LOGO SMANSA.svg'); ?>" alt="logo" class="img-fluid mb-2" width="80"
-                    height="80" id="logo_mobile" style="display: none;">
+                <img src="<?= base_url('Assets/img/LOGO SMANSA.svg'); ?>" alt="logo" class="img-fluid mb-2 model_mobile"
+                    width="80" height="80" style="display: none;">
                 <h4 class="card-title  text-white fw-bold align-self-center mt-2 mb-4">
                     SELAMAT! ANDA DINYATAKAN LULUS <span class="terompet">🎉</span>
                 </h4>
-                <div class="d-flex align-items-center mt-2 mb-4" id="logo_desktop">
+                <div class="d-flex align-items-center mt-2 mb-4 model_desktop">
                     <img src="<?= base_url('Assets/img/LOGO SMANSA.svg'); ?>" alt="logo" class="img-fluid" width="100"
                         height="100">
                 </div>
@@ -194,9 +194,10 @@ body {
                 <div class="row m-2">
                     <div class="col-md-12">
                         <!-- detail nama  -->
-                        <p>Pekalongan, 05 Mei 2025</p>
+                        <p class="model_mobile m-0">Pekalongan, 05 Mei 2025</p>
                         <div class="d-flex justify-content-between">
                             <div>
+                                <p class="model_desktop m-0">Pekalongan, 05 Mei 2025</p>
                                 <h3 class="font-weight-bold" id="hasil_nama_lengkap"></h3>
                                 <p id="hasil_nama_kelas"></p>
                             </div>
