@@ -156,7 +156,7 @@ class LandingPage extends BaseController
             $pathFoto = FCPATH . 'Assets/img/foto_siswa/' . $fileFoto;
                     
             if (!file_exists($pathFoto)) {
-                $fileFoto = 'default.png';
+                $fileFoto = 'foto_siswa.png';
             }
             $data['foto_siswa_data_siswa'] = $fileFoto;
             $data['error'] = false;
