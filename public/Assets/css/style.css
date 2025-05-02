@@ -61,8 +61,8 @@
 
 .bg-gradient-4 {
 	background: #007991;
-	background: -webkit-linear-gradient(to right, #007991, #78ffd6);
-	background: linear-gradient(to right, #007991, #78ffd6);
+	background: -webkit-linear-gradient(to right, #034275, #0169be);
+	background: linear-gradient(to right, #034275, #0169be);
 }
 
 .rounded {
@@ -150,8 +150,8 @@
 
 .header-hasil {
 	background: #007991;
-	background: -webkit-linear-gradient(to right, #007991, #78ffd6);
-	background: linear-gradient(to right, #007991, #78ffd6);
+	background: -webkit-linear-gradient(to right, #034275, #0169be);
+	background: linear-gradient(to right, #034275, #0169be);
 	height: 15vh;
 	display: flex;
 	align-items: center;
@@ -165,8 +165,8 @@
 	font-size: 2rem;
 	font-weight: bold;
 	background: #007991;
-	background: -webkit-linear-gradient(to right, #007991, #78ffd6);
-	background: linear-gradient(to right, #007991, #78ffd6);
+	background: -webkit-linear-gradient(to right, #034275, #0169be);
+	background: linear-gradient(to right, #034275, #0169be);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
