@@ -518,7 +518,7 @@ $('#form_cari_data_rapor').submit(function(e) {
                 $('#btn_cari_data_siswa').html('Cari');
 
             } else {
-                sweetalert('error', 'Data tidak ditemukan', response.data, 'error');
+                sweetalert('error', 'Mohon Maaf', response.data, 'error');
             }
             $('#btn_cari_data_siswa').removeAttr('disabled');
             $('#btn_cari_data_siswa').html('Cari');

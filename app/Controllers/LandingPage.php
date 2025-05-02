@@ -157,7 +157,7 @@ class LandingPage extends BaseController
         $data_siswaModel = new data_siswaModel();
         date_default_timezone_set('Asia/Jakarta');
         $date_now = date('Y-m-d H:i:s');
-        $set_date = date('Y-m-d H:i:s', strtotime('2025-05-05 16:00:00'));
+        $set_date = date('Y-m-d H:i:s', strtotime('2025-05-02 08:00:00'));
         if ($date_now < $set_date) {
             return $this->response->setJSON([
                 'error' => true,
