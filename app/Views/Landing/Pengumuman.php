@@ -194,7 +194,7 @@ body {
                 <div class="alert alert-primary" role="alert" id="pesan"> </div>
                 <div class="py-5" id="countdown">
                     <div class="row">
-                        <div class="col-lg-8 mx-auto">
+                        <div class="col-lg-12 mx-auto">
                             <div class="rounded bg-gradient-4 text-white shadow py-5 text-center mb-5">
                                 <p class="mb-0 font-weight-bold text-uppercase text-white"></p>
                                 <div id="clock-c" class="countdown py-4 text-white"></div>
@@ -349,10 +349,10 @@ function set_clock(date_now, set_date, pesan) {
         var $this = $(this).html(
             event.strftime(
                 "" +
-                '<span class="h1 font-weight-bold">%D</span> Day%!d' +
-                '<span class="h1 font-weight-bold">%H</span> Hr' +
-                '<span class="h1 font-weight-bold">%M</span> Min' +
-                '<span class="h1 font-weight-bold">%S</span> Sec'
+                '<span class="h1 font-weight-bold text-white">%D</span> Day%!d' +
+                '<span class="h1 font-weight-bold text-white">%H</span> Hr' +
+                '<span class="h1 font-weight-bold text-white">%M</span> Min' +
+                '<span class="h1 font-weight-bold text-white">%S</span> Sec'
             )
         );
         if (event.elapsed) {
