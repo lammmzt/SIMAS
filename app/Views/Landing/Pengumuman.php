@@ -388,18 +388,7 @@ setTimeout(() => {
     var date_now = <?= json_encode($date_now); ?>;
     var set_date = <?= json_encode($set_date); ?>;
     var message = <?= json_encode($message); ?>;
-    // Ubah ke format ISO dan tambahkan offset Jakarta (+07:00)
-    var timeJakarta = new Date(date_now.replace(' ', 'T') + '+07:00');
-
-    // Format jam:menit dalam WIB
-    var timeNowJakarta = timeJakarta.toLocaleTimeString("id-ID", {
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZone: 'Asia/Jakarta',
-        hour12: false
-    });
-
-    set_clock(timeNowJakarta, set_date, message);
+    set_clock(date_now, set_date, message);
 }, 1000);
 
 function createRibbon() {
