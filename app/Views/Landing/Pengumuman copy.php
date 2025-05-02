@@ -1,7 +1,6 @@
 <?= $this->extend('Landing/index') ?>
 <?= $this->section('content') ?>
 
-<link rel="stylesheet" href="<?= base_url('Assets/'); ?>css/style.css">
 <style>
 body {
 
@@ -180,34 +179,7 @@ body {
     }
 }
 </style>
-<div class="row" id="row_countdown" style="display: none;">
-    <div class="col-lg 12">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="clearfix">
-                    <div class="pull-left">
-                        <h4 class="h4 mb-4">
-                            Informasi pengumuman
-                        </h4>
-                    </div>
-                </div>
-                <div class="alert alert-primary" role="alert" id="pesan"> </div>
-                <div class="py-5" id="countdown">
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <div class="rounded bg-gradient-4 text-white shadow py-5 text-center mb-5">
-                                <p class="mb-0 font-weight-bold text-uppercase text-white"></p>
-                                <div id="clock-c" class="countdown py-4 text-white"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row" id="form_cari" style="display: none;">
+<div class="row" id="form_cari">
     <div class="col-lg-12">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -316,8 +288,7 @@ body {
                         </div>
 
                         <p class="note">
-                            Peserta Didik dinyatakan <b>LULUS</b> dari satuan pendidikan berdasarkan kriteria
-                            kelulusan
+                            Peserta Didik dinyatakan <b>LULUS</b> dari satuan pendidikan berdasarkan kriteria kelulusan
                             SMA
                             Negeri 1 Pekalongan Kota Pekalongan Tahun Ajaran 2024/2025.
                     </div>
@@ -331,67 +302,7 @@ body {
 <audio id="mussic" src="<?= base_url('Assets/audio/finalCapter.mp3'); ?>" type="audio/mpeg" preload="auto"></audio>
 <?= $this->endSection('content') ?>
 <?= $this->section('script') ?>
-<script src="https://cdn.jsdelivr.net/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
 <script type="text/javascript">
-function set_clock(date_now, set_date, pesan) {
-
-    function DateRange() {
-
-        const date = set_date;
-
-        $('#pesan').text(pesan);
-
-        return date;
-
-    }
-
-    $("#clock-c").countdown(DateRange(), function(event) {
-        var $this = $(this).html(
-            event.strftime(
-                "" +
-                '<span class="h1 font-weight-bold">%D</span> Day%!d' +
-                '<span class="h1 font-weight-bold">%H</span> Hr' +
-                '<span class="h1 font-weight-bold">%M</span> Min' +
-                '<span class="h1 font-weight-bold">%S</span> Sec'
-            )
-        );
-        if (event.elapsed) {
-
-            $("#clock-c").hide();
-            $("#countdown").hide();
-            $("#title-head").hide();
-            $("#row_countdown").hide();
-            $("#form_cari").show();
-            $('#Medium-modal').modal({
-                backdrop: 'static',
-                keyboard: false
-            });
-            $('#background_content').addClass('content');
-
-        } else {
-            $('#Medium-modal').modal('hide');
-            $("#clock-c").show();
-            $("#countdown").show();
-            $("#title-head").show();
-            $("#alert").show();
-            $('#background_content').removeClass('content');
-            $("#row_countdown").show();
-            $("#form_cari").hide();
-            $("#data_siswa").hide();
-        }
-    });
-}
-
-// set_clock(response.data.dateTimeNow, response.data.dateTime, response.data.pesan);
-
-setTimeout(() => {
-
-    var date_now = <?= json_encode($date_now); ?>;
-    var set_date = <?= json_encode($set_date); ?>;
-    var message = <?= json_encode($message); ?>;
-    set_clock(date_now, set_date, message);
-}, 1000);
-
 function createRibbon() {
     const ribbon = document.createElement("div");
     ribbon.classList.add("ribbon");
@@ -465,7 +376,6 @@ function formatDateIndo(date) {
     var formattedDate = dd + ' ' + bulan[parseInt(mm) - 1] + ' ' + yyyy;
     return formattedDate;
 }
-
 $('#form_cari_data_rapor').submit(function(e) {
     e.preventDefault();
     var formData = new FormData(this);
@@ -489,8 +399,7 @@ $('#form_cari_data_rapor').submit(function(e) {
                 $('#hasil_nama_lengkap').html(response.data.nama_lengkap_data_siswa);
                 $('#hasil_nis').html(response.data.nis_data_siswa);
                 $('#hasil_nisn').html(response.data.nisn_data_siswa);
-                var jenis_kelamin = (response.data.jenis_kelamin_data_siswa == 'L') ?
-                    'Laki-laki' :
+                var jenis_kelamin = (response.data.jenis_kelamin_data_siswa == 'L') ? 'Laki-laki' :
                     'Perempuan';
                 $('#hasil_jenis_kelamin').html(jenis_kelamin);
                 $('#hasil_tempat_lahir').html(response.data.tempat_lahir_data_siswa);
@@ -501,8 +410,7 @@ $('#form_cari_data_rapor').submit(function(e) {
                 // console.log(tgl);
                 $('#hasil_alamat').html(response.data.alamat_data_siswa);
                 $('#hasil_nama_kelas').html(response.data.kelas_data_dapodik);
-                $('#hasil_foto_siswa').attr('src',
-                    '<?= base_url('Assets/img/foto_siswa/'); ?>' +
+                $('#hasil_foto_siswa').attr('src', '<?= base_url('Assets/img/foto_siswa/'); ?>' +
                     response.foto_siswa_data_siswa);
 
                 const ribbonInterval = setInterval(createRibbon, 100);
