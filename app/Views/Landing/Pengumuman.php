@@ -518,9 +518,7 @@ $('#form_cari_data_rapor').submit(function(e) {
                 $('#btn_cari_data_siswa').html('Cari');
 
             } else {
-                sweetalert('error', 'Data tidak ditemukan',
-                    'Data siswa tidak ditemukan, periksa kembali data yang anda masukkan',
-                    'error');
+                sweetalert('error', 'Data tidak ditemukan', response.data, 'error');
             }
             $('#btn_cari_data_siswa').removeAttr('disabled');
             $('#btn_cari_data_siswa').html('Cari');
