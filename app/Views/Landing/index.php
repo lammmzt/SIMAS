@@ -54,7 +54,7 @@
                             </path>
                         </svg>
                     </button> -->
-                    <a href="<?= base_url('LandingPage'); ?>" class="navbar-brand">
+                    <a href="<?= base_url('Pengumuman'); ?>" class="navbar-brand">
                         <img src="<?= base_url('Assets/img/LOGO SMANSA.png'); ?>" class="img-fluid" alt="logo"
                             width="50">
                         <h4 class="logo-title">SIMAS</h4>
