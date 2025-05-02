@@ -140,7 +140,7 @@ class LandingPage extends BaseController
     {   
         date_default_timezone_set('Asia/Jakarta');
         $date_now = date('Y-m-d H:i:s');
-        $set_date = date('Y-m-d H:i:s', strtotime('2025-05-01 09:00:00'));
+        $set_date = date('Y-m-d H:i:s', strtotime('2025-05-05 09:00:00'));
         $message = 'Pengumuman Kelulusan Peserta Didik Kelas XII Tahun Ajaran 2024/2025 Akan dibuka Pada Tanggal 5 Mei 2025 Pukul 16:00 WIB';
         $data['message'] = $message;
         $data['date_now'] = $date_now;
