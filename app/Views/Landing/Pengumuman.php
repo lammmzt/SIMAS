@@ -285,8 +285,8 @@ body {
                                 <h3 class="font-weight-bold" id="hasil_nama_lengkap"></h3>
                                 <p id="hasil_nama_kelas"></p>
                             </div>
-                            <div class="foto_siswa"><img id="hasil_foto_siswa" alt="logo" class="img-fluid" width="100"
-                                    style="border-radius: 5px;"></div>
+                            <div class="foto_siswa"><img id="hasil_foto_siswa" alt="foto_siswa"
+                                    class="img-fluid bg-transparent" width="100" style="border-radius: 5px;"></div>
                         </div>
 
                         <div class="row mt-4 mx-auto mt-2">
@@ -311,8 +311,8 @@ body {
                             <p>
                                 Surat Keterangan Lulus dapat diunduh pada link berikut:
                             </p>
-                            <a href="https://simas.sman1pekalongan.sch.id" target="_blank"
-                                class="text-primary">https://simas.sman1pekalongan.sch.id/</a>
+                            <a href="<?= base_url('SKL'); ?>" target="_blank"
+                                class="text-primary">https://simas.sman1pekalongan.sch.id/SKL</a>
                         </div>
 
                         <p class="note">

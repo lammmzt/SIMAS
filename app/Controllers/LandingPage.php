@@ -140,8 +140,8 @@ class LandingPage extends BaseController
     {   
         date_default_timezone_set('Asia/Jakarta');
         $date_now = date('Y-m-d H:i:s');
-        $set_date = date('Y-m-d H:i:s', strtotime('2025-05-05 16:00:00'));
-        $message = 'Pengumuman Kelulusan Peserta Didik Kelas XII Tahun Ajaran 2024/2025 Akan dibuka Pada Tanggal 5 Mei 2025 Pukul 16:00 WIB';
+        $set_date = date('Y-m-d H:i:s', strtotime('2025-05-01 18:00:00'));
+        $message = 'Pengumuman Kelulusan Peserta Didik Kelas XII Tahun Ajaran 2024/2025 Akan dibuka Pada Tanggal 5 Mei 2025 Pukul 18:00 WIB';
         $data['message'] = $message;
         $data['date_now'] = $date_now;
         $data['set_date'] = $set_date;
@@ -157,7 +157,7 @@ class LandingPage extends BaseController
         $data_siswaModel = new data_siswaModel();
         date_default_timezone_set('Asia/Jakarta');
         $date_now = date('Y-m-d H:i:s');
-        $set_date = date('Y-m-d H:i:s', strtotime('2025-05-05 16:00:00'));
+        $set_date = date('Y-m-d H:i:s', strtotime('2025-05-01 18:00:00'));
         if ($date_now < $set_date) {
             return $this->response->setJSON([
                 'error' => true,
@@ -187,6 +187,14 @@ class LandingPage extends BaseController
         }
       
         return $this->response->setJSON($data);
+    }
+
+
+    public function SKL(): string // menampilkan halaman dashboard
+    {   
+        $data['title'] = 'SIMAS | SKL'; // set judul halaman
+        $data['active'] = 'SKL'; // set active menu
+        return view('Landing/errSKL', $data); // tampilkan view dashboard
     }
 }
 

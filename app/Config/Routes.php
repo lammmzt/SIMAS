@@ -7,5 +7,6 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->get('/Pengumuman', 'LandingPage::Pengumuman');
+$routes->get('/SKL', 'LandingPage::SKL');
 
 $routes->setAutoRoute(true);
