@@ -113,7 +113,6 @@ foreach ($data_nilai as $data) :
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
             <h4 style="text-decoration: underline; font-weight: bold;">SURAT KETERANGAN LULUS</h4>
-            <h4 style="font-weight: bold">TAHUN AJARAN 2024/2025</h4>
             <p>Nomor : 420 / 128.a</p>
         </td>
         <td style="width: 25%"></td>
@@ -125,7 +124,17 @@ foreach ($data_nilai as $data) :
         Pekalongan, Kota Pekalongan Provinsi Jawa Tengah menerangkan bahwa:</p>
     <table style="margin-top:3px;">
         <tr>
-            <td style="width: 38%; height: 20px;">Nama Peserta Didik</td>
+            <td style="width: 38%; height: 20px;">Satuan Pendidik</td>
+            <td style="width: 2%; height: 20px;">:</td>
+            <td style="width: 60%; height: 20px;">SMA Negeri 1 Pekalongan</td>
+        </tr>
+        <tr>
+            <td style="width: 38%; height: 20px;">Nomor Pokok Sekolah Nasional</td>
+            <td style="width: 2%; height: 20px;">:</td>
+            <td style="width: 60%; height: 20px;">20329517</td>
+        </tr>
+        <tr>
+            <td style="width: 38%; height: 20px;">Nama Lengkap</td>
             <td style="width: 2%; height: 20px;">:</td>
             <td style="width: 60%; height: 20px;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?></td>
         </tr>
@@ -137,13 +146,23 @@ foreach ($data_nilai as $data) :
         </tr>
 
         <tr>
-            <td>NIS / NISN</td>
+            <td>Nomor Induk Siswa Nasional</td>
             <td>:</td>
-            <td><?= $data[0]['nis_data_dapodik'] ?> / <?= $data[0]['id_data_dapodik'] ?></td>
+            <td><?= $data[0]['id_data_dapodik'] ?></td>
+        </tr>
+        <tr>
+            <td>Nomor Ijazah</td>
+            <td>:</td>
+            <td>--</td>
+        </tr>
+        <tr>
+            <td>Tanggal Kelulusan</td>
+            <td>:</td>
+            <td>05 Mei 2025</td>
         </tr>
     </table>
     <p style="margin-top: 3px;">
-        Dinyatakan <b>LULUS</b> dari satuan pendidikan berdasarkan kriteria kelulusan SMA Negeri 1 Pekalongan, Tahun
+        Dinyatakan LULUS dari satuan pendidikan berdasarkan kriteria kelulusan SMA Negeri 1 Pekalongan, Tahun
         Ajaran 2024/2025 dengan nilai sebagai berikut:
     </p>
     <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
@@ -231,14 +250,15 @@ foreach ($data_nilai as $data) :
                 <?= number_format($averageNilai, 2, '.', '') ?></td>
         </tr>
     </table>
-    <p style="margin-top: 5px;">Demikian Surat Keterangan Lulus ini dibuat untuk digunakan sebagaimana semestinya.</p>
+    <p style="margin-top: 5px;">Surat Keterangan Lulus ini berlaku sementara sampai dengan
+        diterbitkannya Ijazah Tahun Ajaran 2024/2025, untuk menjadikan maklumat bagi yang berkepentingan.</p>
 
     <table style="margin-top: 3px;">
         <tr>
             <td style="width: 45%"></td>
             <td style="width: 20%; margin-right: 20px; "></td>
             <td style="width: 28%; text-align: left;" id="ttd">
-                <p style="">Pekalongan,</p>
+                <p style="">Pekalongan, 05 Mei 2025</p>
                 <p style="">Kepala Sekolah</p><br><br><br><br><br>
                 <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. ABDUR ROZAK</p>
                 <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
