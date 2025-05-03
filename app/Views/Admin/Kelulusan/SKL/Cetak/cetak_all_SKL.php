@@ -29,6 +29,22 @@ p {
     margin: 0 45px;
     padding: 0;
 }
+
+/* #header-SKL margin 0 heigh minim */
+#header-SKL {
+    margin: 0;
+    height: 10px;
+}
+
+#header-SKL td {
+    padding: 0;
+    font-size: 15px;
+}
+
+#header-SKL th {
+    padding: 0;
+    font-size: 15px;
+}
 </style>
 <?php if ( !function_exists('formatDateIndo')) {
     function formatDateIndo($date) {
@@ -122,7 +138,7 @@ foreach ($data_nilai as $data) :
     <p>Yang bertanda tangan di bawah ini, Kepala Sekolah Menengah Atas
         Negeri 1
         Pekalongan, Kota Pekalongan, Provinsi Jawa Tengah menerangkan bahwa:</p>
-    <table style="margin-top:3px;">
+    <table style="margin-top:3px;" id="header-SKL">
         <tr style="height:10px">
             <td style="width: 38%; height: 10px;">Satuan Pendidik</td>
             <td style="width: 2%; height: 10px;">:</td>
