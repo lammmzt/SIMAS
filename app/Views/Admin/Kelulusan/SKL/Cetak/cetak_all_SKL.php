@@ -123,39 +123,39 @@ foreach ($data_nilai as $data) :
         Negeri 1
         Pekalongan, Kota Pekalongan, Provinsi Jawa Tengah menerangkan bahwa:</p>
     <table style="margin-top:3px;">
-        <tr>
-            <td style="width: 38%; height: 15px;">Satuan Pendidik</td>
-            <td style="width: 2%; height: 15px;">:</td>
-            <td style="width: 60%; height: 15px;">SMA Negeri 1 Pekalongan</td>
+        <tr style="height:10px">
+            <td style="width: 38%; height: 10px;">Satuan Pendidik</td>
+            <td style="width: 2%; height: 10px;">:</td>
+            <td style="width: 60%; height: 10px;">SMA Negeri 1 Pekalongan</td>
         </tr>
-        <tr>
-            <td style="width: 38%; height: 15px;">Nomor Pokok Sekolah Nasional</td>
-            <td style="width: 2%; height: 15px;">:</td>
-            <td style="width: 60%; height: 15px;">20329517</td>
+        <tr style="height:10px">
+            <td style="width: 38%; height: 10px;">Nomor Pokok Sekolah Nasional</td>
+            <td style="width: 2%; height: 10px;">:</td>
+            <td style="width: 60%; height: 10px;">20329517</td>
         </tr>
-        <tr>
-            <td style="width: 38%; height: 15px;">Nama Lengkap</td>
-            <td style="width: 2%; height: 15px;">:</td>
-            <td style="width: 60%; height: 15px;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?></td>
+        <tr style="height:10px">
+            <td style="width: 38%; height: 10px;">Nama Lengkap</td>
+            <td style="width: 2%; height: 10px;">:</td>
+            <td style="width: 60%; height: 10px;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?></td>
         </tr>
-        <tr>
+        <tr style="height:10px">
             <td>Tempat, Tanggal Lahir</td>
             <td>:</td>
             <td><?= ucwords(strtolower($data[0]['tempat_lahir_data_dapodik'])) ?>,
                 <?= formatDateIndo($data[0]['tanggal_lahir_data_dapodik']) ?></td>
         </tr>
 
-        <tr>
+        <tr style="height:10px">
             <td>Nomor Induk Siswa Nasional</td>
             <td>:</td>
             <td><?= $data[0]['id_data_dapodik'] ?></td>
         </tr>
-        <tr>
+        <tr style="height:10px">
             <td>Nomor Ijazah</td>
             <td>:</td>
             <td>--</td>
         </tr>
-        <tr>
+        <tr style="height:10px">
             <td>Tanggal Kelulusan</td>
             <td>:</td>
             <td>05 Mei 2025</td>
