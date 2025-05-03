@@ -121,22 +121,22 @@ foreach ($data_nilai as $data) :
 <div class="container" style="margin-top: 2px;">
     <p>Yang bertanda tangan di bawah ini, Kepala Sekolah Menengah Atas
         Negeri 1
-        Pekalongan, Kota Pekalongan Provinsi Jawa Tengah menerangkan bahwa:</p>
+        Pekalongan, Kota Pekalongan, Provinsi Jawa Tengah menerangkan bahwa:</p>
     <table style="margin-top:3px;">
         <tr>
-            <td style="width: 38%; height: 20px;">Satuan Pendidik</td>
-            <td style="width: 2%; height: 20px;">:</td>
-            <td style="width: 60%; height: 20px;">SMA Negeri 1 Pekalongan</td>
+            <td style="width: 38%; height: 15px;">Satuan Pendidik</td>
+            <td style="width: 2%; height: 15px;">:</td>
+            <td style="width: 60%; height: 15px;">SMA Negeri 1 Pekalongan</td>
         </tr>
         <tr>
-            <td style="width: 38%; height: 20px;">Nomor Pokok Sekolah Nasional</td>
-            <td style="width: 2%; height: 20px;">:</td>
-            <td style="width: 60%; height: 20px;">20329517</td>
+            <td style="width: 38%; height: 15px;">Nomor Pokok Sekolah Nasional</td>
+            <td style="width: 2%; height: 15px;">:</td>
+            <td style="width: 60%; height: 15px;">20329517</td>
         </tr>
         <tr>
-            <td style="width: 38%; height: 20px;">Nama Lengkap</td>
-            <td style="width: 2%; height: 20px;">:</td>
-            <td style="width: 60%; height: 20px;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?></td>
+            <td style="width: 38%; height: 15px;">Nama Lengkap</td>
+            <td style="width: 2%; height: 15px;">:</td>
+            <td style="width: 60%; height: 15px;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?></td>
         </tr>
         <tr>
             <td>Tempat, Tanggal Lahir</td>
@@ -162,7 +162,8 @@ foreach ($data_nilai as $data) :
         </tr>
     </table>
     <p style="margin-top: 3px;">
-        Dinyatakan LULUS dari satuan pendidikan berdasarkan kriteria kelulusan SMA Negeri 1 Pekalongan, Tahun
+        Dinyatakan LULUS dari satuan pendidikan berdasarkan kriteria kelulusan SMA Negeri 1 Pekalongan, Kota Pekalongan
+        Tahun
         Ajaran 2024/2025 dengan nilai sebagai berikut:
     </p>
     <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
