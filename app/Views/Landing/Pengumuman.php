@@ -503,8 +503,6 @@ $('#form_cari_data_rapor').submit(function(e) {
                         return char.toUpperCase();
                     });
                 $('#hasil_tempat_lahir').html(tempat_lahir);
-                // $('#hasil_tanggal_lahir').formatDateIndo(
-                //     response.data.tanggal_lahir_data_siswa);
                 var tgl = formatDateIndo(response.data.tanggal_lahir_data_siswa);
                 $('#hasil_tanggal_lahir').html(tgl);
                 // console.log(tgl);
