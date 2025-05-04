@@ -485,16 +485,18 @@ $('#form_cari_data_rapor').submit(function(e) {
 
                 $('#form_cari').hide();
                 $('#data_siswa').show();
-                $('#hasil_nama_lengkap').html(response.data.nama_lengkap_data_siswa);
+                var nama_lengkap = response.data.nama_lengkap_data_siswa.charAt(0).toUpperCase() +
+                    nama_lengkap.slice(1);
+                $('#hasil_nama_lengkap').html(nama_lengkap);
                 $('#hasil_nis').html(response.data.nis_data_siswa);
                 $('#hasil_nisn').html(response.data.nisn_data_siswa);
                 var jenis_kelamin = (response.data.jenis_kelamin_data_siswa == 'L') ?
                     'Laki-laki' :
                     'Perempuan';
                 $('#hasil_jenis_kelamin').html(jenis_kelamin);
-                $('#hasil_tempat_lahir').html(response.data.tempat_lahir_data_siswa);
-                // $('#hasil_tanggal_lahir').formatDateIndo(
-                //     response.data.tanggal_lahir_data_siswa);
+                var tempat_lahir = response.data.tempat_lahir_data_siswa.charAt(0).toUpperCase() +
+                    tempat_lahir.slice(1);
+                $('#hasil_tempat_lahir').html(tempat_lahir);
                 var tgl = formatDateIndo(response.data.tanggal_lahir_data_siswa);
                 $('#hasil_tanggal_lahir').html(tgl);
                 // console.log(tgl);
