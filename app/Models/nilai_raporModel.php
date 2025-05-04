@@ -52,7 +52,7 @@ class nilai_raporModel extends Model
 
     public function getNilaiByKelas($id_kelas){
         return $this
-        ->select('nilai_rapor.id_nilai_rapor, nilai_rapor.tipe_nilai, nilai_rapor.id_mapel, nilai_rapor.id_data_dapodik, nilai_rapor.id_semester, nilai_rapor.nilai_rapor, mapel.nama_mapel, mapel.kode_mapel, urutan_mapel.no_urutan_mapel, urutan_mapel.kel_mapel, semester.nama_semester, semester.tahun_ajaran, data_dapodik.nama_lengkap_data_dapodik, data_dapodik.nama_ayah_data_dapodik, data_dapodik.tempat_lahir_data_dapodik, data_dapodik.tanggal_lahir_data_dapodik, data_dapodik.nis_data_dapodik, data_dapodik.kelas_data_dapodik')
+        ->select('nilai_rapor.id_nilai_rapor, nilai_rapor.tipe_nilai, nilai_rapor.id_mapel, nilai_rapor.id_data_dapodik, nilai_rapor.id_semester, nilai_rapor.nilai_rapor, mapel.nama_mapel, mapel.kode_mapel, urutan_mapel.no_urutan_mapel, urutan_mapel.kel_mapel, semester.nama_semester, semester.tahun_ajaran, data_dapodik.nama_lengkap_data_dapodik, data_dapodik.nama_ayah_data_dapodik, data_dapodik.tempat_lahir_data_dapodik, data_dapodik.agama_data_dapodik, data_dapodik.tanggal_lahir_data_dapodik, data_dapodik.nis_data_dapodik, data_dapodik.kelas_data_dapodik')
         ->join('mapel', 'mapel.id_mapel = nilai_rapor.id_mapel')
         ->join('urutan_mapel', 'urutan_mapel.id_mapel = mapel.id_mapel')
         ->join('semester', 'semester.id_semester = nilai_rapor.id_semester')
