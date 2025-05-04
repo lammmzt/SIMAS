@@ -381,22 +381,6 @@ function set_clock(date_now, set_date, pesan) {
         }
     });
 }
-
-// set_clock(response.data.dateTimeNow, response.data.dateTime, response.data.pesan);
-const jakartaTime = new Date(
-    new Intl.DateTimeFormat('en-US', {
-        timeZone: 'Asia/Jakarta',
-        hour12: false,
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    }).format(new Date())
-);
-
-cosole.log(jakartaTime); // Output: current date and time in Jakarta timezone
 setTimeout(() => {
 
     var date_now = <?= json_encode($date_now); ?>;
