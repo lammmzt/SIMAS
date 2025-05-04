@@ -231,7 +231,7 @@ body {
                         <!-- <form class="form-signin" method="POST"
                                             <?= base_url('LandingPage/fetchDataSiswa'); ?>> -->
 
-                        <form class="form-signin" id="form_cari_data_rapor">
+                        <form class="form-signin" id="form_cari_data_siswa">
                             <div id="pesan"></div>
                             <div class="form-group">
                                 <label class="form-label" for="nisn">NISN</label>
@@ -383,8 +383,22 @@ function set_clock(date_now, set_date, pesan) {
 }
 
 // set_clock(response.data.dateTimeNow, response.data.dateTime, response.data.pesan);
+const jakartaTime = new Date(
+    new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Asia/Jakarta',
+        hour12: false,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    }).format(new Date())
+);
 
+cosole.log(jakartaTime); // Output: current date and time in Jakarta timezone
 setTimeout(() => {
+
     var date_now = <?= json_encode($date_now); ?>;
     var set_date = <?= json_encode($set_date); ?>;
     var message = <?= json_encode($message); ?>;
@@ -465,7 +479,7 @@ function formatDateIndo(date) {
     return formattedDate;
 }
 
-$('#form_cari_data_rapor').submit(function(e) {
+$('#form_cari_data_siswa').submit(function(e) {
     e.preventDefault();
     var formData = new FormData(this);
     $.ajax({
