@@ -33,7 +33,7 @@ p {
 /* #header-SKL margin 0 heigh minim */
 #header-SKL {
     margin: 0;
-    height: 10px;
+    height: 13px;
 }
 
 #header-SKL td {
@@ -135,50 +135,50 @@ foreach ($data_nilai as $data) :
     </tr>
 </table>
 <div class="container" style="margin-top: 2px;">
-    <p>Yang bertanda tangan di bawah ini, Kepala Sekolah Menengah Atas
-        Negeri 1
+    <p>Yang bertanda tangan di bawah ini, Kepala SMA Negeri 1
         Pekalongan, Kota Pekalongan, Provinsi Jawa Tengah menerangkan bahwa:</p>
     <table style="margin-top:3px;" id="header-SKL">
-        <tr style="height:10px">
-            <td style="width: 38%; height: 10px;">Satuan Pendidik</td>
-            <td style="width: 2%; height: 10px;">:</td>
-            <td style="width: 60%; height: 10px;">SMA Negeri 1 Pekalongan</td>
+        <tr style="height:13px">
+            <td style="width: 38%; height: 13px;">Satuan Pendidik</td>
+            <td style="width: 2%; height: 13px;">:</td>
+            <td style="width: 60%; height: 13px;">SMA Negeri 1 Pekalongan</td>
         </tr>
-        <tr style="height:10px">
-            <td style="width: 38%; height: 10px;">Nomor Pokok Sekolah Nasional</td>
-            <td style="width: 2%; height: 10px;">:</td>
-            <td style="width: 60%; height: 10px;">20329517</td>
+        <tr style="height:13px">
+            <td style="width: 38%; height: 13px;">Nomor Pokok Sekolah Nasional</td>
+            <td style="width: 2%; height: 13px;">:</td>
+            <td style="width: 60%; height: 13px;">20329517</td>
         </tr>
-        <tr style="height:10px">
-            <td style="width: 38%; height: 10px;">Nama Lengkap</td>
-            <td style="width: 2%; height: 10px;">:</td>
-            <td style="width: 60%; height: 10px;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?></td>
+        <tr style="height:13px">
+            <td style="width: 38%; height: 13px;">Nama Lengkap</td>
+            <td style="width: 2%; height: 13px;">:</td>
+            <td style="width: 60%; height: 13px;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?></td>
         </tr>
-        <tr style="height:10px">
+        <tr style="height:13px">
             <td>Tempat, Tanggal Lahir</td>
             <td>:</td>
             <td><?= ucwords(strtolower($data[0]['tempat_lahir_data_dapodik'])) ?>,
                 <?= formatDateIndo($data[0]['tanggal_lahir_data_dapodik']) ?></td>
         </tr>
 
-        <tr style="height:10px">
+        <tr style="height:13px">
             <td>Nomor Induk Siswa Nasional</td>
             <td>:</td>
             <td><?= $data[0]['id_data_dapodik'] ?></td>
         </tr>
-        <tr style="height:10px">
+        <tr style="height:13px">
             <td>Nomor Ijazah</td>
             <td>:</td>
-            <td>--</td>
+            <td>-</td>
         </tr>
-        <tr style="height:10px">
+        <tr style="height:13px">
             <td>Tanggal Kelulusan</td>
             <td>:</td>
             <td>05 Mei 2025</td>
         </tr>
     </table>
     <p style="margin-top: 3px;">
-        Dinyatakan LULUS dari satuan pendidikan berdasarkan kriteria kelulusan SMA Negeri 1 Pekalongan, Kota Pekalongan
+        Dinyatakan <b>LULUS</b> dari satuan pendidikan berdasarkan kriteria kelulusan SMA Negeri 1 Pekalongan, Kota
+        Pekalongan
         Tahun
         Ajaran 2024/2025 dengan nilai sebagai berikut:
     </p>
@@ -199,6 +199,9 @@ foreach ($data_nilai as $data) :
             // check if mapel exist in groupAverageNilaiAkhirByMapel
             if (array_key_exists($value['id_mapel'], $groupAverageNilaiAkhirByMapel)) {
                 $mapel = $value['nama_mapel'];
+                if($value['kode_mapel'] == 'PAB'){
+                    $mapel = 'Pendidikan Agama '. ucwords(strtolower($data[0]['agama_data_dapodik'])) . ' dan Budi Pekerti';
+                }
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 echo '<tr>';

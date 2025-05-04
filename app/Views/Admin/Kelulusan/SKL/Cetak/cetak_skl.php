@@ -30,7 +30,7 @@ p {
 
 #header-SKL {
     margin: 0;
-    height: 10px;
+    height: 13px;
 }
 
 #header-SKL td {
@@ -128,8 +128,7 @@ p {
     </tr>
 </table>
 <div class="container" style="margin-top: 2px;">
-    <p>Yang bertanda tangan di bawah ini, Kepala Sekolah Menengah Atas
-        Negeri 1
+    <p>Yang bertanda tangan di bawah ini, Kepala SMA Negeri 1
         Pekalongan, Kota Pekalongan, Provinsi Jawa Tengah menerangkan bahwa:</p>
     <table style="margin-top:3px;" id="header-SKL">
         <tr style="height:13px">
@@ -266,7 +265,7 @@ p {
         </tr>
     </table>
     <p style="margin-top: 5px;">Surat Keterangan Lulus ini berlaku sementara sampai dengan
-        diterbitkannya Ijazah Tahun Ajaran 2024/2025, untuk menjadikan maklumat bagi yang berkepentingan..</p>
+        diterbitkannya Ijazah Tahun Ajaran 2024/2025, untuk menjadikan maklumat bagi yang berkepentingan.</p>
 
     <table style="margin-top: 3px;">
         <tr>
