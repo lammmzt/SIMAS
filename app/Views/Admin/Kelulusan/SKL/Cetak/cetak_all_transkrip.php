@@ -3,7 +3,7 @@ ini_set('memory_limit', '256M');
 ?>
 <style>
 body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
 }

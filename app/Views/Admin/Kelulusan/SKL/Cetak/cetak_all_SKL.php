@@ -128,7 +128,7 @@ foreach ($data_nilai as $data) :
     <tr>
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
-            <h4 style="font-weight: bold;">SURAT KETERANGAN LULUS</h4>
+            <h3 style="font-weight: bold;">SURAT KETERANGAN LULUS</h3>
             <p>Nomor : 421.3 / 0177 / V / 2025</p>
         </td>
         <td style="width: 25%"></td>
