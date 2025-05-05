@@ -206,9 +206,9 @@ foreach ($data_nilai as $data) :
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 15px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -230,9 +230,9 @@ foreach ($data_nilai as $data) :
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 15px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -254,9 +254,9 @@ foreach ($data_nilai as $data) :
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 15px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
