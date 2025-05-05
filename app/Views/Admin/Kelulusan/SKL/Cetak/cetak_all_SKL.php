@@ -128,8 +128,8 @@ foreach ($data_nilai as $data) :
     <tr>
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
-            <h3 height: 15px; style="font-weight: bold;">SURAT KETERANGAN LULUS</h3>
-            <p>Nomor : 421.3 / 0177 / V / 2025</p>
+            <h4 height: 15px; style="font-weight: bold;">SURAT KETERANGAN LULUS</h3>
+                <p>Nomor : 421.3/0177/V/2025</p>
         </td>
         <td style="width: 25%"></td>
     </tr>
@@ -183,7 +183,7 @@ foreach ($data_nilai as $data) :
         Tahun
         Ajaran 2024/2025 dengan nilai sebagai berikut:
     </p>
-    <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
+    <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black; height: 15px;">
         <tr>
             <th style="border: 1px solid black; width: 5%; text-align: center; height: 20px;">No</th>
             <th style="border: 1px solid black; width: 75%; text-align: center;">Mata Pelajaran</th>
@@ -206,9 +206,9 @@ foreach ($data_nilai as $data) :
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px; padding: 0;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -230,9 +230,9 @@ foreach ($data_nilai as $data) :
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px; padding: 0;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -254,9 +254,9 @@ foreach ($data_nilai as $data) :
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px; padding: 0;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
