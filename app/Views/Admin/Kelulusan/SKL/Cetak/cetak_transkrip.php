@@ -226,9 +226,13 @@ p {
                 } else {
                     $ujian = 0;
                 }
+                $nama_mapel = $value['nama_mapel'];
+                if($value['kode_mapel'] == 'PAB'){
+                   $nama_mapel = 'Pendidikan Agama'.ucwords(strtolower($data_nilai[0]['agama_data_dapodik'])).' dan Budi Pekerti';
+                }
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;">' . $value['nama_mapel'] . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;">' . $nama_mapel . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt1 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt1 == 0 ? '-' : number_format($smt1, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt2 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt2 == 0 ? '-' : number_format($smt2, 2, '.', '')) . '</td>';
                 echo '<td style="border: 1px solid black; text-align: center;'.($smt3 == 0 ? 'background-color: #f2f2f2;' : '').'">' . ($smt3 == 0 ? '-' : number_format($smt3, 2, '.', '')) . '</td>';
