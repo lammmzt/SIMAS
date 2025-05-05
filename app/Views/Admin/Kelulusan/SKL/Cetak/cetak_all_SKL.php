@@ -129,7 +129,7 @@ foreach ($data_nilai as $data) :
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
             <h4 style="font-weight: bold;">SURAT KETERANGAN LULUS</h4>
-            <p>Nomor : 420 / 128.a</p>
+            <p>Nomor : 421.3 / 0177 / V / 2025</p>
         </td>
         <td style="width: 25%"></td>
     </tr>
@@ -185,12 +185,12 @@ foreach ($data_nilai as $data) :
     </p>
     <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
         <tr>
-            <th style="border: 1px solid black; width: 5%; text-align: center; height: 22px;">No</th>
+            <th style="border: 1px solid black; width: 5%; text-align: center; height: 20px;">No</th>
             <th style="border: 1px solid black; width: 75%; text-align: center;">Mata Pelajaran</th>
             <th style="border: 1px solid black; width: 20%; text-align: center;">Nilai</th>
         </tr>
         <tr>
-            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 22px;" colspan="3">
+            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 20px;" colspan="3">
                 Kelompok Mata Pelajaran Umum
             </td>
         </tr>
@@ -217,7 +217,7 @@ foreach ($data_nilai as $data) :
         }
         ?>
         <tr>
-            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 22px;" colspan="3">
+            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 20px;" colspan="3">
                 Kelompok Mata Pelajaran Pilihan
             </td>
         </tr>
@@ -241,7 +241,7 @@ foreach ($data_nilai as $data) :
         }
         ?>
         <tr>
-            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 22px;" colspan="3">
+            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 20px;" colspan="3">
                 Muatan Lokal
             </td>
         </tr>
@@ -265,7 +265,7 @@ foreach ($data_nilai as $data) :
         }
         ?>
         <tr>
-            <td colspan="2" style="border: 1px solid black; text-align: left; font-weight: bold;">Rata-Rata
+            <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Rata-Rata
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
                 <?= number_format($averageNilai, 2, '.', '') ?></td>

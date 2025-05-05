@@ -1,6 +1,6 @@
 <style>
 body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Arial', ;
     margin: 0;
     padding: 0;
 }
@@ -122,7 +122,7 @@ p {
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
             <h4 style="font-weight: bold;">SURAT KETERANGAN LULUS</h4>
-            <p>Nomor : 420 / 128.a</p>
+            <p>Nomor : 421.3 / 0177 / V / 2025</p>
         </td>
         <td style="width: 25%"></td>
     </tr>
@@ -144,7 +144,7 @@ p {
         <tr style="height:13px">
             <td style="width: 38%; height: 10px;">Nama Lengkap</td>
             <td style="width: 2%; height: 10px;">:</td>
-            <td style="width: 60%; height: 10px;">
+            <td style="width: 60%; height: 10px; font-weight: bold;">
                 <?= ucwords(strtolower($data_nilai[0]['nama_lengkap_data_dapodik'])) ?></td>
         </tr>
         <tr style="height:13px">
@@ -178,12 +178,12 @@ p {
     </p>
     <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
         <tr>
-            <th style="border: 1px solid black; width: 5%; text-align: center; height: 26px;">No</th>
+            <th style="border: 1px solid black; width: 5%; text-align: center; height: 20px;">No</th>
             <th style="border: 1px solid black; width: 75%; text-align: center;">Mata Pelajaran</th>
             <th style="border: 1px solid black; width: 20%; text-align: center;">Nilai</th>
         </tr>
         <tr>
-            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 26px;" colspan="3">
+            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 20px;" colspan="3">
                 Kelompok Mata Pelajaran Umum
             </td>
         </tr>
@@ -210,7 +210,7 @@ p {
         }
         ?>
         <tr>
-            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 26px;" colspan="3">
+            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 20px;" colspan="3">
                 Kelompok Mata Pelajaran Pilihan
             </td>
         </tr>
@@ -234,7 +234,7 @@ p {
         }
         ?>
         <tr>
-            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 26px;" colspan="3">
+            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 20px;" colspan="3">
                 Muatan Lokal
             </td>
         </tr>
@@ -265,7 +265,7 @@ p {
         </tr>
     </table>
     <p style="margin-top: 5px;">Surat Keterangan Lulus ini berlaku sementara sampai dengan
-        diterbitkannya Ijazah Tahun Ajaran 2024/2025, untuk menjadikan maklumat bagi yang berkepentingan.</p>
+        diterbitkannya Ijazah Tahun Ajaran 2024/2025, untuk menjadikan maklum bagi yang berkepentingan.</p>
 
     <table style="margin-top: 3px;">
         <tr>
