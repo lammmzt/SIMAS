@@ -228,7 +228,7 @@ p {
                 }
                 $nama_mapel = $value['nama_mapel'];
                 if($value['kode_mapel'] == 'PAB'){
-                   $nama_mapel = 'Pendidikan Agama'.ucwords(strtolower($data_nilai[0]['agama_data_dapodik'])).' dan Budi Pekerti';
+                   $nama_mapel = 'Pendidikan Agama '.ucwords(strtolower($data_nilai[0]['agama_data_dapodik'])).' dan Budi Pekerti';
                 }
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;">' . $no . '</td>';
