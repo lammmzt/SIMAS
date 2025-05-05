@@ -199,9 +199,9 @@ p {
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px; padding: 0;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; ">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px; ">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; ">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -223,9 +223,9 @@ p {
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px; padding: 0;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; ">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px; ">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; ">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -247,9 +247,9 @@ p {
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px; padding: 0;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; padding: 0;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; ">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px; ">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px; ">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
