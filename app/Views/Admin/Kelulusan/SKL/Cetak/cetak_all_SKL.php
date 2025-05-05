@@ -3,7 +3,7 @@ ini_set('memory_limit', '256M');
 ?>
 <style>
 body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Arial', ;
     margin: 0;
     padding: 0;
 }
@@ -151,7 +151,8 @@ foreach ($data_nilai as $data) :
         <tr style="height:13px">
             <td style="width: 38%; height: 13px;">Nama Lengkap</td>
             <td style="width: 2%; height: 13px;">:</td>
-            <td style="width: 60%; height: 13px;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?></td>
+            <td style="width: 60%; height: 13px; font-weight: bold;">
+                <?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?></td>
         </tr>
         <tr style="height:13px">
             <td>Tempat, Tanggal Lahir</td>
@@ -184,12 +185,12 @@ foreach ($data_nilai as $data) :
     </p>
     <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black;">
         <tr>
-            <th style="border: 1px solid black; width: 5%; text-align: center; height: 26px;">No</th>
+            <th style="border: 1px solid black; width: 5%; text-align: center; height: 22px;">No</th>
             <th style="border: 1px solid black; width: 75%; text-align: center;">Mata Pelajaran</th>
             <th style="border: 1px solid black; width: 20%; text-align: center;">Nilai</th>
         </tr>
         <tr>
-            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 26px;" colspan="3">
+            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 22px;" colspan="3">
                 Kelompok Mata Pelajaran Umum
             </td>
         </tr>
@@ -216,7 +217,7 @@ foreach ($data_nilai as $data) :
         }
         ?>
         <tr>
-            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 26px;" colspan="3">
+            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 22px;" colspan="3">
                 Kelompok Mata Pelajaran Pilihan
             </td>
         </tr>
@@ -240,7 +241,7 @@ foreach ($data_nilai as $data) :
         }
         ?>
         <tr>
-            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 26px;" colspan="3">
+            <td style="border: 1px solid black; text-align: left; font-weight: bold; height: 22px;" colspan="3">
                 Muatan Lokal
             </td>
         </tr>
@@ -271,7 +272,7 @@ foreach ($data_nilai as $data) :
         </tr>
     </table>
     <p style="margin-top: 5px;">Surat Keterangan Lulus ini berlaku sementara sampai dengan
-        diterbitkannya Ijazah Tahun Ajaran 2024/2025, untuk menjadikan maklumat bagi yang berkepentingan.</p>
+        diterbitkannya Ijazah Tahun Ajaran 2024/2025, untuk menjadikan maklum bagi yang berkepentingan.</p>
 
     <table style="margin-top: 3px;">
         <tr>
