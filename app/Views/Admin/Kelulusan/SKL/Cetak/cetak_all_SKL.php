@@ -136,10 +136,10 @@ foreach ($data_nilai as $data) :
 </table>
 <div class="container" style="margin-top: 2px;">
     <p>Yang bertanda tangan di bawah ini, Kepala SMA Negeri 1
-        Pekalongan, Kota Pekalongan, Provinsi Jawa Tengah menerangkan bahwa:</p>
+        Pekalongan Kota Pekalongan, Provinsi Jawa Tengah menerangkan bahwa:</p>
     <table style="margin-top:3px;" id="header-SKL">
         <tr style="height:13px">
-            <td style="width: 38%; height: 13px;">Satuan Pendidik</td>
+            <td style="width: 38%; height: 13px;">Satuan Pendidikan</td>
             <td style="width: 2%; height: 13px;">:</td>
             <td style="width: 60%; height: 13px;">SMA Negeri 1 Pekalongan</td>
         </tr>
@@ -178,7 +178,7 @@ foreach ($data_nilai as $data) :
         </tr>
     </table>
     <p style="margin-top: 3px;">
-        Dinyatakan <b>LULUS</b> dari satuan pendidikan berdasarkan kriteria kelulusan SMA Negeri 1 Pekalongan, Kota
+        Dinyatakan <b>LULUS</b> dari satuan pendidikan berdasarkan kriteria kelulusan SMA Negeri 1 Pekalongan Kota
         Pekalongan
         Tahun
         Ajaran 2024/2025 dengan nilai sebagai berikut:
@@ -281,7 +281,7 @@ foreach ($data_nilai as $data) :
             <td style="width: 28%; text-align: left;" id="ttd">
                 <p style="">Pekalongan, 05 Mei 2025</p>
                 <p style="">Kepala Sekolah</p><br><br><br><br><br>
-                <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. ABDUR ROZAK</p>
+                <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. Abdur Rozak</p>
                 <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
             </td>
             </td>
