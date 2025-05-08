@@ -360,7 +360,7 @@ class Kelulusan extends BaseController
             $data['urutan_mapel_lokal'] = $urutanMapelLokal;
             // dd($data);
             // return view('Admin/Kelulusan/SKL/Cetak/cetak_transkrip', $data);
-            $html = view('Admin/Kelulusan/SKL/Cetak/cetak_all_transkrip', $data);
+            $html = view('Admin/Kelulusan/SKL/Cetak/cetak_all_transkripSmt1-6', $data);
             $mpdf->WriteHTML($html);
             $nama_file = 'transkrip_' . $nama_kelas . '.pdf';
             
@@ -478,7 +478,7 @@ class Kelulusan extends BaseController
             $data['urutan_mapel_pilihan'] = $urutanMapelPilihan;
             $data['urutan_mapel_lokal'] = $urutanMapelLokal;
             $data['imageSrc'] = $imageSrc;
-            $html = view('Admin/Kelulusan/SKL/Cetak/cetak_transkrip', $data);
+            $html = view('Admin/Kelulusan/SKL/Cetak/cetak_transkripSmt1-6', $data);
         
             // Tulis HTML ke PDF
             $mpdf->WriteHTML($html);
