@@ -11,11 +11,11 @@ table {
 
 td {
     padding: 3px;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 p {
-    font-size: 14px;
+    font-size: 13px;
     margin: 0;
     padding: 0;
 }
@@ -30,17 +30,17 @@ p {
 
 #header-SKL {
     margin: 0;
-    height: 14px;
+    height: 13px;
 }
 
 #header-SKL td {
     padding: 0;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 #header-SKL th {
     padding: 0;
-    font-size: 14px;
+    font-size: 13px;
 }
 </style>
 <?php if ( !function_exists('formatDateIndo')) {
@@ -128,19 +128,19 @@ p {
         <td style="width: 25%"></td>
     </tr>
 </table>
-<div class="container" style="margin-top: 5px;">
-    <table style="margin-top:5px;" id="header-SKL">
-        <tr style="height:14px">
+<div class="container" style="margin-top: 3px;">
+    <table style="margin-top:3px;" id="header-SKL">
+        <tr style="height:13px">
             <td style="width: 38%; height: 10px;">Satuan Pendidikan</td>
             <td style="width: 2%; height: 10px;">:</td>
             <td style="width: 60%; height: 10px;">SMA Negeri 1 Pekalongan</td>
         </tr>
-        <tr style="height:14px">
+        <tr style="height:13px">
             <td style="width: 38%; height: 10px;">Nomor Pokok Sekolah Nasional</td>
             <td style="width: 2%; height: 10px;">:</td>
             <td style="width: 60%; height: 10px;">20329517</td>
         </tr>
-        <tr style="height:14px">
+        <tr style="height:13px">
             <td style="width: 38%; height: 10px;">Nama Lengkap</td>
             <td style="width: 2%; height: 10px;">:</td>
             <td style="width: 60%; height: 10px; font-weight: bold;">
@@ -148,31 +148,31 @@ p {
                 <?= $data_nilai[0]['nama_lengkap_data_dapodik'] ?>
             </td>
         </tr>
-        <tr style="height:14px">
+        <tr style="height:13px">
             <td>Tempat, Tanggal Lahir</td>
             <td>:</td>
             <td><?= ucwords(strtolower($data_nilai[0]['tempat_lahir_data_dapodik'])) ?>,
                 <?= formatDateIndo($data_nilai[0]['tanggal_lahir_data_dapodik']) ?></td>
         </tr>
 
-        <tr style="height:14px">
+        <tr style="height:13px">
             <td>Nomor Induk Siswa Nasional</td>
             <td>:</td>
             <td><?= $data_nilai[0]['id_data_dapodik'] ?></td>
         </tr>
-        <tr style="height:14px">
+        <tr style="height:13px">
             <td>Nomor Ijazah</td>
             <td>:</td>
             <td><?= $data_nilai[0]['nomor_ijazah'] ?></td>
         </tr>
-        <tr style="height:14px">
+        <tr style="height:13px">
             <td>Tanggal Kelulusan</td>
             <td>:</td>
             <td>5 Mei 2025</td>
         </tr>
     </table>
 
-    <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black; height: 20px;">
+    <table style="margin-top: 10px; border-collapse: collapse; border: 1px solid black; height: 20px;">
         <tr>
             <th style="border: 1px solid black; width: 5%; text-align: center; height: 20px;">No</th>
             <th style="border: 1px solid black; width: 75%; text-align: center;">Mata Pelajaran</th>
@@ -197,9 +197,9 @@ p {
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 14px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -222,9 +222,9 @@ p {
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 14px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -247,9 +247,9 @@ p {
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 14px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
