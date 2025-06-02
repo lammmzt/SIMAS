@@ -278,9 +278,9 @@ p {
             <td style="width: 20%; margin-right: 20px; "></td>
             <td style="width: 28%; text-align: left;" id="ttd">
                 <p style="">Kota Pekalongan, 2 Juni 2025</p>
-                <p style="">Kepala,</p><br><br><br>
-                <p style="text-decoration: underline; font-weight: bold; font-size: 11px;">Drs. Abdur Rozak</p>
-                <p style="font-weight: bold; font-size: 11px;">NIP. 19650802 199203 1 008</p>
+                <p style="">Kepala,</p><br><br><br><br>
+                <p style="text-decoration: underline; font-weight: bold; font-size: 12px;">Drs. Abdur Rozak</p>
+                <p style="font-weight: bold; font-size: 12px;">NIP. 19650802 199203 1 008</p>
             </td>
             </td>
         </tr>
