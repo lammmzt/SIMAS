@@ -14,11 +14,11 @@ table {
 
 td {
     padding: 3px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 p {
-    font-size: 15px;
+    font-size: 14px;
     margin: 0;
     padding: 0;
 }
@@ -38,12 +38,12 @@ p {
 
 #header-SKL td {
     padding: 0;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 #header-SKL th {
     padding: 0;
-    font-size: 15px;
+    font-size: 13px;
 }
 </style>
 <?php if ( !function_exists('formatDateIndo')) {
@@ -76,6 +76,7 @@ foreach ($data_nilai as $data) :
     $groupAverageNilaiAkhirByMapel = array();
     $total_nilai_akhir = 0;
     $jumlah_mapel = 0;
+    $totalNilaiAkhir = 0;
     // dd($data);
     foreach ($data as $key => $value) {
         if ($value['tipe_nilai'] == '1') {
@@ -128,8 +129,8 @@ foreach ($data_nilai as $data) :
     <tr>
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
-            <h4 height: 15px; style="font-weight: bold;">TRANSKRIP NILAI</h3>
-                <p>Nomor : 421.3/0177/V/2025</p>
+            <h4 height: 13px; style="font-weight: bold;">TRANSKRIP NILAI</h3>
+                <p>Nomor : 400.3.14.5/0221/VI/2025</p>
         </td>
         <td style="width: 25%"></td>
     </tr>
@@ -198,10 +199,11 @@ foreach ($data_nilai as $data) :
                 }
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
+                $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 15px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -222,10 +224,11 @@ foreach ($data_nilai as $data) :
                 $mapel = $value['nama_mapel'];
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
+                $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 15px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -246,10 +249,11 @@ foreach ($data_nilai as $data) :
                 $mapel = $value['nama_mapel'];
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
+                $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 15px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -258,7 +262,13 @@ foreach ($data_nilai as $data) :
         }
         ?>
         <tr>
-            <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Rata-Rata
+            <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Jumlah
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= number_format($totalNilaiAkhir, 2, '.', '') ?></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Rata-rata
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
                 <?= number_format($averageNilai, 2, '.', '') ?></td>
@@ -269,10 +279,10 @@ foreach ($data_nilai as $data) :
             <td style="width: 45%"></td>
             <td style="width: 20%; margin-right: 20px; "></td>
             <td style="width: 28%; text-align: left;" id="ttd">
-                <p style="">Pekalongan, 2 Juni 2025</p>
-                <p style="">Kepala,</p><br><br><br><br><br>
-                <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. Abdur Rozak</p>
-                <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
+                <p style="">Kota Pekalongan, 2 Juni 2025</p>
+                <p style="">Kepala,</p><br><br><br><br>
+                <p style="text-decoration: underline; font-weight: bold; font-size: 12px;">Drs. Abdur Rozak</p>
+                <p style="font-weight: bold; font-size: 12px;">NIP. 19650802 199203 1 008</p>
             </td>
             </td>
         </tr>
