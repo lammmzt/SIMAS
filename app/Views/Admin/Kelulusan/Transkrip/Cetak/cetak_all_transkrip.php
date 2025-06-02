@@ -3,7 +3,7 @@ ini_set('memory_limit', '256M');
 ?>
 <style>
 body {
-    font-family: 'Arial', ;
+    font-family: 'Calibri', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -33,17 +33,17 @@ p {
 /* #header-SKL margin 0 heigh minim */
 #header-SKL {
     margin: 0;
-    height: 13px;
+    height: 14px;
 }
 
 #header-SKL td {
     padding: 0;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 #header-SKL th {
     padding: 0;
-    font-size: 13px;
+    font-size: 14px;
 }
 </style>
 <?php if ( !function_exists('formatDateIndo')) {
