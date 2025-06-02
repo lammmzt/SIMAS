@@ -11,11 +11,11 @@ table {
 
 td {
     padding: 3px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 p {
-    font-size: 13px;
+    font-size: 14px;
     margin: 0;
     padding: 0;
 }
@@ -30,17 +30,17 @@ p {
 
 #header-SKL {
     margin: 0;
-    height: 13px;
+    height: 14px;
 }
 
 #header-SKL td {
     padding: 0;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 #header-SKL th {
     padding: 0;
-    font-size: 13px;
+    font-size: 14px;
 }
 </style>
 <?php if ( !function_exists('formatDateIndo')) {
@@ -128,19 +128,19 @@ p {
         <td style="width: 25%"></td>
     </tr>
 </table>
-<div class="container" style="margin-top: 3px;">
-    <table style="margin-top:3px;" id="header-SKL">
-        <tr style="height:13px">
+<div class="container" style="margin-top: 5px;">
+    <table style="margin-top:5px;" id="header-SKL">
+        <tr style="height:14px">
             <td style="width: 38%; height: 10px;">Satuan Pendidikan</td>
             <td style="width: 2%; height: 10px;">:</td>
             <td style="width: 60%; height: 10px;">SMA Negeri 1 Pekalongan</td>
         </tr>
-        <tr style="height:13px">
+        <tr style="height:14px">
             <td style="width: 38%; height: 10px;">Nomor Pokok Sekolah Nasional</td>
             <td style="width: 2%; height: 10px;">:</td>
             <td style="width: 60%; height: 10px;">20329517</td>
         </tr>
-        <tr style="height:13px">
+        <tr style="height:14px">
             <td style="width: 38%; height: 10px;">Nama Lengkap</td>
             <td style="width: 2%; height: 10px;">:</td>
             <td style="width: 60%; height: 10px; font-weight: bold;">
@@ -148,24 +148,24 @@ p {
                 <?= $data_nilai[0]['nama_lengkap_data_dapodik'] ?>
             </td>
         </tr>
-        <tr style="height:13px">
+        <tr style="height:14px">
             <td>Tempat, Tanggal Lahir</td>
             <td>:</td>
             <td><?= ucwords(strtolower($data_nilai[0]['tempat_lahir_data_dapodik'])) ?>,
                 <?= formatDateIndo($data_nilai[0]['tanggal_lahir_data_dapodik']) ?></td>
         </tr>
 
-        <tr style="height:13px">
+        <tr style="height:14px">
             <td>Nomor Induk Siswa Nasional</td>
             <td>:</td>
             <td><?= $data_nilai[0]['id_data_dapodik'] ?></td>
         </tr>
-        <tr style="height:13px">
+        <tr style="height:14px">
             <td>Nomor Ijazah</td>
             <td>:</td>
             <td><?= $data_nilai[0]['nomor_ijazah'] ?></td>
         </tr>
-        <tr style="height:13px">
+        <tr style="height:14px">
             <td>Tanggal Kelulusan</td>
             <td>:</td>
             <td>5 Mei 2025</td>
@@ -197,9 +197,9 @@ p {
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 14px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -222,9 +222,9 @@ p {
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 14px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -247,9 +247,9 @@ p {
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
                 $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 14px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 14px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -261,7 +261,7 @@ p {
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Jumlah
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= $totalNilaiAkhir ?></td>
+                <?= number_format($totalNilaiAkhir, 2, '.', '') ?></td>
         </tr>
         <tr>
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Rata-Rata
@@ -279,8 +279,8 @@ p {
             <td style="width: 28%; text-align: left;" id="ttd">
                 <p style="">Kota Pekalongan, 2 Juni 2025</p>
                 <p style="">Kepala,</p><br><br><br>
-                <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. Abdur Rozak</p>
-                <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
+                <p style="text-decoration: underline; font-weight: bold; font-size: 11px;">Drs. Abdur Rozak</p>
+                <p style="font-weight: bold; font-size: 11px;">NIP. 19650802 199203 1 008</p>
             </td>
             </td>
         </tr>
