@@ -1,6 +1,6 @@
 <style>
 body {
-    font-family: 'Arial', ;
+    font-family: 'Calibri', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -11,11 +11,11 @@ table {
 
 td {
     padding: 3px;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 p {
-    font-size: 15px;
+    font-size: 13px;
     margin: 0;
     padding: 0;
 }
@@ -35,12 +35,12 @@ p {
 
 #header-SKL td {
     padding: 0;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 #header-SKL th {
     padding: 0;
-    font-size: 15px;
+    font-size: 13px;
 }
 </style>
 <?php if ( !function_exists('formatDateIndo')) {
@@ -69,6 +69,7 @@ p {
     $groupAverageNilaiAkhirByMapel = array();
     $total_nilai_akhir = 0;
     $jumlah_mapel = 0;
+    $totalNilaiAkhir = 0;
     // dd($data_nilai);
     foreach ($data_nilai as $key => $value) {
         if ($value['tipe_nilai'] == '1') {
@@ -143,7 +144,9 @@ p {
             <td style="width: 38%; height: 10px;">Nama Lengkap</td>
             <td style="width: 2%; height: 10px;">:</td>
             <td style="width: 60%; height: 10px; font-weight: bold;">
-                <?= ucwords(strtolower($data_nilai[0]['nama_lengkap_data_dapodik'])) ?></td>
+                <!-- <?= ucwords(strtolower($data_nilai[0]['nama_lengkap_data_dapodik'])) ?> -->
+                <?= $data_nilai[0]['nama_lengkap_data_dapodik'] ?>
+            </td>
         </tr>
         <tr style="height:13px">
             <td>Tempat, Tanggal Lahir</td>
@@ -180,6 +183,7 @@ p {
                 Kelompok Mata Pelajaran Umum
             </td>
         </tr>
+
         <?php 
         $no = 1;
         foreach ($urutan_mapel_umum as $key => $value) {
@@ -191,10 +195,11 @@ p {
                 }
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
+                $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 15px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -215,10 +220,11 @@ p {
                 $mapel = $value['nama_mapel'];
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
+                $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 15px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -239,10 +245,11 @@ p {
                 $mapel = $value['nama_mapel'];
                 $id_mapel = $value['id_mapel'];
                 $averageNilaiAkhir = $groupAverageNilaiAkhirByMapel[$id_mapel]['nilai_akhir'];
+                $totalNilaiAkhir += $averageNilaiAkhir;
                 echo '<tr>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $no . '</td>';
-                echo '<td style="border: 1px solid black; text-align: left;  height: 15px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 15px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
+                echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -250,6 +257,12 @@ p {
             }
         }
         ?>
+        <tr>
+            <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Jumlah
+            </td>
+            <td style="border: 1px solid black; text-align: center; font-weight: bold;">
+                <?= $totalNilaiAkhir ?></td>
+        </tr>
         <tr>
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Rata-Rata
             </td>
@@ -264,8 +277,8 @@ p {
             <td style="width: 45%"></td>
             <td style="width: 20%; margin-right: 20px; "></td>
             <td style="width: 28%; text-align: left;" id="ttd">
-                <p style="">Pekalongan, 2 Juni 2025</p>
-                <p style="">Kepala,</p><br><br><br><br><br>
+                <p style="">Kota Pekalongan, 2 Juni 2025</p>
+                <p style="">Kepala,</p><br><br><br>
                 <p style="text-decoration: underline; font-weight: bold; font-size: 13px;">Drs. Abdur Rozak</p>
                 <p style="font-weight: bold; font-size: 13px;">NIP. 19650802 199203 1 008</p>
             </td>
