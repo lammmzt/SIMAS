@@ -108,7 +108,7 @@ p {
         // dd($averageNilaiRapor);
         $groupAverageNilaiAkhirByMapel[$key] = array(
             'id_mapel' => $key,
-            'nilai_akhir' => number_format($averageNilaiAkhir, 2, ',', ''),
+            'nilai_akhir' => number_format($averageNilaiAkhir, 2, '.', ''),
         );
     }
     // dd($groupAverageNilaiAkhirByMapel);
@@ -260,13 +260,13 @@ p {
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Jumlah
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= number_format($totalNilaiAkhir, 2, ',', '') ?></td>
+                <?= number_format($totalNilaiAkhir, 2, '.', '') ?></td>
         </tr>
         <tr>
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Rata-rata
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= number_format($averageNilai, 2, ',', '') ?></td>
+                <?= number_format($averageNilai, 2, '.', '') ?></td>
         </tr>
     </table>
 
