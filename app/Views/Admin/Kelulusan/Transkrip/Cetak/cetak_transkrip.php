@@ -144,8 +144,7 @@ p {
             <td style="width: 38%; height: 10px;">Nama Lengkap</td>
             <td style="width: 2%; height: 10px;">:</td>
             <td style="width: 60%; height: 10px; font-weight: bold;">
-                <!-- <?= ucwords(strtolower($data_nilai[0]['nama_lengkap_data_dapodik'])) ?> -->
-                <?= $data_nilai[0]['nama_lengkap_data_dapodik'] ?>
+                <?= ucwords(strtolower($data_nilai[0]['nama_lengkap_data_dapodik'])) ?>
             </td>
         </tr>
         <tr style="height:13px">
@@ -172,7 +171,7 @@ p {
         </tr>
     </table>
 
-    <table style="margin-top: 10px; border-collapse: collapse; border: 1px solid black; height: 20px;">
+    <table style="margin-top: 15px; border-collapse: collapse; border: 1px solid black; height: 20px;">
         <tr>
             <th style="border: 1px solid black; width: 5%; text-align: center; height: 20px;">No</th>
             <th style="border: 1px solid black; width: 75%; text-align: center;">Mata Pelajaran</th>
