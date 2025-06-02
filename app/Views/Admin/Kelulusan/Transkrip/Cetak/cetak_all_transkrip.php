@@ -177,7 +177,7 @@ foreach ($data_nilai as $data) :
         </tr>
     </table>
 
-    <table style="margin-top: 3px; border-collapse: collapse; border: 1px solid black; height: 20px;">
+    <table style="margin-top: 15px; border-collapse: collapse; border: 1px solid black; height: 20px;">
         <tr>
             <th style="border: 1px solid black; width: 5%; text-align: center; height: 20px;">No</th>
             <th style="border: 1px solid black; width: 75%; text-align: center;">Mata Pelajaran</th>
