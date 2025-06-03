@@ -129,7 +129,7 @@ p {
     </tr>
 </table>
 <div class="container" style="margin-top: 3px;">
-    <table style="margin-top:3px;" id="header-SKL">
+    <table style="margin-top: 3px;" id="header-SKL">
         <tr style="height:13px">
             <td style="width: 38%; height: 10px;">Satuan Pendidikan</td>
             <td style="width: 2%; height: 10px;">:</td>
@@ -198,7 +198,7 @@ p {
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
                 echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . str_replace('.', ',', $averageNilaiAkhir) . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -223,7 +223,7 @@ p {
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
                 echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . str_replace('.', ',', $averageNilaiAkhir) . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -248,26 +248,30 @@ p {
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
                 echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . str_replace('.', ',', $averageNilaiAkhir) . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
                 continue; // skip if mapel not exist in groupAverageNilaiAkhirByMapel
             }
         }
+        $totalNilaiAkhir = number_format($totalNilaiAkhir, 2, '.', '');
+        $averageNilai = number_format($averageNilai, 2, '.', '');
         ?>
         <tr>
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Jumlah
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= number_format($totalNilaiAkhir, 2, '.', '') ?></td>
+                <?= str_replace('.', ',', $totalNilaiAkhir) ?></td>
         </tr>
         <tr>
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Rata-rata
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= number_format($averageNilai, 2, '.', '') ?></td>
+                <?= str_replace('.', ',', $averageNilai) ?></td>
         </tr>
+
+
     </table>
 
 
