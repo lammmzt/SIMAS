@@ -130,7 +130,7 @@ foreach ($data_nilai as $data) :
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
             <h4 height: 13px; style="font-weight: bold;">TRANSKRIP NILAI</h3>
-                <p>Nomor : 400.3.14.5/<?=$data_nilai[0]['nomor_sknr']?>/VI/2025</p>
+                <p>Nomor : 400.3.14.5/<?=$data[0]['nomor_sknr']?>/VI/2025</p>
         </td>
         <td style="width: 25%"></td>
     </tr>
