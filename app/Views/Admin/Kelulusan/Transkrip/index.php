@@ -157,7 +157,7 @@
                 <!-- <form class="needs-validation" novalidate enctype="multipart/form-data" method="post"
                     action="<?= base_url('Data_siswa/import') ?>"> -->
                 <form class="needs-validation" novalidate id="form-import" enctype="multipart/form-data" method="post">
-                    <div class="mb-4">
+                    <div class="mb-2">
                         <label for="file" class="form-label">File</label>
                         <input type="file" class="form-control" id="file" name="file" required accept=".xlsx , .xls ">
                         <div class="invalid-feedback">
@@ -165,6 +165,18 @@
                         </div>
                         <a href="<?= base_url('Assets/template/TEMPLATE_IMPORT_NOMOR_IJAZAH.xlsx') ?>"
                             class="my-2 text-decoration-none" target="_blank">Download template</a>
+
+                    </div>
+                    <div class="mb-4">
+                        <label for="tipe_field" class="form-label">Tipe Field</label>
+                        <select class="form-select mt-2" id="tipe_field" name="tipe_field" required>
+                            <option value="">Pilih Tipe Field</option>
+                            <option value="nomor_sknr">Nomor SKNR</option>
+                            <option value="nomor_ijazah">Nomor Ijazah</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Kelas harus diisi
+                        </div>
 
                     </div>
                     <div class="text-start mt-3">
@@ -462,7 +474,7 @@ $(document).ready(function() {
         e.preventDefault();
         var formData = new FormData(this);
         $.ajax({
-            url: '<?= base_url('Kelulusan/importNomorIjazah'); ?>',
+            url: '<?= base_url('Kelulusan/importNomor'); ?>',
             type: 'POST',
             data: formData,
             dataType: 'json',

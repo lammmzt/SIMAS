@@ -130,7 +130,7 @@ foreach ($data_nilai as $data) :
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
             <h4 height: 13px; style="font-weight: bold;">TRANSKRIP NILAI</h3>
-                <p>Nomor : 400.3.14.5/0221/VI/2025</p>
+                <p>Nomor : 400.3.14.5/<?=$data_nilai[0]['nomor_sknr']?>/VI/2025</p>
         </td>
         <td style="width: 25%"></td>
     </tr>
@@ -203,7 +203,7 @@ foreach ($data_nilai as $data) :
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
                 echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . str_replace('.', ',', $averageNilaiAkhir) . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -228,7 +228,7 @@ foreach ($data_nilai as $data) :
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
                 echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . str_replace('.', ',', $averageNilaiAkhir) . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -253,7 +253,7 @@ foreach ($data_nilai as $data) :
                 echo '<tr>';
                 echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $no . '</td>';
                 echo '<td style="border: 1px solid black; text-align: left;  height: 13px;">' . $mapel . '</td>';
-                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . $averageNilaiAkhir . '</td>';
+                echo '<td style="border: 1px solid black; text-align: center;  height: 13px;">' . str_replace('.', ',', $averageNilaiAkhir) . '</td>';
                 echo '</tr>';
                 $no++;
             } else {
@@ -265,13 +265,13 @@ foreach ($data_nilai as $data) :
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Jumlah
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= number_format($totalNilaiAkhir, 2, '.', '') ?></td>
+                <?= number_format($totalNilaiAkhir, 2, ',', '') ?></td>
         </tr>
         <tr>
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Rata-rata
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= number_format($averageNilai, 2, '.', '') ?></td>
+                <?= number_format($averageNilai, 2, ',', '') ?></td>
         </tr>
     </table>
     <table style="margin-top: 3px;">

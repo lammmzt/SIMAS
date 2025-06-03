@@ -732,13 +732,14 @@ class Kelulusan extends BaseController
             ->toJson(true);
     }
 
-    public function importNomorIjazah(){
+    public function importNomor(){
         $file_excel = $this->request->getFile('file'); // get file excel
         $validation = \Config\Services::validation(); // get validation
         $data_siswaModel = new data_siswaModel(); // get model data_siswa
         // to get all data
         $data_siswa = $data_siswaModel->get_data_siswa()->findAll();
         $data_siswa = array_column($data_siswa, 'id_data_siswa', 'nis_data_siswa');
+        $tipe_field = $this->request->getPost('tipe_field'); // get tipe field
         // dd($data_siswa, $data_dapodik);
         // Define validation rules
         $validation->setRules([ // set rules
@@ -791,9 +792,9 @@ class Kelulusan extends BaseController
             
             $nama_lengkap = $col[2];
             $nis  = $col[3];
-            $nomor_ijazah = $col[4];
+            $nomor = $col[4];
            
-            if (empty($nama_lengkap) || empty($nis) || empty($nomor_ijazah)) {
+            if (empty($nama_lengkap) || empty($nis) || empty($nomor)) {
                 $failed++;
                 $result[] = [
                     'no' => $no,
@@ -808,7 +809,7 @@ class Kelulusan extends BaseController
                 // dd($data_dapodik[$nis]);
                 // update data dapodik
                 $data_siswaModel->update($data_siswa[$nis], [
-                    'nomor_ijazah' => $nomor_ijazah,
+                    ($tipe_field == 'nomor_ijazah' ? 'nomor_ijazah' : 'nomor_sknr') => $nomor,
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
                 

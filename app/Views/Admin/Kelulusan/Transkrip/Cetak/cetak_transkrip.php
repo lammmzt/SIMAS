@@ -123,7 +123,7 @@ p {
         <td style="width: 25%"></td>
         <td style="width: 50%; text-align: center;">
             <h4 style="font-weight: bold;">TRANSKRIP NILAI</h4>
-            <p>Nomor : 400.3.14.5/0221/VI/2025</p>
+            <p>Nomor : 400.3.14.5/<?=$data_nilai[0]['nomor_sknr']?>/VI/2025</p>
         </td>
         <td style="width: 25%"></td>
     </tr>
