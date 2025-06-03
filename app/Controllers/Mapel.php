@@ -115,6 +115,7 @@ class Mapel extends BaseController
         $id = $this->request->getPost('id_mapel');
         $validation =  \Config\Services::validation();
         $data_mapel = $mapelModel->getMapel($id);
+        
         if ($this->request->getPost('kode_mapel') == $data_mapel['kode_mapel']) {
             $req_kode_mapel = 'required';
         } else {
@@ -127,6 +128,7 @@ class Mapel extends BaseController
         //     $req_nama_mapel = 'required|is_unique[mapel.nama_mapel]';
         // }
         
+        $req_nama_mapel = 'required';
         $validation->setRules([
             'kode_mapel' => [
                 'label' => 'Kode Mapel',
