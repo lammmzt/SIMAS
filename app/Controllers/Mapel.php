@@ -121,11 +121,11 @@ class Mapel extends BaseController
             $req_kode_mapel = 'required|is_unique[mapel.kode_mapel]';
         }
 
-        if ($this->request->getPost('nama_mapel') == $data_mapel['nama_mapel']) {
-            $req_nama_mapel = 'required';
-        } else {
-            $req_nama_mapel = 'required|is_unique[mapel.nama_mapel]';
-        }
+        // if ($this->request->getPost('nama_mapel') == $data_mapel['nama_mapel']) {
+        //     $req_nama_mapel = 'required';
+        // } else {
+        //     $req_nama_mapel = 'required|is_unique[mapel.nama_mapel]';
+        // }
         
         $validation->setRules([
             'kode_mapel' => [
