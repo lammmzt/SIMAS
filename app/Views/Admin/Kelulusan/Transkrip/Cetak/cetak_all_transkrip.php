@@ -260,18 +260,21 @@ foreach ($data_nilai as $data) :
                 continue; // skip if mapel not exist in groupAverageNilaiAkhirByMapel
             }
         }
+
+        $totalNilaiAkhir = number_format($totalNilaiAkhir, 2, '.', '');
+        $averageNilai = number_format($averageNilai, 2, '.', '');
         ?>
         <tr>
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Jumlah
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= number_format($totalNilaiAkhir, 2, ',', '') ?></td>
+                <?= str_replace('.', ',', $totalNilaiAkhir) ?></td>
         </tr>
         <tr>
             <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">Rata-rata
             </td>
             <td style="border: 1px solid black; text-align: center; font-weight: bold;">
-                <?= number_format($averageNilai, 2, ',', '') ?></td>
+                <?= str_replace('.', ',', $averageNilai) ?></td>
         </tr>
     </table>
     <table style="margin-top: 3px;">
