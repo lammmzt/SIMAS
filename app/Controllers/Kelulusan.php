@@ -36,7 +36,7 @@ class Kelulusan extends BaseController
             
             ->add('action', function ($row) {
                 $nama_file = sprintf("skl_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $row->nama_lengkap_data_siswa), $row->kelas_data_dapodik);
-                $nama_file2 = sprintf("transkrip_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $row->nama_lengkap_data_dapodik), $row->kelas_data_dapodik);
+                $nama_file2 = sprintf("transkrip_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $row->nama_lengkap_data_siswa), $row->kelas_data_dapodik);
                 // hapus petik yang ada pada nama file
                 $nama_file = str_replace("'", "", $nama_file);
                 $nama_file = str_replace("__039", "", $nama_file);
@@ -143,7 +143,7 @@ class Kelulusan extends BaseController
         foreach ($data_nilai_group as $dtn) {
 
             // Buat nama file yang aman
-            $nama_file = sprintf("skl_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $dtn[0]['nama_lengkap_data_dapodik']), $nama_kelas);
+            $nama_file = sprintf("skl_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $dtn[0]['nama_lengkap_data_siswa']), $nama_kelas);
             // hapus petik yang ada pada nama file
             $nama_file = str_replace("'", "", $nama_file);
             $file_path = FCPATH . 'Assets/pdf/SKL/' . $nama_file;
@@ -446,7 +446,7 @@ class Kelulusan extends BaseController
         foreach ($data_nilai_group as $dtn) {
 
             // Buat nama file yang aman
-            $nama_file = sprintf("transkrip_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $dtn[0]['nama_lengkap_data_dapodik']), $nama_kelas);
+            $nama_file = sprintf("transkrip_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $dtn[0]['nama_lengkap_data_siswa']), $nama_kelas);
             // hapus petik yang ada pada nama file
             $nama_file = str_replace("'", "", $nama_file);
             $file_path = FCPATH . 'Assets/pdf/TRANSKRIP/' . $nama_file;
@@ -905,7 +905,7 @@ class Kelulusan extends BaseController
         foreach ($data_nilai_group as $dtn) {
 
             // Buat nama file yang aman
-            $nama_file = sprintf("transkrip_ijazah_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $dtn[0]['nama_lengkap_data_dapodik']), $nama_kelas);
+            $nama_file = sprintf("transkrip_ijazah_%s_%s.pdf", preg_replace('/[^A-Za-z0-9]/', '_', $dtn[0]['nama_lengkap_data_siswa']), $nama_kelas);
             // hapus petik yang ada pada nama file
             $nama_file = str_replace("'", "", $nama_file);
             $file_path = FCPATH . 'Assets/pdf/TranskripIjazah/' . $nama_file;
