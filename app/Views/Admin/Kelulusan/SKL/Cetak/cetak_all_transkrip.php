@@ -92,7 +92,7 @@ foreach ($data_nilai as $data) :
         <tr>
             <td style="width: 15%; min-width: 15%;">Nama </td>
             <td style="width: 8px;">:</td>
-            <td style="width: 38%; min-width: 38%;"><?= ucwords(strtolower($data[0]['nama_lengkap_data_dapodik'])) ?>
+            <td style="width: 38%; min-width: 38%;"><?= $data[0]['nama_lengkap_data_siswa']?>
             </td>
             <td style="width: 2%; min-width: 2%;"></td>
             <td style="width: 12%; min-width: 12%;">Kelas</td>

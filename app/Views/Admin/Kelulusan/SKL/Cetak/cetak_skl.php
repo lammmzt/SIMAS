@@ -145,7 +145,7 @@ p {
             <td style="width: 38%; height: 10px;">Nama Lengkap</td>
             <td style="width: 2%; height: 10px;">:</td>
             <td style="width: 60%; height: 10px; font-weight: bold;">
-                <?= ucwords(strtolower($data_nilai[0]['nama_lengkap_data_dapodik'])) ?></td>
+                <?= $data_nilai[0]['nama_lengkap_data_siswa'] ?></td>
         </tr>
         <tr style="height:13px">
             <td>Tempat, Tanggal Lahir</td>
