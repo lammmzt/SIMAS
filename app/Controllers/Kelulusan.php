@@ -809,7 +809,8 @@ class Kelulusan extends BaseController
                 // dd($data_dapodik[$nis]);
                 // update data dapodik
                 $data_siswaModel->update($data_siswa[$nis], [
-                    ($tipe_field == 'nomor_ijazah' ? 'nomor_ijazah' : 'nomor_sknr') => $nomor,
+                    // ($tipe_field == 'nomor_ijazah' ? 'nomor_ijazah' : 'nomor_sknr') => $nomor,
+                    'nama_lengkap_data_siswa' => $nama_lengkap,
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
                 
