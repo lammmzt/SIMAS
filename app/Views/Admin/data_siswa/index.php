@@ -114,6 +114,7 @@
                                 <th>NIS</th>
                                 <th>NISN</th>
                                 <th>Kelas</th>
+                                <th>Nomor Ijazah</th>
                                 <th>Nama Ayah</th>
                                 <th>Nama Ibu</th>
                                 <th>Alamat</th>
@@ -414,6 +415,9 @@ function dataTablesDataSiswa() {
             {
                 data: 'kelas_data_dapodik'
             },
+            {
+                data: 'nomor_ijazah'
+            },
             // {
             //     // title: 'Status',
             //     data: 'status_pengecekan',
@@ -450,7 +454,7 @@ function dataTablesDataSiswa() {
         ],
         "columnDefs": [{
             "orderable": false,
-            "targets": [0, 8]
+            "targets": [0, 9]
         }],
         initComplete: function() {
             this.api()
